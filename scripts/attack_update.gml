@@ -1,0 +1,237 @@
+//attack_update
+
+var window_end_time = get_window_value(attack, window, AG_WINDOW_LENGTH);
+
+switch(attack)
+{
+	case AT_NSPECIAL:
+	// Scrapbomb and Trashbag Bomb
+		// Allow holding to charge
+		if (window == 2) {
+			nspecCharge++
+    		if (window_timer == window_end_time) && special_down {
+    			window_timer = 1;
+    		} else if (!special_down or nspecCharge >= nspecCharge_bagAmount + 10) {
+    			window = 3;
+    			window_timer = 1;
+    		}
+    	}
+		
+		if ((window > 2 && window < 6) && window_timer == window_end_time) {
+			window = 6;
+			window_timer = 1;
+		}
+		
+		//-- SHOOT NORMAL
+		if (window == 3 && window_timer == window_end_time-1) {
+			if nspecCharge < nspecCharge_bagAmount {
+					//scrapbomb
+					
+					instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+				} else {
+					//trashbag bomb
+					instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+					instance_create( x+(48*spr_dir), y-24, "obj_article2" );
+					instance_create( x+(48*spr_dir), y-96, "obj_article2" );
+					nspecCharge = 0;
+				}
+			}
+		
+		//-- SHOOT HIGH
+		//-- SHOOT LOW
+	break;
+	
+    case AT_DSPECIAL:
+    	if (window == 1 && window_timer == 1) {
+    		latest_pipe_angle = 90;
+    		latest_pipe_dir = spr_dir;
+    	}
+    	if (window == 2) {
+    		if (window_timer == window_end_time) && special_down {
+    			window_timer = 1;
+    		} else if !special_down {
+    			no_pipes_here = true;
+    			if (place_meeting(x+48*spr_dir, y, asset_get("obj_article1"))){
+    				no_pipes_here = false;
+    			}
+    			if (no_pipes_here) {
+    				window = 3;
+    				window_timer = 1;
+    			} else {
+    				window = 6;
+    				window_timer = 5
+    			}
+    			
+    		}
+    		if (special_down) {
+    			if (left_pressed) {
+    				latest_pipe_angle = 45;
+    				latest_pipe_dir = -1;
+    			} else if (right_pressed) {
+    				latest_pipe_angle = 45;
+    				latest_pipe_dir = 1;
+    			}
+    		}
+    	}
+    	if (window == 4 && window_timer == 1) {
+    		if (!free) instance_create( x+(48*spr_dir), y, "obj_article1" );
+    	}
+    break;
+    
+    case AT_USPECIAL:
+    {
+    	can_fast_fall = false;
+    	can_fastfall = false;
+        //vsp = clamp(vsp, -99, -6);
+        if (window > 1) {
+        	in_hstance = true;
+        }
+        if (window == 3) {
+        	vsp *= 0.94;
+        }
+    }break;
+    
+    case AT_FSTRONG:
+    {
+    	if (window == 2) {
+    		if window_timer == 1 {
+    			sound_play(asset_get("sfx_swipe_medium1"), false, noone, 1,  1.2);
+    		} else if (window_timer == window_end_time) {
+    			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
+    			sound_play(asset_get("sfx_pom_yell1"), false, noone, 0.7,  1.1);
+    		}
+    	}
+    } break;
+    
+    case AT_JAB:
+    	if (window == 4) {
+    		if (window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
+    	}
+    break;
+    
+    case AT_DATTACK:
+    	if (window == 1 && window_timer == 1) {
+    		sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.7, 1.6);
+    	}
+    break;
+    
+    case AT_BAIR:
+    	if (window == 2) {
+    		if (window_timer == 1) sound_play(asset_get("sfx_absa_current_pop"), false, noone, 0.5, 1);
+    	} else if (window == 3 && window_timer == window_end_time) sound_play(sound_get("wildcharge"), false, noone, 0.5, 1);
+    	else if (window == 4) sound_stop(asset_get("sfx_absa_current_pop"));
+    	
+    break;
+    
+    case AT_DAIR:
+    	if (window == 1) {
+    		if (window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
+    	}
+
+		if (!hitpause && window == 2 && window_timer == 1 && dair_used == false) {
+    		vsp = clamp(vsp, -3, -7);
+    		dair_used = true;
+    	}
+    break;
+    
+    case AT_UAIR:
+    	if (window == 1){
+    	    if (window_timer == window_end_time){
+    	        if (!hitpause && !hitstop){
+    	            sound_play(sound_get("steam_gadget"), false, noone, 0.4, 0.9);
+    	            sound_play(sound_get("uair_shine"), false, noone, 0.25, 0.95);
+    	        }
+    	    }
+    	}
+    	
+    	if (window > 1) hud_offset = 80;
+	break;
+	
+	case AT_EXTRA_1:
+		if (in_hstance) in_hstance = false;
+	break;
+}
+
+//iasa_script (insantly as soon as, aka switch back into full control/idle) without having to check for !was_parried
+#define endlag_cancel()
+{
+	if !was_parried // checks if you WERENT parried
+	{
+		iasa_script(); // if you werent parried, wherever you put endlag_cancel() will let you act out of whatever the fuck you were doing before
+	}
+}
+
+// window_advance_to
+// input the attack index, like AT_JAB, then the window you want to switch to happen from, then the window you want to switch to
+// continuous is a boolean (true or false) that makes it automatically switch windows after going through the current window's frames
+// example: window_advance_to(AT_TAUNT, 1, 2, true)
+#define window_advance_to(attackindex, currentwindow, newwindow, continuous)
+{
+    if window == currentwindow
+    {
+	    if continuous
+	    {
+	        if window_timer >= get_window_value(attackindex, currentwindow,AG_WINDOW_LENGTH)
+	        {
+	            window = newwindow;
+	            window_timer = 0;
+	        }
+	    }
+	    else if !continuous
+	    {
+	        window = newwindow;
+	        window_timer = 0;
+	    }
+    }
+	
+}
+
+// makes the user flash yellow like a strong
+// example: yellow_flash_cycle(8);
+#define yellow_flash_cycle(cyclenumber)
+{
+    strong_flashing = (floor(get_gameplay_time()/cyclenumber) % 2) == 0;
+}
+
+// makes the user glow depending on the timer set. the larger the number the brighter and slower it flashes
+// example: white_flash_cycle(10);
+#define white_flash_cycle(timer)
+{
+	if white_flash_timer <= 1
+	{
+		white_flash_timer = timer;
+	}
+}
+
+// spawn_base_dust made by Supersonic
+#define spawn_base_dust
+///spawn_base_dust(x, y, name, ?dir)
+//This function spawns base cast dusts. Names can be found below.
+var dlen; //dust_length value
+var dfx; //dust_fx value
+var dfg; //fg_sprite value
+var dfa = 0; //draw_angle value
+var dust_color = 0;
+var x = argument[0], y = argument[1], name = argument[2];
+var dir = argument_count > 3 ? argument[3] : 0;
+
+switch (name) {
+    default: 
+    case "dash_start":dlen = 21; dfx = 3; dfg = 2626; break;
+    case "dash": dlen = 16; dfx = 4; dfg = 2656; break;
+    case "jump": dlen = 12; dfx = 11; dfg = 2646; break;
+    case "doublejump": 
+    case "djump": dlen = 21; dfx = 2; dfg = 2624; break;
+    case "walk": dlen = 12; dfx = 5; dfg = 2628; break;
+    case "land": dlen = 24; dfx = 0; dfg = 2620; break;
+    case "walljump": dlen = 24; dfx = 0; dfg = 2629; dfa = dir != 0 ? -90*dir : -90*spr_dir; break;
+    case "n_wavedash": dlen = 24; dfx = 0; dfg = 2620; dust_color = 1; break;
+    case "wavedash": dlen = 16; dfx = 4; dfg = 2656; dust_color = 1; break;
+}
+var newdust = spawn_dust_fx(x,y,asset_get("empty_sprite"),dlen);
+newdust.dust_fx = dfx; //set the fx id
+if dfg != -1 newdust.fg_sprite = dfg; //set the foreground sprite
+newdust.dust_color = dust_color; //set the dust color
+if dir != 0 newdust.spr_dir = dir; //set the spr_dir
+newdust.draw_angle = dfa;
+return newdust;
