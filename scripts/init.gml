@@ -151,7 +151,9 @@ nspecCharge_bagAmount = 45;// Frames to charge garbage bag
 
 //-- Monitor Head Stance.
 in_hstance = false;
+has_long_endlag = false;
 
 sting = hit_fx_create( sprite_get( "vfx_sting" ), 21 );
 splsh = hit_fx_create( sprite_get( "vfx_splattersplash" ), 21 );
 splatter = hit_fx_create( sprite_get( "vfx_splatter" ), 21 );
+ustr_corpse = hit_fx_create( sprite_get( "vfx_ustrong_corpse" ), 48 );

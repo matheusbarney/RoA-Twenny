@@ -65,6 +65,7 @@ sprite_change_offset("nspecial_proj", 64, 94);
 sprite_change_offset("vfx_sting", 52, 52);
 sprite_change_offset("vfx_splattersplash", 47, 46);
 sprite_change_offset("vfx_splatter",  128, 120);
+sprite_change_offset("vfx_ustrong_corpse", 128, 159, true);
 
 sprite_change_offset("pipe_straight", 64, 95);
 sprite_change_offset("pipe_mask", 64, 95);
@@ -82,3 +83,4 @@ sprite_change_offset("b_scrapbomb_mask", 64, 63);
 sprite_change_offset("hstance_jump", 48, 63);
 sprite_change_offset("hstance_airdodge", 48, 63);
 sprite_change_offset("hstance_hurt", 48, 63);
+sprite_change_offset("hstance_land", 48, 63);

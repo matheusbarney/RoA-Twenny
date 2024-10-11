@@ -60,7 +60,7 @@ if (!free || state == PS_HITSTUN) {
 if (in_hstance) {
     hurtbox_spr = sprite_get("3_headhbox");
     
-    if !free {
+    if (!free) {
         state = PS_ATTACK_GROUND
         attack = AT_EXTRA_1
     }

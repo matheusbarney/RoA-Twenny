@@ -9,6 +9,12 @@ switch (attack) {
     sound_play(asset_get("sfx_blow_heavy2"), false, noone, 0.5,  1.2);
     break;
     
+    case AT_USTRONG:
+    if (my_hitboxID.hbox_num > 1 && my_hitboxID.hbox_num < 7) sound_play(asset_get("sfx_absa_singlezap1"), false, noone, 1,  1);
+    else if (my_hitboxID.hbox_num == 7) sound_play(asset_get("sfx_absa_kickhit"), false, noone, 1,  1);
+    has_long_endlag = false //pseudo whifflag
+    break;
+    
     case AT_FTILT:
     if (my_hitboxID.hbox_num == 1) sound_play(asset_get("sfx_rag_plant_shoot"));
     else sound_play(asset_get("sfx_metal_hit_weak"));

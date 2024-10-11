@@ -66,6 +66,11 @@ if (in_hstance) {
 		case PS_HITSTUN: 
 			sprite_index = sprite_get("hstance_hurt");
 		break;
+		case PS_LAND:
+		case PS_LANDING_LAG:
+		case PS_WAVELAND:
+			sprite_index = sprite_get("hstance_land");
+		break;
 	}
 }
 

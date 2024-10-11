@@ -119,6 +119,7 @@ switch(attack)
         //vsp = clamp(vsp, -99, -6);
         if (window > 1) {
         	in_hstance = true;
+        	has_long_endlag = true;
         }
         if (window == 3) {
         	vsp *= 0.94;
@@ -139,7 +140,35 @@ switch(attack)
     
     case AT_USTRONG:
     {
-    	if (window > 2) in_hstance = true;
+    	if (window == 1) has_long_endlag = true;
+    	if (window > 2) {
+    		in_hstance = true;
+    	}
+    	
+    	if (window == 3) {
+    		if (window_timer == 1) {
+    			sound_play(asset_get("sfx_ori_stomp_spin"), false, noone, 0.2,  1.1);
+    			var ustrong_corpse = spawn_hit_fx( x, y+10, ustr_corpse);
+    			
+    		} else if (window_timer == 12) sound_play(sound_get("metal_clatter"), false, noone, 0.2,   0.5);
+    		else if (window_timer == window_end_time) {
+    			sound_play(asset_get("sfx_absa_cloud_crackle"), false, noone, 0.2, 1);
+    		}
+    	}
+    	
+    	if (window == 4) {
+    		sound_stop(asset_get("sfx_ori_stomp_spin"));
+    		if (window_timer == window_end_time) {
+    			sound_play(sound_get("electricshock"), false, noone, 0.1,  1);
+    			sound_play(sound_get("thunderwave"), false, noone, 0.3,  1);
+    		} 
+    	}
+    	
+    	if (window == 5) {
+    		if (window_timer == 1) {
+    			//
+    		}
+    	} 
     } break;
     
     case AT_JAB:
@@ -151,6 +180,13 @@ switch(attack)
     case AT_DATTACK:
     	if (window == 1 && window_timer == 1) {
     		sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.7, 1.6);
+    	}
+    break;
+    
+    case AT_FTILT:
+    	if (window == 1 && window_timer == window_end_time) {
+    		sound_play(asset_get("sfx_ell_drill_loop"), false, noone, 0.1, 1);
+    		sound_play(asset_get("sfx_swipe_weak2"), false, noone, 1, 1);
     	}
     break;
     
@@ -187,6 +223,13 @@ switch(attack)
 	break;
 	
 	case AT_EXTRA_1:
+		if (has_long_endlag) {
+			set_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH, 14);
+			set_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH, 28);
+		} else {
+			reset_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH);
+			reset_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH);
+		}
 		if (in_hstance) in_hstance = false;
 	break;
 }

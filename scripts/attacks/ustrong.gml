@@ -16,8 +16,11 @@ set_window_value(AT_USTRONG, 1, AG_WINDOW_CUSTOM_GRAVITY, 1);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_TYPE, 1);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_LENGTH, 3);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_ANIM_FRAMES, 1);
-set_window_value(AT_USTRONG, 2, AG_WINDOW_ANIM_FRAME_START, 1);
+set_window_value(AT_USTRONG, 2, AG_WINDOW_ANIM_FRAME_START, 2);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_CUSTOM_GRAVITY, 1);
+set_window_value(AT_USTRONG, 2, AG_WINDOW_HAS_SFX, 1);
+set_window_value(AT_USTRONG, 2, AG_WINDOW_SFX, asset_get("sfx_swipe_medium2"));
+set_window_value(AT_USTRONG, 2, AG_WINDOW_SFX_FRAME, 2);
 
 //in air
 set_window_value(AT_USTRONG, 3, AG_WINDOW_TYPE, 1);
@@ -27,16 +30,19 @@ set_window_value(AT_USTRONG, 3, AG_WINDOW_ANIM_FRAME_START, 4);
 set_window_value(AT_USTRONG, 3, AG_WINDOW_VSPEED_TYPE, 2);
 set_window_value(AT_USTRONG, 3, AG_WINDOW_VSPEED, -10);
 set_window_value(AT_USTRONG, 3, AG_WINDOW_CUSTOM_GRAVITY, 1);
+set_window_value(AT_USTRONG, 3, AG_WINDOW_HAS_SFX, 1);
+set_window_value(AT_USTRONG, 3, AG_WINDOW_SFX, asset_get("sfx_ori_stomp_spin"));
+set_window_value(AT_USTRONG, 3, AG_WINDOW_SFX_FRAME, 1);
 
 //zazazap startup
 set_window_value(AT_USTRONG, 4, AG_WINDOW_TYPE, 1);
-set_window_value(AT_USTRONG, 4, AG_WINDOW_LENGTH, 4);
+set_window_value(AT_USTRONG, 4, AG_WINDOW_LENGTH, 10);
 set_window_value(AT_USTRONG, 4, AG_WINDOW_ANIM_FRAMES, 2);
 set_window_value(AT_USTRONG, 4, AG_WINDOW_ANIM_FRAME_START, 12);
 set_window_value(AT_USTRONG, 4, AG_WINDOW_VSPEED, -2);
 set_window_value(AT_USTRONG, 4, AG_WINDOW_CUSTOM_GRAVITY, 1);
-set_window_value(AT_USTRONG, 5, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
-set_window_value(AT_USTRONG, 5, AG_WINDOW_CUSTOM_AIR_FRICTION, .5);
+set_window_value(AT_USTRONG, 4, AG_WINDOW_HAS_CUSTOM_FRICTION, 1);
+set_window_value(AT_USTRONG, 4, AG_WINDOW_CUSTOM_AIR_FRICTION, .5);
 
 //zazazapppp
 set_window_value(AT_USTRONG, 5, AG_WINDOW_TYPE, 1);
@@ -64,7 +70,7 @@ set_num_hitboxes(AT_USTRONG, 7);
 set_hitbox_value(AT_USTRONG, 1, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_USTRONG, 1, HG_SHAPE, 1);
 set_hitbox_value(AT_USTRONG, 1, HG_WINDOW, 3);
-set_hitbox_value(AT_USTRONG, 1, HG_LIFETIME, 16);
+set_hitbox_value(AT_USTRONG, 1, HG_LIFETIME, 10);
 set_hitbox_value(AT_USTRONG, 1, HG_HITBOX_X, 0);
 set_hitbox_value(AT_USTRONG, 1, HG_HITBOX_Y, -48);
 set_hitbox_value(AT_USTRONG, 1, HG_WIDTH, 48);
