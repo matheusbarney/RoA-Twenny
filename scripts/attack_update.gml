@@ -137,6 +137,11 @@ switch(attack)
     	}
     } break;
     
+    case AT_USTRONG:
+    {
+    	if (window > 2) in_hstance = true;
+    } break;
+    
     case AT_JAB:
     	if (window == 4) {
     		if (window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
