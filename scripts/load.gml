@@ -6,6 +6,8 @@ sprite_change_offset("2_crouchhbox", 64, 94);
 sprite_change_offset("hurt", 48, 63);
 sprite_change_offset("hurtground", 48, 63);
 sprite_change_offset("uphurt", 48, 63);
+sprite_change_offset("downhurt", 48, 63);
+sprite_change_offset("spinhurt", 48, 63);
 sprite_change_offset("bighurt", 48, 63);
 
 sprite_change_offset("crouch", 32, 47);
@@ -34,7 +36,7 @@ sprite_change_offset("airdodge", 48, 63);
 sprite_change_offset("waveland", 48, 63);
 sprite_change_offset("tech", 32, 62);
 
-sprite_change_offset("jab", 64, 79, true);
+sprite_change_offset("jab", 48, 63, true);
 sprite_change_offset("dattack", 48, 63, true);
 sprite_change_offset("ftilt", 48, 63, true);
 sprite_change_offset("dtilt", 48, 63, true);
@@ -50,7 +52,7 @@ sprite_change_offset("dstrong", 64, 94, true);
 sprite_change_offset("nspecial", 48, 63, true);
 sprite_change_offset("fspecial", 64, 94, true);
 sprite_change_offset("uspecial", 48, 63, true);
-sprite_change_offset("dspecial", 82, 99, true);
+sprite_change_offset("dspecial", 64, 79, true);
 sprite_change_offset("taunt", 32, 62, true);
 sprite_change_offset("uspecial_land", 48, 63, true);
 

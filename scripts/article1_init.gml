@@ -1,6 +1,6 @@
 sprite_index = sprite_get("empty_sprite") 
 mask_index = sprite_get("pipe_mask") 
-depth = 20;
+depth = 1;
 article_xscale = 1;
 article_yscale = 1;
 spr_dir = player_id.spr_dir;

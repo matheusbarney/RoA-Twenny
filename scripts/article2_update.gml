@@ -73,10 +73,23 @@ if (state == 1){ //
 	// A normal scrapbomb, that has never teleported before.
     if (!has_tpd) {
     	switch (bomb_angle) {
+    		default:
     		case 45:
     			if (state_timer == 0) {
-    				vsp = -8;
+    				vsp = -9;
     				hsp = 3.5*spr_dir;
+    			}
+    		break;
+    		case 90:
+    			if (state_timer == 0) {
+    				vsp = -10;
+    				hsp = 2.5*spr_dir;
+    			}
+    		break;
+    		case 0:
+    			if (state_timer == 0) {
+    				vsp = -3.5;
+    				hsp = 5.5*spr_dir;
     			}
     		break;
     	}

@@ -7,12 +7,34 @@ switch(attack)
 	case AT_NSPECIAL:
 	// Scrapbomb and Trashbag Bomb
 		// Allow holding to charge
+		if (window == 1) {
+			bomb_angle = 45 //45 for normal, 90 for high, 0 for low
+			nspecCharge = 0;
+		}
 		if (window == 2) {
 			nspecCharge++
     		if (window_timer == window_end_time) && special_down {
     			window_timer = 1;
+    			if up_down {
+    				//-- swap to high bombs
+    				bomb_angle = 90;
+    			} else if down_down {
+    				//-- swap to low bombs
+    				bomb_angle = 0;
+    			}
     		} else if (!special_down or nspecCharge >= nspecCharge_bagAmount + 10) {
-    			window = 3;
+    			if (bomb_angle == 45) {
+    				window = 3;
+    				print_debug("window 3")
+    			}
+    			else if (bomb_angle == 90) {
+    				window = 4;
+    				print_debug("window 4")
+    			}
+    			else {
+    				window = 5;
+    				print_debug("window 5")
+    			}
     			window_timer = 1;
     		}
     	}
@@ -24,21 +46,33 @@ switch(attack)
 		
 		//-- SHOOT NORMAL
 		if (window == 3 && window_timer == window_end_time-1) {
-			if nspecCharge < nspecCharge_bagAmount {
-					//scrapbomb
-					
-					instance_create( x+(48*spr_dir), y-62, "obj_article2" );
-				} else {
-					//trashbag bomb
-					instance_create( x+(48*spr_dir), y-62, "obj_article2" );
-					instance_create( x+(48*spr_dir), y-24, "obj_article2" );
-					instance_create( x+(48*spr_dir), y-96, "obj_article2" );
-					nspecCharge = 0;
-				}
-			}
+			//-- if nspecCharge < nspecCharge_bagAmount {
+			//-- 		//scrapbomb
+			//-- 		
+			//-- 		instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+			//-- 	} else {
+			//-- 		//trashbag bomb
+			//-- 		instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+			//-- 		instance_create( x+(48*spr_dir), y-24, "obj_article2" );
+			//-- 		instance_create( x+(48*spr_dir), y-96, "obj_article2" );
+			//-- 		nspecCharge = 0;
+			//-- 	}
+			//-- }
+			bomb_angle = 45;
+			instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+		}
 		
 		//-- SHOOT HIGH
+		if (window == 4 && window_timer == window_end_time-1) {
+			bomb_angle = 90;
+			instance_create( x+(32*spr_dir), y-80, "obj_article2" );
+		} 
+		
 		//-- SHOOT LOW
+		if (window == 5 && window_timer == window_end_time-1) {
+			bomb_angle = 0;
+			instance_create( x+(56*spr_dir), y-32, "obj_article2" );
+		} 
 	break;
 	
     case AT_DSPECIAL:

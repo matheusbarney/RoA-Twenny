@@ -3,7 +3,7 @@ set_attack_value(AT_UAIR, AG_SPRITE, sprite_get("uair"));
 set_attack_value(AT_UAIR, AG_NUM_WINDOWS, 4);
 set_attack_value(AT_UAIR, AG_HAS_LANDING_LAG, 1);
 set_attack_value(AT_UAIR, AG_LANDING_LAG, 5);
-set_attack_value(AT_UAIR, AG_HURTBOX_SPRITE, sprite_get("1_idlehbox"));
+set_attack_value(AT_UAIR, AG_HURTBOX_SPRITE, sprite_get("uair_hurt"));
 
 
 // Startup
