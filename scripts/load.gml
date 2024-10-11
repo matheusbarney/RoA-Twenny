@@ -2,6 +2,7 @@ sprite_change_offset("idle", 32, 47);
 sprite_change_offset("idle_fidget", 32, 47);
 sprite_change_offset("1_idlehbox", 64, 94);
 sprite_change_offset("2_crouchhbox", 64, 94);
+sprite_change_offset("3_headhbox", 64, 94);
 
 sprite_change_offset("hurt", 48, 63);
 sprite_change_offset("hurtground", 48, 63);

@@ -58,6 +58,8 @@ if (!free || state == PS_HITSTUN) {
 
 // So... no head?
 if (in_hstance) {
+    hurtbox_spr = sprite_get("3_headhbox");
+    
     if !free {
         state = PS_ATTACK_GROUND
         attack = AT_EXTRA_1
@@ -74,6 +76,8 @@ if (in_hstance) {
     move_cooldown[AT_DAIR] = 9999;
     move_cooldown[AT_BAIR] = 9999;
 } else {
+    hurtbox_spr = sprite_get("1_idlehbox");
+    
     move_cooldown[AT_NSPECIAL] = 0;
     move_cooldown[AT_FSPECIAL] = 0;
     move_cooldown[AT_DSPECIAL] = 0;
