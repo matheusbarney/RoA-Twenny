@@ -57,6 +57,8 @@ sprite_change_offset("dspecial", 64, 79, true);
 sprite_change_offset("taunt", 32, 62, true);
 sprite_change_offset("uspecial_land", 48, 63, true);
 
+sprite_change_offset("uspecial_corpse", 128, 159);
+
 sprite_change_offset("plat", 64, 94);
 sprite_change_offset("intro", 32, 175, true);
 
@@ -75,6 +77,7 @@ sprite_change_offset("pipe_mask_slanted", 64, 95);
 
 sprite_change_offset("pipe_cracks", 64, 95);
 sprite_change_offset("pipe_outline", 64, 95);
+sprite_change_offset("pipe_blueprints", 64, 95);
 
 sprite_change_offset("b_scrapbomb", 64, 63);
 sprite_change_offset("b_scrapbomb_mask", 64, 63);

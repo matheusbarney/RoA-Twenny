@@ -39,9 +39,13 @@ switch(attack)
     		}
     	}
 		
-		if ((window > 2 && window < 6) && window_timer == window_end_time) {
-			window = 6;
-			window_timer = 1;
+		if (window > 2 && window < 6) {
+			if window_timer == window_end_time{
+				window = 6;
+				window_timer = 1;
+			} else if window_timer == 1 {
+				sound_play(sound_get("shoot2"), false, noone, 0.1,  1);
+			}
 		}
 		
 		//-- SHOOT NORMAL
@@ -99,16 +103,33 @@ switch(attack)
     		}
     		if (special_down) {
     			if (left_pressed) {
-    				latest_pipe_angle = 45;
-    				latest_pipe_dir = -1;
+    				if (latest_pipe_angle == 90) {
+    					latest_pipe_angle = 45;
+    					latest_pipe_dir = -1;
+    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
+    				} else if (latest_pipe_angle == 45 && latest_pipe_dir == 1) {
+    					latest_pipe_angle = 90;
+    					latest_pipe_dir = spr_dir;
+    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
+    				}
     			} else if (right_pressed) {
-    				latest_pipe_angle = 45;
-    				latest_pipe_dir = 1;
+    				if (latest_pipe_angle == 90) {
+    					latest_pipe_angle = 45;
+    					latest_pipe_dir = 1;
+    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  0.8);
+    				} else if (latest_pipe_angle == 45 && latest_pipe_dir == -1) {
+    					latest_pipe_angle = 90;
+    					latest_pipe_dir = spr_dir;
+    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  0.8);
+    				}
     			}
     		}
     	}
     	if (window == 4 && window_timer == 1) {
-    		if (!free) instance_create( x+(48*spr_dir), y, "obj_article1" );
+    		if (!free) {
+    			instance_create( x+(48*spr_dir), y, "obj_article1" );
+    			sound_play(asset_get("mfx_star"));
+    		}
     	}
     break;
     
