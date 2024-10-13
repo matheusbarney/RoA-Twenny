@@ -51,11 +51,12 @@ sprite_change_offset("fstrong", 80, 95, true);
 sprite_change_offset("ustrong", 48, 63, true);
 sprite_change_offset("dstrong", 64, 94, true);
 sprite_change_offset("nspecial", 48, 63, true);
-sprite_change_offset("fspecial", 64, 94, true);
+sprite_change_offset("fspecial", 64, 79, true);
 sprite_change_offset("uspecial", 48, 63, true);
 sprite_change_offset("dspecial", 64, 79, true);
 sprite_change_offset("taunt", 32, 62, true);
 sprite_change_offset("uspecial_land", 48, 63, true);
+sprite_change_offset("dspecial_error", 64, 79, true);
 
 sprite_change_offset("uspecial_corpse", 128, 159);
 

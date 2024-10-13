@@ -73,7 +73,6 @@ if (state == 1){ //
 	// A normal scrapbomb, that has never teleported before.
     if (!has_tpd) {
     	switch (bomb_angle) {
-    		default:
     		case 45:
     			if (state_timer == 0) {
     				vsp = -9;
@@ -104,7 +103,8 @@ if (state == 1){ //
     			vsp = clamp(vsp, -18, -18);
     			hsp = 0*tp_dir;
     			bomb_fuse = 16;
-    			
+    			sound_play(sound_get("door_open"));
+    			spawn_hit_fx( x, y-32, HFX_GEN_SPIN);
     			bomb_angle = 1; //only do this for one frame. prob hacky but its an honest living
     		break;
     		case 45:
@@ -112,7 +112,8 @@ if (state == 1){ //
     			vsp = clamp(vsp, -16, -16);
     			hsp = 10*tp_dir;
     			bomb_fuse = 16;
-    			
+    			sound_play(sound_get("door_open"));
+    			spawn_hit_fx( x, y-16, HFX_GEN_SPIN);
     			bomb_angle = 1; //only do this for one frame. prob hacky but its an honest living
     		break;
     	}

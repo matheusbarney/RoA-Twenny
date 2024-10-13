@@ -95,9 +95,12 @@ switch(attack)
     			if (no_pipes_here) {
     				window = 3;
     				window_timer = 1;
-    			} else {
-    				window = 6;
-    				window_timer = 5
+    			} else { //-- "error" anim
+    				attack = AT_EXTRA_2;
+    				hurtboxID.sprite_index = sprite_get("dspecial_error_hurt");
+    				window = 0;
+    				window_timer = 0;
+    				
     			}
     			
     		}
@@ -128,7 +131,13 @@ switch(attack)
     	if (window == 4 && window_timer == 1) {
     		if (!free) {
     			instance_create( x+(48*spr_dir), y, "obj_article1" );
-    			sound_play(asset_get("mfx_star"));
+    			sound_play(asset_get("mfx_orby_talk_done"));
+    			sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.6,  0.8);
+    		} else { //-- "error" anim
+    			attack = AT_EXTRA_2;
+    			hurtboxID.sprite_index = sprite_get("dspecial_error_hurt");
+    			window = 0;
+    			window_timer = 0;
     		}
     	}
     break;
@@ -211,6 +220,13 @@ switch(attack)
     	}
     break;
     
+    case AT_FAIR:
+    	if (window > 1 && window < 5) {
+    		if (window_timer == window_end_time) sound_play(sound_get("shoot2"), false, noone, 0.5, 1);
+    	}
+    break;
+    
+    
     case AT_BAIR:
     	if (window == 2) {
     		if (window_timer == 1) sound_play(asset_get("sfx_absa_current_pop"), false, noone, 0.5, 1);
@@ -251,6 +267,7 @@ switch(attack)
 			reset_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH);
 			reset_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH);
 		}
+		can_move = false;
 		if (in_hstance) in_hstance = false;
 	break;
 }

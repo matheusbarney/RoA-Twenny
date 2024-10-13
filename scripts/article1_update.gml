@@ -83,6 +83,10 @@ if (state == 1){ //
     	}
     }
     
+    if (player_id.numof_twenny_pipes == 1) {
+    	pipe_color = pipe_inactive;
+    }
+    
     if (player_id.numof_twenny_pipes > 1) {
         with (asset_get("obj_article1")){
             if (id != other.id && player_id == other.player_id) {
@@ -95,9 +99,13 @@ if (state == 1){ //
         }
     }
     
-    //warp
+    //warp bomb
     with asset_get("obj_article2") {
         if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.numof_twenny_pipes > 1 && !has_tpd){
+            
+            //--flavor
+            sound_play(sound_get("door_close"));
+            spawn_hit_fx( x, y, HFX_GEN_SPIN);
             
             x = other.warpcoord_x;
             y = other.warpcoord_y - 32;
@@ -109,6 +117,32 @@ if (state == 1){ //
             
             state = 2;
             state_timer = 0;
+            
+            other.warp_usages++;
+            other.pipewarp_cd = other.pipewarp_cd_max;
+	    }
+    }
+    
+    //warp you
+    with (asset_get("oPlayer")) {
+        if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && numof_twenny_pipes > 1 && in_hstance && is_twenny){
+            
+            //--flavor
+            sound_play(sound_get("door_close"));
+            sound_play(sound_get("door_open"));
+            spawn_hit_fx( x, y, HFX_GEN_SPIN);
+            
+            x = other.warpcoord_x;
+            y = other.warpcoord_y - 32;
+            spr_dir = other.warpcoord_dir
+            in_hstance = false;
+            
+            if (other.warpcoord_angle == 90) {
+            	vsp = -13;
+            } else {
+            	hsp = other.warpcoord_dir * 10
+            	vsp = -10
+            }
             
             other.warp_usages++;
             other.pipewarp_cd = other.pipewarp_cd_max;

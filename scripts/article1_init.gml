@@ -54,7 +54,8 @@ else {
 }
 image_index_pipe = 0;
 //--- EMBELISHMENTS
-pipe_slightlyused = $cccccc;
-pipe_darkener = $999999;
+pipe_slightlyused = $dddddd;
+pipe_darkener = $aaaaaa;
+pipe_inactive = $888888;
 cracked_alpha = 0;
 hud_col = get_player_hud_color(player);  
