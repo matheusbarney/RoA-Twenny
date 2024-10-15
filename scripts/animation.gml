@@ -63,6 +63,8 @@ if (in_hstance) {
 		case PS_AIR_DODGE:
 			sprite_index = sprite_get("hstance_airdodge");
 		break;
+		case PS_WALL_JUMP:
+			sprite_index = sprite_get("hstance_jump")
 		case PS_HITSTUN: 
 			sprite_index = sprite_get("hstance_hurt");
 		break;

@@ -60,7 +60,14 @@ if (!free || state == PS_HITSTUN) {
 
 // So... no head?
 if (in_hstance) {
-    hstance_applied = true;
+    if (!hstance_applied) {
+        hstance_applied = true;
+        hstance_old_djumps = !free ? 0 : djumps;
+        djumps = max_djumps;
+        knockback_adj = hstance_knockback_adj;
+        walljump_hsp = hstance_walljump_hsp;
+        walljump_vsp = hstance_walljump_vsp;
+    }
     
     hurtbox_spr = sprite_get("3_headhbox");
     
@@ -79,10 +86,12 @@ if (in_hstance) {
     move_cooldown[AT_FAIR] = 9999;
     move_cooldown[AT_DAIR] = 9999;
     move_cooldown[AT_BAIR] = 9999;
-    
-    knockback_adj = hstance_knockback_adj;
 } else if (hstance_applied) {
     hstance_applied = false;
+    knockback_adj = base_knockback_adj;
+    djumps = hstance_old_djumps;
+    walljump_hsp = base_walljump_hsp;
+    walljump_vsp = base_walljump_vsp;
     
     hurtbox_spr = sprite_get("1_idlehbox");
     
@@ -96,6 +105,4 @@ if (in_hstance) {
     move_cooldown[AT_FAIR] = 0;
     move_cooldown[AT_DAIR] = 0;
     move_cooldown[AT_BAIR] = 0;
-    
-    knockback_adj = base_knockback_adj;
 }

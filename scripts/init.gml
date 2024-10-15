@@ -42,8 +42,12 @@ prat_fall_accel = .9; //multiplier of air_accel while in pratfall
 air_friction = .04;
 max_djumps = 1;
 double_jump_time = 31; //the number of frames to play the djump animation. Can't be less than 31.
-walljump_hsp = 6;
-walljump_vsp = 7;
+base_walljump_hsp = 6;
+base_walljump_vsp = 8;
+hstance_walljump_hsp = 5;
+hstance_walljump_vsp = 9;
+walljump_hsp = base_walljump_hsp;
+walljump_vsp = base_walljump_vsp;
 walljump_time = 32;
 max_fall = 10; //maximum fall speed without fastfalling
 fast_fall = 13; //fast fall speed
@@ -157,6 +161,7 @@ nspecCharge_bagAmount = 45;// Frames to charge garbage bag
 //-- Monitor Head Stance.
 in_hstance = false; // Whether hstance values should be in effect.
 hstance_applied = false; // Whether hstance values are currently in effect.
+hstance_old_djumps = 0;
 has_long_endlag = false;
 
 sting = hit_fx_create( sprite_get( "vfx_sting" ), 21 );
