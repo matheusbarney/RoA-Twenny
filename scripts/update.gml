@@ -1,13 +1,16 @@
-//update
+// update
 
-//Image Mask
+// Image Mask
 if(get_gameplay_time() > 100){
     if(!start_predraw){
     start_predraw = true;
     }
 }
 
-//crawl
+// Pipe warp cd
+if (pipewarp_cd > 0) pipewarp_cd--;
+
+// Crawl
 switch (state) {
     case PS_WALK:
         if (state_timer % 33) == 8 sound_play(sound_get("robotstep"), false, 0, 1, (random_func(2, 3, true) + 8) * 0.1);
@@ -27,7 +30,6 @@ switch (state) {
         else
         {
             crawl_time ++;
-    
             var max_check = (sprite_get_number(sprite_get("crawl")) / crawl_anim_speed);
             var mod_check = floor(crawl_time % max_check);
             if (crawl_time % 20 == 1) {
@@ -58,6 +60,8 @@ if (!free || state == PS_HITSTUN) {
 
 // So... no head?
 if (in_hstance) {
+    hstance_applied = true;
+    
     hurtbox_spr = sprite_get("3_headhbox");
     
     if (!free) {
@@ -75,7 +79,11 @@ if (in_hstance) {
     move_cooldown[AT_FAIR] = 9999;
     move_cooldown[AT_DAIR] = 9999;
     move_cooldown[AT_BAIR] = 9999;
-} else {
+    
+    knockback_adj = hstance_knockback_adj;
+} else if (hstance_applied) {
+    hstance_applied = false;
+    
     hurtbox_spr = sprite_get("1_idlehbox");
     
     move_cooldown[AT_NSPECIAL] = 0;
@@ -88,4 +96,6 @@ if (in_hstance) {
     move_cooldown[AT_FAIR] = 0;
     move_cooldown[AT_DAIR] = 0;
     move_cooldown[AT_BAIR] = 0;
+    
+    knockback_adj = base_knockback_adj;
 }

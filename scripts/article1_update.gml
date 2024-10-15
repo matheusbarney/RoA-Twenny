@@ -19,9 +19,6 @@ if (init == 0){
             
         player_id.numof_twenny_pipes = 2;
     }
-    
-
-	//do whatever to start out in update gml here if you want, very much optional
 	
 	//this bit of code makes it so that if you have more than 1 of this article out in the stage, all the other ones you had around will be removed
 	//change the values of course, like change "obj_article2" accordingly to what article number this is or etc
@@ -39,7 +36,7 @@ if (init == 0){
 
 state_timer++; //progress the timer
 
-if (state == 0){ // STATE 0 : SPAWNING PIPE
+if (state == 0) { // STATE 0 : SPAWNING PIPE
 	state_end = 9; //duration of this state in frames
     image_index_pipe = state_timer * 3 / state_end;
 	//that's:
@@ -90,10 +87,15 @@ if (state == 1){ //
     if (player_id.numof_twenny_pipes > 1) {
         with (asset_get("obj_article1")){
             if (id != other.id && player_id == other.player_id) {
-		    	other.warpcoord_x = x
-		    	other.warpcoord_y = y
 		    	other.warpcoord_dir = spr_dir;
 		    	other.warpcoord_angle = pipe_angle;
+		    	if (pipe_angle == 90) {
+		    		other.warpcoord_x = x;
+		    		other.warpcoord_y = y - 24;
+		    	} else {
+		    		other.warpcoord_x = x + spr_dir * 16;
+            		other.warpcoord_y = y - 12;
+		    	}
 		    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
             }
         }
@@ -124,17 +126,13 @@ if (state == 1){ //
     }
     
     //warp you
-    with (asset_get("oPlayer")) {
-        if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && numof_twenny_pipes > 1 && in_hstance && is_twenny){
-            
-            //--flavor
-            sound_play(sound_get("door_close"));
-            sound_play(sound_get("door_open"));
-            spawn_hit_fx( x, y, HFX_GEN_SPIN);
-            
+    with (oPlayer) {
+        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && numof_twenny_pipes > 1 && in_hstance) {
+        	other.do_warp_effects = true;
+        	
             x = other.warpcoord_x;
-            y = other.warpcoord_y - 32;
-            spr_dir = other.warpcoord_dir
+            y = other.warpcoord_y;
+            spr_dir = other.warpcoord_dir;
             in_hstance = false;
             
             if (other.warpcoord_angle == 90) {
@@ -143,6 +141,8 @@ if (state == 1){ //
             	hsp = other.warpcoord_dir * 10
             	vsp = -10
             }
+            
+            pipewarp_cd = 10;
             
             other.warp_usages++;
             other.pipewarp_cd = other.pipewarp_cd_max;
@@ -170,9 +170,17 @@ if (state == 2){ //
         }
 	
     if (state_timer == state_end){//when the timer reaches end of this state's duration
-        instance_destroy();//remove article
-        exit;//exits the code (not 100% necessary but its good to be safe)
+        instance_destroy();
+        exit;
     }
+}
+
+
+if (do_warp_effects) {
+    sound_play(sound_get("door_close"));
+    sound_play(sound_get("door_open"));
+    spawn_hit_fx( x, y, HFX_GEN_SPIN);
+    do_warp_effects = false;
 }
 
 #define set_spr_dir(new_dir)

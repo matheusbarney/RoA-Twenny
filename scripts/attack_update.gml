@@ -83,13 +83,19 @@ switch(attack)
     	if (window == 1 && window_timer == 1) {
     		latest_pipe_angle = 90;
     		latest_pipe_dir = spr_dir;
+    		pipe_distance = get_ground_distance(56, 0, 6)-16;
+    		last_dist_check_x = x;
+    	} else if (window <= 2 && abs(x - last_dist_check_x) >= 1) {
+    		pipe_distance = get_ground_distance(56, 0, 6)-16;
+    		last_dist_check_x = x;
     	}
+    	
     	if (window == 2) {
     		if (window_timer == window_end_time) && special_down {
     			window_timer = 1;
     		} else if !special_down {
     			no_pipes_here = true;
-    			if (place_meeting(x+48*spr_dir, y, asset_get("obj_article1"))){
+    			if (place_meeting(x+pipe_distance*spr_dir, y, asset_get("obj_article1"))){
     				no_pipes_here = false;
     			}
     			if (no_pipes_here) {
@@ -130,7 +136,7 @@ switch(attack)
     	}
     	if (window == 4 && window_timer == 1) {
     		if (!free) {
-    			instance_create( x+(48*spr_dir), y, "obj_article1" );
+    			instance_create( x+(pipe_distance*spr_dir), y, "obj_article1" );
     			sound_play(asset_get("mfx_orby_talk_done"));
     			sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.6,  0.8);
     		} else { //-- "error" anim
@@ -355,3 +361,39 @@ newdust.dust_color = dust_color; //set the dust color
 if dir != 0 newdust.spr_dir = dir; //set the spr_dir
 newdust.draw_angle = dfa;
 return newdust;
+
+// Gets the furthest-forward position with ground to place an object on.
+// Precision determines the depth of the binary search; log2(x_maximum-x_minimum) is recommended.
+#define get_ground_distance(x_maximum, x_minimum, precision)
+
+// First, check if the farthest position is valid
+if ( position_meeting(x+(x_maximum*spr_dir), y+1, asset_get("par_block"))
+  || position_meeting(x+(x_maximum*spr_dir), y+1, asset_get("par_jumpthrough"))
+) {
+	//print_debug("near");
+	return x_maximum;
+}
+
+// Then, check if the closest position needs to be used
+else if ( !line_meeting(x+(x_maximum*spr_dir), y+1, x+(x_minimum*spr_dir), y+1, asset_get("par_block"))
+  && !line_meeting(x+(x_maximum*spr_dir), y+1, x+(x_minimum*spr_dir), y+1, asset_get("par_jumpthrough"))
+) {
+	//print_debug("far");
+	return x_minimum;
+}
+
+// If not, binary search for valid position
+else {
+	x_offset = (x_minimum + x_maximum) / 2;
+	for (var i = 0; i < 8; i++) {
+		var solid_collide = line_meeting(x+(x_maximum*spr_dir), y+1, x+(x_offset*spr_dir), y+1, asset_get("par_block"));
+		var plat_collide = line_meeting(x+(x_maximum*spr_dir), y+1, x+(x_offset*spr_dir), y+1, asset_get("par_jumpthrough"));
+		if (solid_collide || plat_collide) x_minimum = x_offset;
+		else x_maximum = x_offset;
+		x_offset = (x_minimum + x_maximum) / 2;
+	}
+	return round(x_offset);
+}
+
+#define line_meeting(x1, y1, x2, y2, obj)
+return (noone != collision_line(x1, y1, x2, y2, obj, false, true));

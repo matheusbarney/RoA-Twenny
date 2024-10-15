@@ -10,6 +10,8 @@ image_alpha = 1; //this can alter the sprite alpha (transparency)
 image_angle = 0; //this can alter the sprite angle (rotation)
 init = 0;
 
+is_twenny_pipe = true;
+
 can_be_grounded = true;
 ignores_walls = false;
 free = false;
@@ -38,6 +40,8 @@ pipewarp_cd_max = 120; //limits how many frames the cooldown is
 //
 warp_usages = 0;
 warp_usages_max = 2;
+//
+do_warp_effects = 0;
 //---------------------------------
 
 //--- PIPE'S ANGLE gets defined here.

@@ -49,7 +49,9 @@ max_fall = 10; //maximum fall speed without fastfalling
 fast_fall = 13; //fast fall speed
 gravity_speed = .5;
 hitstun_grav = .45;
-knockback_adj = 0.9; //the multiplier to KB dealt to you. 1 = default, >1 = lighter, <1 = heavier
+base_knockback_adj = 0.9;
+hstance_knockback_adj = 1.2;
+knockback_adj = base_knockback_adj;
 
 land_time = 6; // heavy landtime
 prat_land_time = 6;
@@ -141,6 +143,9 @@ fake_img = 0;
 my_twenny_pipes = [ ];
 numof_twenny_pipes = 0;
 latest_pipe_angle = 90;
+pipe_distance = 48;
+last_dist_check_x = 0;
+pipewarp_cd = 0;
 
 
 //-- NSPEC: THE BOMB
@@ -150,7 +155,8 @@ bomb_angle = 45;
 nspecCharge_bagAmount = 45;// Frames to charge garbage bag
 
 //-- Monitor Head Stance.
-in_hstance = false;
+in_hstance = false; // Whether hstance values should be in effect.
+hstance_applied = false; // Whether hstance values are currently in effect.
 has_long_endlag = false;
 
 sting = hit_fx_create( sprite_get( "vfx_sting" ), 21 );
