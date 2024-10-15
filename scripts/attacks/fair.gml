@@ -59,7 +59,7 @@ set_hitbox_value(AT_FAIR, 1, HG_HEIGHT, 40);
 set_hitbox_value(AT_FAIR, 1, HG_PRIORITY, 2);
 set_hitbox_value(AT_FAIR, 1, HG_DAMAGE, 2);
 set_hitbox_value(AT_FAIR, 1, HG_ANGLE, 80);
-set_hitbox_value(AT_FAIR, 1, HG_BASE_KNOCKBACK, 6);
+set_hitbox_value(AT_FAIR, 1, HG_BASE_KNOCKBACK, 7);
 set_hitbox_value(AT_FAIR, 1, HG_KNOCKBACK_SCALING, 0);
 set_hitbox_value(AT_FAIR, 1, HG_BASE_HITPAUSE, 6);//this is normal hitpause for a combo move
 set_hitbox_value(AT_FAIR, 1, HG_HITPAUSE_SCALING, 0)//this is normal hitpause scaling for a combo move
@@ -78,7 +78,7 @@ set_hitbox_value(AT_FAIR, 2, HG_HEIGHT, 48);
 set_hitbox_value(AT_FAIR, 2, HG_PRIORITY, 2);
 set_hitbox_value(AT_FAIR, 2, HG_DAMAGE, 2);
 set_hitbox_value(AT_FAIR, 2, HG_ANGLE, 80); 
-set_hitbox_value(AT_FAIR, 2, HG_BASE_KNOCKBACK, 6);
+set_hitbox_value(AT_FAIR, 2, HG_BASE_KNOCKBACK, 7);
 set_hitbox_value(AT_FAIR, 2, HG_KNOCKBACK_SCALING, 0);
 set_hitbox_value(AT_FAIR, 2, HG_BASE_HITPAUSE, 6);//this is normal hitpause for a combo move
 set_hitbox_value(AT_FAIR, 2, HG_HITPAUSE_SCALING, 0)//this is normal hitpause scaling for a combo move

@@ -2,39 +2,32 @@
 // // // // STATE 0 - START
 
 if (init == 0){
-    init = 1;
-    
-    player_id.numof_twenny_pipes++
-    var n_pipes = player_id.numof_twenny_pipes
-    
-    if (n_pipes <= 2) {
-        pipe_id = player_id.numof_twenny_pipes
-        array_push(player_id.my_twenny_pipes, pipe_id)   
-    } else {
-        with (asset_get("obj_article1")){
-            if (pipe_id == 1) pipe_id = -2
-            else if (pipe_id == 2) pipe_id--
-            else pipe_id = 2;
-            }
-            
-        player_id.numof_twenny_pipes = 2;
-    }
-	
-	//this bit of code makes it so that if you have more than 1 of this article out in the stage, all the other ones you had around will be removed
-	//change the values of course, like change "obj_article2" accordingly to what article number this is or etc
-	//it can be safely removed or disabled
-    with (asset_get("obj_article1")){
-        if (id != other.id && player_id == other.player_id && pipe_id == -2) {
-			if (state != 2){
-				state = 2;
-				state_timer = 0;
-			}
+	var num_pipes = 0;
+    with (asset_get("obj_article1")) if (player_id == other.player_id) {
+        if (pipe_id == 1) { // Next pipe to be removed
+        	pipe_id = -2;
+        	state = 2;
+			state_timer = 0;
+        }
+        else if (pipe_id == 2) { // Last pipe placed
+        	pipe_id--;
+        	pipe_flash_timer = pipe_flash_duration;
+        	other.pipe_flash_timer = other.pipe_flash_duration;
+        	sound_play(asset_get("sfx_boss_shine"), false, noone, 1, 1.4);
+        	num_pipes++;
+        }
+        else {
+        	pipe_id = 2;
+        	num_pipes++;
         }
     }
+    player_id.num_pipes = num_pipes;
+    init = 1;
 }
 
 
 state_timer++; //progress the timer
+if (pipe_flash_timer > 0) pipe_flash_timer--;
 
 if (state == 0) { // STATE 0 : SPAWNING PIPE
 	state_end = 9; //duration of this state in frames
@@ -80,11 +73,11 @@ if (state == 1){ //
     	}
     }
     
-    if (player_id.numof_twenny_pipes == 1) {
+    if (player_id.num_pipes == 1) {
     	pipe_color = pipe_inactive;
     }
     
-    if (player_id.numof_twenny_pipes > 1) {
+    if (player_id.num_pipes > 1) {
         with (asset_get("obj_article1")){
             if (id != other.id && player_id == other.player_id) {
 		    	other.warpcoord_dir = spr_dir;
@@ -103,7 +96,7 @@ if (state == 1){ //
     
     //warp bomb
     with asset_get("obj_article2") {
-        if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.numof_twenny_pipes > 1 && !has_tpd){
+        if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd){
             
             //--flavor
             sound_play(sound_get("door_close"));
@@ -127,7 +120,7 @@ if (state == 1){ //
     
     //warp you
     with (oPlayer) {
-        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && numof_twenny_pipes > 1 && in_hstance) {
+        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance) {
         	other.do_warp_effects = true;
         	
             x = other.warpcoord_x;

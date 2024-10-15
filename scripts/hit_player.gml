@@ -10,8 +10,8 @@ switch (attack) {
         
     case AT_FAIR:
         if (my_hitboxID.hbox_num < 3) {
-            var y_dest = my_hitboxID.y - floor(my_hitboxID.height/2);
-            hit_player_obj.y = lerp(hit_player_obj.y, y_dest, 0.3);
+            var y_dest = my_hitboxID.y - my_hitboxID.image_yscale*100; // equivalent to y + (height/2)
+            hit_player_obj.y = lerp(hit_player_obj.y, y_dest, 0.2);
         }
         break;
         

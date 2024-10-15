@@ -23,7 +23,9 @@ state_end = 0;
 
 uses_shader = true;
 
-pipe_color = c_white
+pipe_color = c_white;
+pipe_flash_timer = 0;
+pipe_flash_duration = 20;
 
 //--- identifier for pipe
 pipe_id = -1;
