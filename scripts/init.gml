@@ -1,3 +1,5 @@
+debug = true;
+
 hurtbox_spr = sprite_get("1_idlehbox");
 crouchbox_spr = sprite_get("2_crouchhbox");
 air_hurtbox_spr = -1;

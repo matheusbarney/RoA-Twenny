@@ -2,10 +2,10 @@
 
 var window_end_time = get_window_value(attack, window, AG_WINDOW_LENGTH);
 
-switch(attack)
-{
-	case AT_NSPECIAL:
+switch(attack) {
+	
 	// Scrapbomb and Trashbag Bomb
+	case AT_NSPECIAL:
 		// Allow holding to charge
 		if (window == 1) {
 			bomb_angle = 45 //45 for normal, 90 for high, 0 for low
@@ -77,8 +77,9 @@ switch(attack)
 			bomb_angle = 0;
 			instance_create( x+(56*spr_dir), y-32, "obj_article2" );
 		} 
-	break;
+		break;
 	
+	// Pipes
     case AT_DSPECIAL:
     	if (window == 1 && window_timer == 1) {
     		latest_pipe_angle = 90;
@@ -106,10 +107,9 @@ switch(attack)
     				hurtboxID.sprite_index = sprite_get("dspecial_error_hurt");
     				window = 0;
     				window_timer = 0;
-    				
     			}
-    			
     		}
+    		
     		if (special_down) {
     			if (left_pressed) {
     				if (latest_pipe_angle == 90) {
@@ -134,6 +134,7 @@ switch(attack)
     			}
     		}
     	}
+    	
     	if (window == 4 && window_timer == 1) {
     		if (!free) {
     			instance_create( x+(pipe_distance*spr_dir), y, "obj_article1" );
@@ -146,13 +147,11 @@ switch(attack)
     			window_timer = 0;
     		}
     	}
-    break;
+    	break;
     
     case AT_USPECIAL:
-    {
     	can_fast_fall = false;
     	can_fastfall = false;
-        //vsp = clamp(vsp, -99, -6);
         if (window > 1) {
         	in_hstance = true;
         	has_long_endlag = true;
@@ -160,110 +159,88 @@ switch(attack)
         if (window == 3) {
         	vsp *= 0.94;
         }
-    }break;
+    	break;
     
     case AT_FSTRONG:
-    {
     	if (window == 2) {
-    		if window_timer == 1 {
+    		if (window_timer == 1) {
     			sound_play(asset_get("sfx_swipe_medium1"), false, noone, 1,  1.2);
     		} else if (window_timer == window_end_time) {
     			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
     			sound_play(asset_get("sfx_pom_yell1"), false, noone, 0.7,  1.1);
     		}
     	}
-    } break;
+    	break;
     
     case AT_USTRONG:
-    {
-    	if (window == 1) has_long_endlag = true;
-    	if (window > 2) {
-    		in_hstance = true;
-    	}
+    	in_hstance = (window > 2);
     	
-    	if (window == 3) {
-    		if (window_timer == 1) {
-    			sound_play(asset_get("sfx_ori_stomp_spin"), false, noone, 0.2,  1.1);
-    			var ustrong_corpse = spawn_hit_fx( x, y+10, ustr_corpse);
+    	switch window {
+    		case 1:
+    			has_long_endlag = true;
+    			break;
+    		
+    		case 3:
+	    		if (window_timer == 1) {
+	    			sound_play(asset_get("sfx_ori_stomp_spin"), false, noone, 0.2,  1.1);
+	    			var ustrong_corpse = spawn_hit_fx( x, y+10, ustr_corpse);
+	    		}
+	    		else if (window_timer == 12) sound_play(sound_get("metal_clatter"), false, noone, 0.2, 0.5);
+	    		else if (window_timer == window_end_time) sound_play(asset_get("sfx_absa_cloud_crackle"), false, noone, 0.2, 1);
+    			break;
     			
-    		} else if (window_timer == 12) sound_play(sound_get("metal_clatter"), false, noone, 0.2,   0.5);
-    		else if (window_timer == window_end_time) {
-    			sound_play(asset_get("sfx_absa_cloud_crackle"), false, noone, 0.2, 1);
-    		}
+    		case 4:
+    			sound_stop(asset_get("sfx_ori_stomp_spin"));
+	    		if (window_timer == window_end_time) {
+	    			sound_play(sound_get("electricshock"), false, noone, 0.1, 1);
+	    			sound_play(sound_get("thunderwave"), false, noone, 0.3, 1);
+	    		} 
+	    		break;
     	}
-    	
-    	if (window == 4) {
-    		sound_stop(asset_get("sfx_ori_stomp_spin"));
-    		if (window_timer == window_end_time) {
-    			sound_play(sound_get("electricshock"), false, noone, 0.1,  1);
-    			sound_play(sound_get("thunderwave"), false, noone, 0.3,  1);
-    		} 
-    	}
-    	
-    	if (window == 5) {
-    		if (window_timer == 1) {
-    			//
-    		}
-    	} 
-    } break;
+    	break;
     
     case AT_JAB:
-    	if (window == 4) {
-    		if (window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
-    	}
-    break;
+    	if (window == 4 && window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
+    	break;
     
     case AT_DATTACK:
-    	if (window == 1 && window_timer == 1) {
-    		sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.7, 1.6);
-    	}
-    break;
+    	if (window == 1 && window_timer == 1) sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.7, 1.6);
+    	break;
     
     case AT_FTILT:
     	if (window == 1 && window_timer == window_end_time) {
     		sound_play(asset_get("sfx_ell_drill_loop"), false, noone, 0.1, 1);
     		sound_play(asset_get("sfx_swipe_weak2"), false, noone, 1, 1);
     	}
-    break;
+		break;
     
     case AT_FAIR:
-    	if (window > 1 && window < 5) {
-    		if (window_timer == window_end_time) sound_play(sound_get("shoot2"), false, noone, 0.5, 1);
-    	}
-    break;
+    	if (window > 1 && window < 5 && window_timer == window_end_time) sound_play(sound_get("shoot2"), false, noone, 0.5, 1);
+		break;
     
     
     case AT_BAIR:
-    	if (window == 2) {
-    		if (window_timer == 1) sound_play(asset_get("sfx_absa_current_pop"), false, noone, 0.5, 1);
-    	} else if (window == 3 && window_timer == window_end_time) sound_play(sound_get("wildcharge"), false, noone, 0.5, 1);
+    	if (window == 2 && window_timer == 1) sound_play(asset_get("sfx_absa_current_pop"), false, noone, 0.5, 1);
+    	else if (window == 3 && window_timer == window_end_time) sound_play(sound_get("wildcharge"), false, noone, 0.5, 1);
     	else if (window == 4) sound_stop(asset_get("sfx_absa_current_pop"));
-    	
-    break;
+    	break;
     
     case AT_DAIR:
-    	if (window == 1) {
-    		if (window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
-    	}
-
-		if (!hitpause && window == 2 && window_timer == 1 && dair_used == false) {
+    	if (window == 1 && window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
+		else if (!hitpause && window == 2 && window_timer == 1 && dair_used == false) {
     		vsp = clamp(vsp, -3, -7);
     		dair_used = true;
     	}
-    break;
+		break;
     
     case AT_UAIR:
-    	if (window == 1){
-    	    if (window_timer == window_end_time){
-    	        if (!hitpause && !hitstop){
-    	            sound_play(sound_get("steam_gadget"), false, noone, 0.4, 0.9);
-    	            sound_play(sound_get("uair_shine"), false, noone, 0.25, 0.95);
-    	        }
-    	    }
+    	if (window == 1 && window_timer == window_end_time) {
+    		sound_play(sound_get("steam_gadget"), false, noone, 0.4, 0.9);
+	        sound_play(sound_get("uair_shine"), false, noone, 0.25, 0.95);
+    		hud_offset = 50;
     	}
-    	
-    	if (window > 1) hud_offset = 80;
-	break;
+    	else if (window > 1) hud_offset = 100;
+		break;
 	
 	case AT_EXTRA_1:
 		if (has_long_endlag) {
@@ -275,7 +252,7 @@ switch(attack)
 		}
 		can_move = false;
 		if (in_hstance) in_hstance = false;
-	break;
+		break;
 }
 
 //iasa_script (insantly as soon as, aka switch back into full control/idle) without having to check for !was_parried

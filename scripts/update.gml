@@ -1,11 +1,7 @@
 // update
 
 // Image Mask
-if(get_gameplay_time() > 100){
-    if(!start_predraw){
-    start_predraw = true;
-    }
-}
+if (get_gameplay_time() > 100 && !start_predraw) start_predraw = true;
 
 // Pipe warp cd
 if (pipewarp_cd > 0) pipewarp_cd--;
@@ -15,12 +11,13 @@ switch (state) {
     case PS_WALK:
         if (state_timer % 33) == 8 sound_play(sound_get("robotstep"), false, 0, 1, (random_func(2, 3, true) + 8) * 0.1);
         was_crouching = false;
-    break;
+        break;
     case PS_DASH_START:
         if (state_timer == 0) sound_play(sound_get("keyboard"), false, 0, 1, 1.1);
+        // no break
     case PS_DASH:
-        if (state_timer % 4) == 1 sound_play(sound_get("keyboard"), false, 0, 0.2, (random_func(2, 4, true) + 8) * 0.1);
-    break;
+        if (state_timer % 4 == 1) sound_play(sound_get("keyboard"), false, 0, 0.2, (random_func(2, 4, true) + 8) * 0.1);
+        break;
     case PS_CROUCH:
         was_crouching = true;
         
@@ -45,12 +42,12 @@ switch (state) {
             if (right_down) hsp = crawl_speed;
             if (left_down) hsp = -crawl_speed;
         }
-    break;
+        break;
     case PS_IDLE:
     case PS_DASH_START:
     case PS_HITSTUN:
         was_crouching = false;
-    break;
+        break;
 }
 
 if (!free || state == PS_HITSTUN) {

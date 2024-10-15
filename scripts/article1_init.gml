@@ -1,3 +1,5 @@
+init = 0;
+
 sprite_index = sprite_get("empty_sprite") 
 mask_index = sprite_get("pipe_mask") 
 depth = 1;
@@ -8,7 +10,6 @@ image_xscale = player_id.spr_dir; //this is the horizontal scale
 image_yscale = 1; //this is the vertical scale
 image_alpha = 1; //this can alter the sprite alpha (transparency)
 image_angle = 0; //this can alter the sprite angle (rotation)
-init = 0;
 
 is_twenny_pipe = true;
 
