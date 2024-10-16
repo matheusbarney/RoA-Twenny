@@ -1,7 +1,7 @@
-//in article#_init.gml
+bomb_type = player_id.bomb_type; // 0 = scrap, 1 = bag
 
-sprite_index = sprite_get("empty_sprite")  ;//this is the sprite
-mask_index = sprite_get("b_scrapbomb_mask");//this is the sprite
+sprite_index = bomb_type ? sprite_get("b_bagbomb") : sprite_get("empty_sprite");
+mask_index = bomb_type ? sprite_get("b_bagbomb_mask") : sprite_get("b_scrapbomb_mask");
 
 can_be_grounded = true;
 ignores_walls = false;
@@ -13,9 +13,7 @@ image_yscale = 1; //this is the vertical scale
 image_alpha = 1; //this can alter the sprite alpha (transparency)
 image_angle = 0; //this can alter the sprite angle (rotation)
 
-init = 0;
-
-state = 0;
+state = bomb_type ? 11 : 1;  // 1 = scrap, 11 = bag
 state_timer = 0;
 state_end = 0;
 
@@ -33,14 +31,15 @@ has_bounced = false;
 spr_dir = player_id.spr_dir
 bomb_angle = player_id.bomb_angle;
 
-bomb_fuse = 999
-bomb_scrp_fusemax = 45; 
-bomb_big_fusemax = 200;
+bomb_fuse = bomb_type ? 200 : 45; // 45 = scrap, 200 = bag
+fuse_active = false;
 
 has_tpd = false;
 has_boosted = false;
 tp_dir = 1;
 
-bomb_type = player_id.bomb_type; // 0 = scrap, 1 = big
+contact_hitbox = noone;
 
-scrapb_hitbox = noone;
+old_hsp = 0;
+
+bag_land_timer = 0; // for anim management

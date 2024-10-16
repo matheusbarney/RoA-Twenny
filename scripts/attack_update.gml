@@ -6,13 +6,15 @@ switch(attack) {
 	
 	// Scrapbomb and Trashbag Bomb
 	case AT_NSPECIAL:
+		move_cooldown[AT_NSPECIAL] = 20;
+	
 		// Allow holding to charge
 		if (window == 1) {
 			bomb_angle = 45 //45 for normal, 90 for high, 0 for low
-			nspecCharge = 0;
+			nspec_charge = 0;
 		}
 		if (window == 2) {
-			nspecCharge++
+			nspec_charge++
     		if (window_timer == window_end_time) && special_down {
     			window_timer = 1;
     			if up_down {
@@ -22,7 +24,7 @@ switch(attack) {
     				//-- swap to low bombs
     				bomb_angle = 0;
     			}
-    		} else if (!special_down or nspecCharge >= nspecCharge_bagAmount + 10) {
+    		} else if (!special_down or nspec_charge >= nspec_charge_threshold + 10) {
     			if (bomb_angle == 45) {
     				window = 3;
     				print_debug("window 3")
@@ -50,31 +52,22 @@ switch(attack) {
 		
 		//-- SHOOT NORMAL
 		if (window == 3 && window_timer == window_end_time-1) {
-			//-- if nspecCharge < nspecCharge_bagAmount {
-			//-- 		//scrapbomb
-			//-- 		
-			//-- 		instance_create( x+(48*spr_dir), y-62, "obj_article2" );
-			//-- 	} else {
-			//-- 		//trashbag bomb
-			//-- 		instance_create( x+(48*spr_dir), y-62, "obj_article2" );
-			//-- 		instance_create( x+(48*spr_dir), y-24, "obj_article2" );
-			//-- 		instance_create( x+(48*spr_dir), y-96, "obj_article2" );
-			//-- 		nspecCharge = 0;
-			//-- 	}
-			//-- }
 			bomb_angle = 45;
+			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create( x+(48*spr_dir), y-62, "obj_article2" );
 		}
 		
 		//-- SHOOT HIGH
 		if (window == 4 && window_timer == window_end_time-1) {
 			bomb_angle = 90;
+			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create( x+(32*spr_dir), y-80, "obj_article2" );
 		} 
 		
 		//-- SHOOT LOW
 		if (window == 5 && window_timer == window_end_time-1) {
 			bomb_angle = 0;
+			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create( x+(56*spr_dir), y-32, "obj_article2" );
 		} 
 		break;

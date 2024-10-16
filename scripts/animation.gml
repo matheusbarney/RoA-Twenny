@@ -12,10 +12,10 @@ if sprite_index == 4145
 if (state == PS_SPAWN) && state_timer <= 12/0.15 //12 is the amount of frames on the intro animation strip
 {
     sprite_index = sprite_get("intro");
-    image_index = maioeseeanimframes;
+    image_index = intro_anim_frame;
     
     //speed at which the intro animates
-    maioeseeanimframes+= 0.15;//if you change this, change the number in the if statement regarding state_timer
+    intro_anim_frame+= 0.15;//if you change this, change the number in the if statement regarding state_timer
 }
 
 switch (state)

@@ -125,9 +125,9 @@ bubble_y = 8;
 //or use below to change mid-game
 //set_hit_particle_sprite( [number, start with 1, up to 6], sprite_get("[hit particle sprite name]"));
 
-//usual variables i use ---------------------------------------------------------------------------------
-maioeseeanimframes = 0; //I usually use a variable to control image_index/anim frames for animation.gml
-//if youre using this as a template, replace "maiosee" with your char's name. 
+//intro ---------------------------------------------------------------------------------
+intro_anim_frame = 0;
+
 //unique variables = less mess with other variable owners
 
 //Image Mask
@@ -154,10 +154,10 @@ pipewarp_cd = 0;
 
 
 //-- NSPEC: THE BOMB
-nspecCharge = 0;
+nspec_charge = 0;
 bomb_type = 0; // 0 = scrap, 1 = big
 bomb_angle = 45;
-nspecCharge_bagAmount = 45;// Frames to charge garbage bag
+nspec_charge_threshold = 45;// Frames to charge garbage bag
 
 //-- Monitor Head Stance.
 in_hstance = false; // Whether hstance values should be in effect.
