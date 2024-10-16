@@ -96,7 +96,7 @@ if (state == 1){ //
     
     //warp bomb
     with asset_get("obj_article2") {
-        if (place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd){
+        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd) {
             
             //--flavor
             sound_play(sound_get("door_close"));
@@ -109,8 +109,9 @@ if (state == 1){ //
             has_tpd = true;
             bomb_angle = other.warpcoord_angle;
             tp_dir = other.warpcoord_dir;
+            if (state == 11) visible = false;
             
-            state = 2;
+            state = (state == 11) ? 12 : 2;
             state_timer = 0;
             
             other.warp_usages++;

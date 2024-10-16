@@ -33,25 +33,38 @@ if (state == 1) { //
 				break;
 		}
 	    // A scrapbomb that hs teleported to a pipe and returned from "stasis"
-	    else switch (bomb_angle) {
-    		case 90:
-    		// Up or default pipe, sends out bomb at a 90 angle
-    			vsp = clamp(vsp, -18, -18);
-    			hsp = 0*tp_dir;
-    			bomb_fuse = 16;
-    			sound_play(sound_get("door_open"));
-    			spawn_hit_fx( x, y-32, HFX_GEN_SPIN);
-    			bomb_angle = 1; //only do this for one frame. prob hacky but its an honest living
-    			break;
-    		case 45:
-    		// Slanted Pipe, sends out bomb at a 45 degree angle
-    			vsp = clamp(vsp, -16, -16);
-    			hsp = 10*tp_dir;
-    			bomb_fuse = 16;
-    			sound_play(sound_get("door_open"));
-    			spawn_hit_fx( x, y-16, HFX_GEN_SPIN);
-    			bomb_angle = 1; //only do this for one frame. prob hacky but its an honest living
-    			break;
+	    else {
+	    	bomb_fuse = 16;
+	    	sound_play(sound_get("door_open"));
+	    	spawn_hit_fx(x, y-16, HFX_GEN_SPIN);
+	    	switch (bomb_angle) {
+	    		case 90:
+	    		// Up or default pipe, sends out bomb at a 90 angle
+	    			vsp = -18;
+	    			hsp = 0*tp_dir;
+	    			break;
+	    		case 75:
+	    		// Up or default pipe, sends out bomb at a 90 angle
+	    			vsp = -17.5;
+	    			hsp = 2*tp_dir;
+	    			break;
+	    		case 60:
+	    		// Angle used w/ extra spray from bag bomb
+	    			vsp = -17;
+	    			hsp = 5*tp_dir;
+	    			break;
+	    		case 45:
+	    		// Slanted Pipe, sends out bomb at a 45 degree angle
+	    			vsp = -16;
+	    			hsp = 10*tp_dir;
+	    			break;
+	    		case 30:
+	    		// Angle used w/ extra spray from bag bomb
+	    			vsp = -12;
+	    			hsp = 12*tp_dir;
+	    			break;
+	    		
+	    	}
 	    }
 	    old_hsp = hsp;
 	}	
@@ -152,6 +165,40 @@ if (state == 11) { //
     }
 }
 
+if (state == 12) { // SCRAP BOMB TELEPORTED
+	visible = false;
+	state_end = 10; //duration of tp delay
+	// We fully stop the bomb in its tracks while its delayed inside a pipe. theres no fuse to it yet so its chill
+	hsp = clamp(hsp, 0, 0)
+	vsp = clamp(vsp, 0, 0)
+	
+    if (state_timer == state_end){//when the timer reaches end of this state's duration
+    	var old_spr_dir = player_id.spr_dir;
+    	player_id.bomb_type = 0;
+    	
+    	player_id.bomb_angle = bomb_angle;
+    	var bomb = instance_create(x, y, "obj_article2");
+    	bomb.has_tpd = true;
+    	bomb.tp_dir = tp_dir;
+    	
+    	if (bomb_angle == 45) player_id.bomb_angle = 60;
+    	else player_id.bomb_angle = 75;
+    	var bomb = instance_create(x, y, "obj_article2");
+    	bomb.has_tpd = true;
+    	bomb.tp_dir = tp_dir;
+    	
+    	if (bomb_angle == 45) player_id.bomb_angle = 30;
+    	else tp_dir *= -1; // bomb angle pulled from above
+    	var bomb = instance_create(x, y, "obj_article2");
+    	bomb.has_tpd = true;
+    	bomb.tp_dir = tp_dir;
+    	
+    	player_id.spr_dir = old_spr_dir;
+        instance_destroy();
+        exit;
+    }
+}
+
 // // // // STATE 97 - SCRAP BOMB EXPLODING
 if (state == 97){ //
 	var explosionHitbox = create_hitbox( AT_NSPECIAL, 1, x, y );
@@ -161,6 +208,8 @@ if (state == 97){ //
     exit;//exits the code (not 100% necessary but its good to be safe)
 
 }
+
+
 
 // // // // STATE 98 - BAG BOMB EXPLODING
 if (state == 98){ //

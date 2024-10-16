@@ -1,3 +1,5 @@
+is_twenny_bomb = true;
+
 bomb_type = player_id.bomb_type; // 0 = scrap, 1 = bag
 
 sprite_index = bomb_type ? sprite_get("b_bagbomb") : sprite_get("empty_sprite");
@@ -30,7 +32,6 @@ has_bounced = false;
 
 spr_dir = player_id.spr_dir
 bomb_angle = player_id.bomb_angle;
-
 bomb_fuse = bomb_type ? 200 : 45; // 45 = scrap, 200 = bag
 fuse_active = false;
 
@@ -43,3 +44,5 @@ contact_hitbox = noone;
 old_hsp = 0;
 
 bag_land_timer = 0; // for anim management
+
+print_debug(string(get_gameplay_time()) + " " + string(spr_dir));
