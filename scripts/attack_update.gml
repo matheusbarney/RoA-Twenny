@@ -25,18 +25,9 @@ switch(attack) {
     				bomb_angle = 0;
     			}
     		} else if (!special_down or nspec_charge >= nspec_charge_threshold + 10) {
-    			if (bomb_angle == 45) {
-    				window = 3;
-    				print_debug("window 3")
-    			}
-    			else if (bomb_angle == 90) {
-    				window = 4;
-    				print_debug("window 4")
-    			}
-    			else {
-    				window = 5;
-    				print_debug("window 5")
-    			}
+    			if (bomb_angle == 45) window = 3;
+    			else if (bomb_angle == 90) window = 4;
+    			else window = 5;
     			window_timer = 1;
     		}
     	}

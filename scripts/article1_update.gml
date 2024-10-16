@@ -107,6 +107,8 @@ if (state == 1){ //
 	    		player_id.hitpause = true;
 	    		player_id.hitstop = hitpause;
 	    		player_id.hitstop_full = hitpause;
+	    		player_id.old_hsp = player_id.hsp;
+	    		player_id.old_vsp = player_id.vsp;
 	    		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
 	    		sound_play(sound_effect);
 	    		other.hitstop = max(other.hitstop, player_id.hitstop);
