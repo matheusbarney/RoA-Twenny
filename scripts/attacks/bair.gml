@@ -66,3 +66,4 @@ set_hitbox_value(AT_BAIR, 1, HG_BASE_HITPAUSE, 12);
 set_hitbox_value(AT_BAIR, 1, HG_HITPAUSE_SCALING, .7);
 set_hitbox_value(AT_BAIR, 1, HG_VISUAL_EFFECT, 304);
 set_hitbox_value(AT_BAIR, 1, HG_HIT_SFX, asset_get("sfx_absa_kickhit"));
+set_hitbox_value(AT_BAIR, 1, HG_TWENNY_ELECTRIC, 1);

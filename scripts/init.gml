@@ -152,6 +152,10 @@ pipe_distance = 48;
 last_dist_check_x = 0;
 pipewarp_cd = 0;
 
+//Hitbox indices
+HG_TWENNY_ELECTRIC = 64;
+has_twenny_electric = true; // Used for efficiency when checking hitboxes
+// Technically, this is compat : ^)
 
 //-- NSPEC: THE BOMB
 nspec_charge = 0;

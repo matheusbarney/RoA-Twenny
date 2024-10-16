@@ -94,54 +94,82 @@ if (state == 1){ //
         }
     }
     
-    //warp bomb
-    with asset_get("obj_article2") {
-        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd) {
-            
-            //--flavor
-            sound_play(sound_get("door_close"));
-            spawn_hit_fx( x, y, HFX_GEN_SPIN);
-            
-            x = other.warpcoord_x;
-            y = other.warpcoord_y - 32;
-            
-            // Set some stuff for the bomb to handle over in its own update
-            has_tpd = true;
-            bomb_angle = other.warpcoord_angle;
-            tp_dir = other.warpcoord_dir;
-            if (state == 11) visible = false;
-            
-            state = (state == 11) ? 12 : 2;
-            state_timer = 0;
-            
-            other.warp_usages++;
-            other.pipewarp_cd = other.pipewarp_cd_max;
+    //Warp handling
+    if (player_id.num_pipes == 2 && pipewarp_cd <= 0) {
+    
+	    //check for electric hitboxes
+	    var electrified = false;
+	    with (pHitBox) if (player_id.has_twenny_electric && place_meeting(x, y, other)) {
+	    	var hbox_electrified = false;
+	    	with (player_id) hbox_electrified = get_hitbox_value(other.attack, other.hbox_num, HG_TWENNY_ELECTRIC);
+	    	if (hbox_electrified) {
+	    		player_id.has_hit = true;
+	    		player_id.hitpause = true;
+	    		player_id.hitstop = hitpause;
+	    		player_id.hitstop_full = hitpause;
+	    		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
+	    		sound_play(sound_effect);
+	    		other.hitstop = max(other.hitstop, player_id.hitstop);
+	    		electrified = true;
+	    	}
+	    }
+	    if (electrified) {
+	    	pipewarp_cd = pipewarp_cd_max;
+	    	print_debug("Zapped!"); // todo
+	    }
+	    
+	    //warp bomb
+	    with (asset_get("obj_article2")) {
+	        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd) {
+	            
+	            //--flavor
+	            sound_play(sound_get("door_close"));
+	            spawn_hit_fx( x, y, HFX_GEN_SPIN);
+	            
+	            x = other.warpcoord_x;
+	            y = other.warpcoord_y - 32;
+	            
+	            // Set some stuff for the bomb to handle over in its own update
+	            has_tpd = true;
+	            bomb_angle = other.warpcoord_angle;
+	            tp_dir = other.warpcoord_dir;
+	            if (state == 11) visible = false;
+	            
+	            if instance_exists(contact_hitbox) contact_hitbox.destroyed = true;
+	            
+	            state = (state == 11) ? 12 : 2;
+	            state_timer = 0;
+	            
+	            other.warp_usages++;
+	            other.pipewarp_cd = other.pipewarp_cd_max;
+		    }
+	    }
+	    
+	    //warp you
+	    with (oPlayer) {
+	        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance) {
+	        	other.do_warp_effects = true;
+	        	
+	            x = other.warpcoord_x;
+	            y = other.warpcoord_y;
+	            spr_dir = other.warpcoord_dir;
+	            in_hstance = false;
+	            
+	            if (other.warpcoord_angle == 90) {
+	            	vsp = -13;
+	            } else {
+	            	hsp = other.warpcoord_dir * 10
+	            	vsp = -10
+	            }
+	            
+	            pipewarp_cd = 10;
+	            
+	            other.warp_usages++;
+	            other.pipewarp_cd = other.pipewarp_cd_max;
+		    }
 	    }
     }
     
-    //warp you
-    with (oPlayer) {
-        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance) {
-        	other.do_warp_effects = true;
-        	
-            x = other.warpcoord_x;
-            y = other.warpcoord_y;
-            spr_dir = other.warpcoord_dir;
-            in_hstance = false;
-            
-            if (other.warpcoord_angle == 90) {
-            	vsp = -13;
-            } else {
-            	hsp = other.warpcoord_dir * 10
-            	vsp = -10
-            }
-            
-            pipewarp_cd = 10;
-            
-            other.warp_usages++;
-            other.pipewarp_cd = other.pipewarp_cd_max;
-	    }
-    }
     if (warp_usages >= warp_usages_max){//kill it when its teleported twice already
         state_timer = 0; //reset state timer
 		state = 2;

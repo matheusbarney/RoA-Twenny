@@ -44,5 +44,3 @@ contact_hitbox = noone;
 old_hsp = 0;
 
 bag_land_timer = 0; // for anim management
-
-print_debug(string(get_gameplay_time()) + " " + string(spr_dir));

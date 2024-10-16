@@ -144,18 +144,18 @@ if (state == 11) { //
     }
     
     // Hitbox management
-    if (state_timer == 1) contact_hitbox = create_hitbox( AT_NSPECIAL, 2, x, y );
+    if (state_timer == 1) contact_hitbox = create_hitbox( AT_NSPECIAL, 4, x, y );
     if (instance_exists(contact_hitbox)){
 		contact_hitbox.x = x;
 		contact_hitbox.y = y;
 		contact_hitbox.hsp = hsp;
 		contact_hitbox.vsp = vsp;
-		if (contact_hitbox.has_hit) bomb_fuse = 10;
-		if (!free) contact_hitbox.length = 0; 
+		// if (contact_hitbox.has_hit) bomb_fuse = 10;
+		if (!free && state_timer > 1) contact_hitbox.length = 0; 
 	}
     
     // Anim management
-    if (free) {
+    if (free || state_timer == 1) {
     	image_index = min(state_timer/4, 2);
     	bag_land_timer = -3;
     } else {
@@ -165,7 +165,7 @@ if (state == 11) { //
     }
 }
 
-if (state == 12) { // SCRAP BOMB TELEPORTED
+if (state == 12) { // BAG BOMB TELEPORTED (splitter manager)
 	visible = false;
 	state_end = 10; //duration of tp delay
 	// We fully stop the bomb in its tracks while its delayed inside a pipe. theres no fuse to it yet so its chill
@@ -216,7 +216,7 @@ if (state == 98){ //
 	image_index = 7;
 	
 	if (state_timer == 1) {
-		var explosionHitbox = create_hitbox( AT_NSPECIAL, 1, x, y );
+		var explosionHitbox = create_hitbox( AT_NSPECIAL, 3, x, y );
 		sound_play(asset_get("sfx_abyss_hazard_burst"));
 	    spawn_hit_fx( x, y, player_id.splatter);
 	}

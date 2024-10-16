@@ -171,7 +171,7 @@ switch(attack) {
     	break;
     
     case AT_USTRONG:
-    	in_hstance = (window > 2);
+    	if (2 < window && window < 6) in_hstance = true;
     	
     	switch window {
     		case 1:
