@@ -60,7 +60,7 @@ hstance_knockback_adj = 1.2;
 knockback_adj = base_knockback_adj;
 
 land_time = 6; // heavy landtime
-prat_land_time = 6;
+prat_land_time = 14;
 wave_land_time = 10;
 wave_land_adj = 1.35; //the multiplier to your initial hsp when wavelanding. Usually greater than 1
 wave_friction = .05; //grounded deceleration when wavelanding

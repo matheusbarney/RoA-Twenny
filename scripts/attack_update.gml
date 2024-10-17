@@ -145,6 +145,56 @@ switch(attack) {
     	}
     	break;
     
+    // Spin
+    case AT_FSPECIAL:
+    	switch window {
+    		case 1:
+    			if (window_timer == window_end_time) {
+    				hsp = 5.5*spr_dir;
+    				if (free) vsp = -3;
+    				loops = 0;
+    				spawn_base_dust(x+(10*spr_dir), y, free ? "n_wavedash" : "dash_start");
+    			} else {
+    				hsp = 0;
+    				vsp = 0;
+    			}
+    			break;
+    		case 2:
+    			can_move = false;
+    			if (left_down) hsp -= 0.5;
+    			if (right_down) hsp += 0.5;
+    			hsp = clamp(abs(hsp), 3, 8) * spr_dir;
+    			
+    			if (window_timer % 3 == 0 && !hitpause) {
+    				spawn_base_dust(x+(16*spr_dir), y, "dash");
+    			}
+    			
+    			if (window_timer == window_end_time && !hitpause) {
+    				loops++;
+    				if (special_down && loops < 2) {
+    					window_timer = 0;
+    					attack_end();
+    					sound_play(get_window_value(attack, 1, AG_WINDOW_SFX));
+    				}
+    			}
+    			break;
+    		case 3:
+    			hsp = clamp(hsp, -6, 6);
+    			if (window_timer == window_end_time) {
+    				if (free) set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 7);
+    				else set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
+    				hsp = 1*spr_dir;
+    				vsp = -4;
+    				spawn_base_dust(x+(10*spr_dir), y, "jump");
+    			}
+    			break;
+    		case 4:
+    			hsp = clamp(hsp, -2, 2);
+    			break;
+    	}
+    	break;
+    
+    // Launch
     case AT_USPECIAL:
     	can_fast_fall = false;
     	can_fastfall = false;

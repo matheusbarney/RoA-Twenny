@@ -177,7 +177,7 @@ if (state == 11) { //
     }
 }
 
-if (state == 12) { // BAG BOMB TELEPORTED (splitter manager)
+if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
 	visible = false;
 	state_end = 10; //duration of tp delay
 	// We fully stop the bomb in its tracks while its delayed inside a pipe. theres no fuse to it yet so its chill

@@ -104,14 +104,17 @@ if (state == 1){ //
 	    	with (player_id) hbox_electrified = get_hitbox_value(other.attack, other.hbox_num, HG_TWENNY_ELECTRIC);
 	    	if (hbox_electrified) {
 	    		player_id.has_hit = true;
+	    		if (!player_id.hitpause) {
+	    			player_id.old_hsp = player_id.hsp;
+	    			player_id.old_vsp = player_id.vsp;
+	    		}
 	    		player_id.hitpause = true;
-	    		player_id.hitstop = hitpause;
-	    		player_id.hitstop_full = hitpause;
-	    		player_id.old_hsp = player_id.hsp;
-	    		player_id.old_vsp = player_id.vsp;
+	    		player_id.hitstop = max(player_id.hitstop, hitpause);
+	    		player_id.hitstop_full = player_id.hitstop;
+	    		
 	    		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
 	    		sound_play(sound_effect);
-	    		other.hitstop = max(other.hitstop, player_id.hitstop);
+	    		other.hitstop = max(other.hitstop, hitpause);
 	    		electrified = true;
 	    	}
 	    }
