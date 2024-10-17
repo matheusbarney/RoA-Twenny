@@ -85,6 +85,8 @@ sprite_change_offset("b_scrapbomb_mask", 64, 63);
 sprite_change_offset("b_bagbomb", 64, 63);
 sprite_change_offset("b_bagbomb_mask", 64, 63);
 
+sprite_change_offset("p_electroghost", 64, 63);
+
 //-- HEAD STANCE LOAD
 sprite_change_offset("hstance_jump", 48, 63);
 sprite_change_offset("hstance_airdodge", 48, 63);

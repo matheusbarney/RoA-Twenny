@@ -99,6 +99,7 @@ if (state == 1){ //
     
 	    //check for electric hitboxes
 	    var electrified = false;
+	    var elec_owner = noone;
 	    with (pHitBox) if (player_id.has_twenny_electric && place_meeting(x, y, other)) {
 	    	var hbox_electrified = false;
 	    	with (player_id) hbox_electrified = get_hitbox_value(other.attack, other.hbox_num, HG_TWENNY_ELECTRIC);
@@ -116,17 +117,31 @@ if (state == 1){ //
 	    		sound_play(sound_effect);
 	    		other.hitstop = max(other.hitstop, hitpause);
 	    		electrified = true;
+	    		elec_owner = player_id;
 	    	}
 	    }
 	    if (electrified) {
+	    	with (elec_owner) {
+	    		var spark = create_hitbox(electroghost_attack, electroghost_index, other.warpcoord_x, other.warpcoord_y);
+	    	}
+	    	
+	    	if (warpcoord_angle == 90) {
+	    		spark.hsp = 0;
+	    		spark.vsp = -12;
+	    	} else {
+	    		spark.proj_angle = -45*warpcoord_dir;
+	    		spark.spr_dir = warpcoord_dir;
+	    		spark.hsp = 9*warpcoord_dir;
+	    		spark.vsp = -9;
+	    	}
+	    	
 	    	pipewarp_cd = pipewarp_cd_max;
-	    	print_debug("Zapped!"); // todo
+			do_warp_effects = true;
 	    }
 	    
 	    //warp bomb
-	    with (asset_get("obj_article2")) {
-	        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && (other.pipewarp_cd == 0) && player_id.num_pipes > 1 && !has_tpd) {
-	            
+	    if (player_id.num_pipes >= 2) with (asset_get("obj_article2")) {
+	        if (other.pipewarp_cd == 0 && "is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
 	            //--flavor
 	            sound_play(sound_get("door_close"));
 	            spawn_hit_fx( x, y, HFX_GEN_SPIN);
@@ -135,7 +150,7 @@ if (state == 1){ //
 	            y = other.warpcoord_y - 32;
 	            
 	            // Set some stuff for the bomb to handle over in its own update
-	            has_tpd = true;
+	            has_tpd = other.player; // Boolean trick. Lets has_tpd evaluate to true while also tracking which pair of pipes teleported the bomb last
 	            bomb_angle = other.warpcoord_angle;
 	            tp_dir = other.warpcoord_dir;
 	            if (state == 11) visible = false;
@@ -206,7 +221,8 @@ if (state == 2){ //
 if (do_warp_effects) {
     sound_play(sound_get("door_close"));
     sound_play(sound_get("door_open"));
-    spawn_hit_fx( x, y, HFX_GEN_SPIN);
+    spawn_hit_fx(x, y, HFX_GEN_SPIN);
+    spawn_hit_fx(warpcoord_x, warpcoord_y, HFX_GEN_SPIN);
     do_warp_effects = false;
 }
 

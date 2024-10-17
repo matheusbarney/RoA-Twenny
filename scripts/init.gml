@@ -152,9 +152,11 @@ pipe_distance = 48;
 last_dist_check_x = 0;
 pipewarp_cd = 0;
 
-//Hitbox indices
+//electroghost handling
 HG_TWENNY_ELECTRIC = 64;
 has_twenny_electric = true; // Used for efficiency when checking hitboxes
+electroghost_attack = AT_DSPECIAL; // Since pipes need to be able to fetch electroghosts from any instance of Twenny
+electroghost_index = 2;
 // Technically, this is compat : ^)
 
 //-- NSPEC: THE BOMB

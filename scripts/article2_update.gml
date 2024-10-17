@@ -226,6 +226,17 @@ if (state == 11) { //
 		
 		sound_play(asset_get("sfx_forsburn_combust"), false, noone, 0.8, 1);
 		
+		// Theft! (ditto interaction)
+		if (other.player_id != player_id) {
+			other.player_id = player_id;
+			other.player = orig_player;
+			other.orig_player = orig_player;
+			if (instance_exists(other.contact_hitbox)) {
+				other.contact_hitbox.destroyed_next = true;
+				other.contact_hitbox = noone; // since a new hitbox will be generated below
+			}
+		}
+		
 		other.hit_cooldown = self.length;
 		other.was_hit = true;
 		other.tp_dir = player_id.spr_dir;
@@ -272,21 +283,21 @@ if (state == 12) { // BAG BOMB SPLIT (teleport/fspec behavior)
     	
     	player_id.bomb_angle = bomb_angle;
     	var bomb = instance_create(x, y, "obj_article2");
-    	bomb.has_tpd = true;
+    	bomb.has_tpd = 5; // true; not from a pipe
     	bomb.tp_dir = tp_dir;
     	bomb.hit_cooldown = 5;
     	
     	if (bomb_angle == 45) player_id.bomb_angle = 60;
     	else player_id.bomb_angle = 75;
     	var bomb = instance_create(x, y, "obj_article2");
-    	bomb.has_tpd = true;
+    	bomb.has_tpd = 5; // true; not from a pipe
     	bomb.tp_dir = tp_dir;
     	bomb.hit_cooldown = 5;
     	
     	if (bomb_angle == 45) player_id.bomb_angle = 30;
     	else tp_dir *= -1; // bomb angle pulled from above
     	var bomb = instance_create(x, y, "obj_article2");
-    	bomb.has_tpd = true;
+    	bomb.has_tpd = 5; // true; not from a pipe
     	bomb.tp_dir = tp_dir;
     	bomb.hit_cooldown = 5;
     	
