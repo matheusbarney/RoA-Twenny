@@ -34,7 +34,6 @@ if (state == 1) { //
 	    // A scrapbomb that hs teleported to a pipe and returned from "stasis"
 	    else {
 	    	bomb_fuse = 16;
-	    	sound_play(sound_get("door_open"));
 	    	spawn_hit_fx(x, y-16, HFX_GEN_SPIN);
 	    	switch (bomb_angle) {
 	    		case 90:
@@ -85,10 +84,10 @@ if (state == 1) { //
 			else if (hsp < -0.1) hsp += 0.1;
 			else hsp = 0;
 		} else {
+			if (!fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
 			vsp = -3;
 			fuse_active = true;
 			has_bounced = true;
-			fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
 		}
 		if (was_free) {
 			was_free = false;
@@ -121,6 +120,17 @@ if (state == 1) { //
 			other.vsp = -8;
 		}
 		
+		// Theft! (ditto interaction)
+		if (other.player_id != player_id) {
+			other.player_id = player_id;
+			other.player = orig_player;
+			other.orig_player = orig_player;
+			if (instance_exists(other.contact_hitbox)) {
+				other.contact_hitbox.destroyed_next = true;
+				other.contact_hitbox = noone; // since a new hitbox will be generated below
+			}
+		}
+		
 		other.hit_cooldown = self.length;
 		other.was_hit = true;
     }
@@ -129,7 +139,7 @@ if (state == 1) { //
     if (was_hit) {
     	if (!instance_exists(contact_hitbox)) contact_hitbox = create_hitbox( AT_NSPECIAL, 2, x, y );
     	if (!fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
-    	bomb_fuse = 15;
+    	bomb_fuse = 45;
     	fuse_active = true;
     	was_hit = false;
     }
@@ -146,7 +156,11 @@ if (state == 1) { //
 			contact_hitbox.hsp = 0;
 			contact_hitbox.vsp = 0;
 		}
-		if (contact_hitbox.has_hit) bomb_fuse = 10;
+		if (contact_hitbox.has_hit) {
+			if (!fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
+			bomb_fuse = 7;
+			fuse_active = true;
+		}
 		if (!free) contact_hitbox.length = 0; 
     }
 
@@ -163,6 +177,7 @@ if (state == 2){ // SCRAP BOMB DELAY
     if (state_timer == state_end){//when the timer reaches end of this state's duration
         state_timer = 0; //reset state timer
 		state = 1;
+		sound_play(sound_get("door_open"));
     }
 }
 
@@ -246,14 +261,13 @@ if (state == 11) { //
     }
 }
 
-if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
+if (state == 12) { // BAG BOMB SPLIT (teleport/fspec behavior)
 	state_end = 10; //duration of tp delay
 	// We fully stop the bomb in its tracks while its delayed inside a pipe. theres no fuse to it yet so its chill
 	hsp = clamp(hsp, 0, 0)
 	vsp = clamp(vsp, 0, 0)
 	
     if (state_timer == state_end){//when the timer reaches end of this state's duration
-    	var old_spr_dir = player_id.spr_dir;
     	player_id.bomb_type = 0;
     	
     	player_id.bomb_angle = bomb_angle;
@@ -276,7 +290,8 @@ if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
     	bomb.tp_dir = tp_dir;
     	bomb.hit_cooldown = 5;
     	
-    	player_id.spr_dir = old_spr_dir;
+    	if (has_tpd) sound_play(sound_get("door_open"));
+    	
         instance_destroy();
         exit;
     }

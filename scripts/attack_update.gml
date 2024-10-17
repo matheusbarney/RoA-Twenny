@@ -46,7 +46,7 @@ switch(attack) {
 				if (nspec_charge > nspec_charge_threshold) {
 					sound_play(asset_get("sfx_ell_big_missile_fire"), false, noone, 0.5, 0.7);
 				} else {
-					sound_play(sound_get("shoot2"), false, noone, 0.1, 1);
+					sound_play(sound_get("shoot2"), false, noone, 0.5, 1);
 				}
 			}
 		}
