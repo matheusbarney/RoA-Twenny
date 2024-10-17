@@ -13,18 +13,24 @@ switch(attack) {
 			bomb_angle = 45 //45 for normal, 90 for high, 0 for low
 			nspec_charge = 0;
 		}
+		
 		if (window == 2) {
-			nspec_charge++
-    		if (window_timer == window_end_time) && special_down {
-    			window_timer = 1;
-    			if up_down {
-    				//-- swap to high bombs
-    				bomb_angle = 90;
-    			} else if down_down {
-    				//-- swap to low bombs
-    				bomb_angle = 0;
-    			}
-    		} else if (!special_down or nspec_charge >= nspec_charge_threshold + 10) {
+			// Update aim
+			if (!joy_pad_idle) {
+				if (up_down) bomb_angle = 90;
+    			else if (down_down) bomb_angle = 0;
+    			else bomb_angle = 45;
+			}
+			
+			if (window_timer == window_end_time && special_down) window_timer = 1;
+			
+			// Handle charge
+			nspec_charge++;
+    		if (nspec_charge == nspec_charge_threshold) {
+    			sound_play(asset_get("mfx_star"));
+    			spawn_hit_fx(x-(48*spr_dir), y-4, HFX_GEN_SWEET);
+    		}
+    		if (!special_down or nspec_charge >= nspec_charge_threshold + 10) {
     			if (bomb_angle == 45) window = 3;
     			else if (bomb_angle == 90) window = 4;
     			else window = 5;
@@ -37,7 +43,11 @@ switch(attack) {
 				window = 6;
 				window_timer = 1;
 			} else if window_timer == 1 {
-				sound_play(sound_get("shoot2"), false, noone, 0.1,  1);
+				if (nspec_charge > nspec_charge_threshold) {
+					sound_play(asset_get("sfx_ell_big_missile_fire"), false, noone, 0.5, 0.7);
+				} else {
+					sound_play(sound_get("shoot2"), false, noone, 0.1, 1);
+				}
 			}
 		}
 		
@@ -45,21 +55,24 @@ switch(attack) {
 		if (window == 3 && window_timer == window_end_time-1) {
 			bomb_angle = 45;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
-			instance_create( x+(48*spr_dir), y-62, "obj_article2" );
+			instance_create(x+(48*spr_dir), y-62, "obj_article2");
+			spawn_hit_fx(x+(48*spr_dir), y-62, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
 		}
 		
 		//-- SHOOT HIGH
 		if (window == 4 && window_timer == window_end_time-1) {
 			bomb_angle = 90;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
-			instance_create( x+(32*spr_dir), y-80, "obj_article2" );
+			instance_create(x+(32*spr_dir), y-80, "obj_article2");
+			spawn_hit_fx(x+(32*spr_dir), y-80, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
 		} 
 		
 		//-- SHOOT LOW
 		if (window == 5 && window_timer == window_end_time-1) {
 			bomb_angle = 0;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
-			instance_create( x+(56*spr_dir), y-32, "obj_article2" );
+			instance_create(x+(56*spr_dir), y-32, "obj_article2");
+			spawn_hit_fx(x+(56*spr_dir), y-32, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
 		} 
 		break;
 	
@@ -98,27 +111,21 @@ switch(attack) {
     			}
     		}
     		
-    		if (special_down) {
-    			if (left_pressed) {
-    				if (latest_pipe_angle == 90) {
-    					latest_pipe_angle = 45;
-    					latest_pipe_dir = -1;
-    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
-    				} else if (latest_pipe_angle == 45 && latest_pipe_dir == 1) {
-    					latest_pipe_angle = 90;
-    					latest_pipe_dir = spr_dir;
-    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
-    				}
-    			} else if (right_pressed) {
-    				if (latest_pipe_angle == 90) {
-    					latest_pipe_angle = 45;
-    					latest_pipe_dir = 1;
-    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  0.8);
-    				} else if (latest_pipe_angle == 45 && latest_pipe_dir == -1) {
-    					latest_pipe_angle = 90;
-    					latest_pipe_dir = spr_dir;
-    					sound_play(asset_get("mfx_option"), false, noone, 0.6,  0.8);
-    				}
+    		if (special_down && !joy_pad_idle) {
+    			if (left_down && (latest_pipe_angle != 45 || latest_pipe_dir != -1)) {
+    				latest_pipe_angle = 45;
+    				latest_pipe_dir = -1;
+    				sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
+    			}
+    			else if (right_down && (latest_pipe_angle != 45 || latest_pipe_dir != 1)) {
+					latest_pipe_angle = 45;
+    				latest_pipe_dir = 1;
+					sound_play(asset_get("mfx_option"), false, noone, 0.6,  1.2);
+				}
+    			else if (!left_down && !right_down && latest_pipe_angle != 90) {
+					latest_pipe_angle = 90;
+					latest_pipe_dir = spr_dir;
+					sound_play(asset_get("mfx_option"), false, noone, 0.6,  0.8);
     			}
     		}
     	}

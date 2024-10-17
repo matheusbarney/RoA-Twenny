@@ -1,10 +1,9 @@
 
 if (fuse_active) bomb_fuse--;
-if (bomb_fuse == 0) {
-	if (state < 97){
-		state = bomb_type ? 98 : 97;
-		state_timer = 0;
-	}
+if (bomb_fuse == 0 && state < 97) {
+	state = bomb_type ? 98 : 97;
+	state_timer = 0;
+	sound_stop(fuse_sound);
 }
 
 state_timer++; //progress the timer
@@ -70,10 +69,16 @@ if (state == 1) { //
 	}	
 	
 	// Bounce on walls
-	if (hit_wall) hsp = old_hsp*-0.8;
+	if (hit_wall) {
+		hsp = old_hsp*-0.8;
+		sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
+	}
 	
 	// Bomb gravity physics kinda
-    if (free) vsp += 0.5
+    if (free) {
+    	vsp += 0.5
+    	was_free = true;
+    }
     else if (!free) {
 		if (has_bounced) {
 			if (hsp > 0.1) hsp -= 0.1;
@@ -83,6 +88,10 @@ if (state == 1) { //
 			vsp = -3;
 			fuse_active = true;
 			has_bounced = true;
+		}
+		if (was_free) {
+			was_free = false;
+			sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
 		}
 	}
     	
@@ -100,6 +109,8 @@ if (state == 1) { //
 	// Rotation for bombs
 	angle_scrapb -= hsp;
 	
+    // SFX
+    if (bomb_fuse == 10 && fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
 }
 
 if (state == 2){ // SCRAP BOMB DELAY
@@ -159,6 +170,7 @@ if (state == 11) { //
     	image_index = min(state_timer/4, 2);
     	bag_land_timer = -3;
     } else {
+    	if (bag_land_timer == -3) sound_play(asset_get("sfx_dust_knuckle"), false, noone, 0.5, 0.8);
     	if (bag_land_timer < 0) image_index = 3;
     	else image_index = 4 + (bag_land_timer/12)%3
     	bag_land_timer++;

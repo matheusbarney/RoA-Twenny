@@ -29,6 +29,7 @@ uses_shader = true;
 image_index_scrapb = 0;
 angle_scrapb = 0;
 has_bounced = false;
+was_free = false; // used for sfx
 
 spr_dir = player_id.spr_dir
 bomb_angle = player_id.bomb_angle;
@@ -45,3 +46,5 @@ contact_hitbox = noone;
 old_hsp = 0;
 
 bag_land_timer = 0; // for anim management
+
+fuse_sound = noone;

@@ -4,7 +4,7 @@ if (state == 1) draw_sprite_ext(sprite_get("b_scrapbomb"), image_index_scrapb, x
 shader_end();
 
 if (fuse_active && bomb_fuse < 40) {
-    var upper = (bomb_fuse <= 8) ? 0.6 : 0.3;
+    var upper = 0.8 - (bomb_fuse / 60);
     var intensity = upper/2 * (1 + cos(pi*bomb_fuse/8)); // 16f period
     
     gpu_set_fog(true, fuse_color, depth, depth);
