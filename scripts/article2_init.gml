@@ -43,8 +43,10 @@ tp_dir = 1;
 
 contact_hitbox = noone;
 
-old_hsp = 0;
+hit_cooldown = 0; // for fspec
+was_hit = 0; // one-frame flag; used to replenish hitbox
+old_hsp = 0; // for walls
 
 bag_land_timer = 0; // for anim management
-
 fuse_sound = noone;
+

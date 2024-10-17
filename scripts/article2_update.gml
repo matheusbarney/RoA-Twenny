@@ -1,12 +1,12 @@
 
-if (fuse_active) bomb_fuse--;
+if (fuse_active && !hitstop) bomb_fuse--;
 if (bomb_fuse == 0 && state < 97) {
 	state = bomb_type ? 98 : 97;
 	state_timer = 0;
 	sound_stop(fuse_sound);
 }
 
-state_timer++; //progress the timer
+if (!hitstop) state_timer++; //progress the timer
 
 
 // // // // STATE 1 - SCRAPBOMB IDLE
@@ -88,29 +88,70 @@ if (state == 1) { //
 			vsp = -3;
 			fuse_active = true;
 			has_bounced = true;
+			fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
 		}
 		if (was_free) {
 			was_free = false;
 			sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
 		}
 	}
-    	
+    
+    // FSpec collision
+    with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && attack == AT_FSPECIAL && place_meeting(x, y, other)) {
+    	player_id.has_hit = true;
+		if (!player_id.hitpause) {
+			player_id.old_hsp = player_id.hsp;
+			player_id.old_vsp = player_id.vsp;
+		}
+		player_id.hitpause = true;
+		player_id.hitstop = max(player_id.hitstop, hitpause);
+		player_id.hitstop_full = player_id.hitstop;
+		
+		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
+		sound_play(sound_effect);
+		other.hitstop = max(other.hitstop, hitpause);
+		
+		sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
+		
+		if (hbox_num < 5) {
+			other.hsp = (player_id.x - other.x)/4 + (5*spr_dir);
+			other.vsp = (player_id.y < other.y)/10 - 6;
+		} else {
+			other.hsp = 8 * player_id.spr_dir;
+			other.vsp = -8;
+		}
+		
+		other.hit_cooldown = self.length;
+		other.was_hit = true;
+    }
+    if (!hitstop && hit_cooldown > 0) hit_cooldown--;
+    
+    if (was_hit) {
+    	if (!instance_exists(contact_hitbox)) contact_hitbox = create_hitbox( AT_NSPECIAL, 2, x, y );
+    	if (!fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
+    	bomb_fuse = 15;
+    	fuse_active = true;
+    	was_hit = false;
+    }
+    
     // Hitbox management
 	if (state_timer == 1) contact_hitbox = create_hitbox( AT_NSPECIAL, 2, x, y );
     if (instance_exists(contact_hitbox)){
 		contact_hitbox.x = x;
 		contact_hitbox.y = y;
-		contact_hitbox.hsp = hsp;
-		contact_hitbox.vsp = vsp;
+		if (!hitstop) {
+			contact_hitbox.hsp = hsp;
+			contact_hitbox.vsp = vsp;
+		} else {
+			contact_hitbox.hsp = 0;
+			contact_hitbox.vsp = 0;
+		}
 		if (contact_hitbox.has_hit) bomb_fuse = 10;
 		if (!free) contact_hitbox.length = 0; 
     }
 
 	// Rotation for bombs
 	angle_scrapb -= hsp;
-	
-    // SFX
-    if (bomb_fuse == 10 && fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
 }
 
 if (state == 2){ // SCRAP BOMB DELAY
@@ -121,7 +162,6 @@ if (state == 2){ // SCRAP BOMB DELAY
 	
     if (state_timer == state_end){//when the timer reaches end of this state's duration
         state_timer = 0; //reset state timer
-        
 		state = 1;
     }
 }
@@ -154,6 +194,35 @@ if (state == 11) { //
     	fuse_active = true;
     }
     
+    // FSpec collision
+    with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && attack == AT_FSPECIAL && place_meeting(x, y, other)) {
+    	player_id.has_hit = true;
+		if (!player_id.hitpause) {
+			player_id.old_hsp = player_id.hsp;
+			player_id.old_vsp = player_id.vsp;
+		}
+		player_id.hitpause = true;
+		player_id.hitstop = max(player_id.hitstop, hitpause+10);
+		player_id.hitstop_full = player_id.hitstop;
+		
+		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
+		sound_play(sound_effect);
+		other.hitstop = max(other.hitstop, hitpause+10);
+		
+		sound_play(asset_get("sfx_forsburn_combust"), false, noone, 0.8, 1);
+		
+		other.hit_cooldown = self.length;
+		other.was_hit = true;
+		other.tp_dir = player_id.spr_dir;
+    }
+    if (!hitstop && hit_cooldown > 0) hit_cooldown--;
+    
+    if (was_hit) {
+    	state = 12;
+    	state_timer = 9;
+    	bomb_angle = 45;
+    }
+    
     // Hitbox management
     if (state_timer == 1) contact_hitbox = create_hitbox( AT_NSPECIAL, 4, x, y );
     if (instance_exists(contact_hitbox)){
@@ -178,7 +247,6 @@ if (state == 11) { //
 }
 
 if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
-	visible = false;
 	state_end = 10; //duration of tp delay
 	// We fully stop the bomb in its tracks while its delayed inside a pipe. theres no fuse to it yet so its chill
 	hsp = clamp(hsp, 0, 0)
@@ -192,18 +260,21 @@ if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
     	var bomb = instance_create(x, y, "obj_article2");
     	bomb.has_tpd = true;
     	bomb.tp_dir = tp_dir;
+    	bomb.hit_cooldown = 5;
     	
     	if (bomb_angle == 45) player_id.bomb_angle = 60;
     	else player_id.bomb_angle = 75;
     	var bomb = instance_create(x, y, "obj_article2");
     	bomb.has_tpd = true;
     	bomb.tp_dir = tp_dir;
+    	bomb.hit_cooldown = 5;
     	
     	if (bomb_angle == 45) player_id.bomb_angle = 30;
     	else tp_dir *= -1; // bomb angle pulled from above
     	var bomb = instance_create(x, y, "obj_article2");
     	bomb.has_tpd = true;
     	bomb.tp_dir = tp_dir;
+    	bomb.hit_cooldown = 5;
     	
     	player_id.spr_dir = old_spr_dir;
         instance_destroy();
@@ -213,12 +284,12 @@ if (state == 12) { // BAG BOMB SPLIT (teleport behavior)
 
 // // // // STATE 97 - SCRAP BOMB EXPLODING
 if (state == 97){ //
+	if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
 	var explosionHitbox = create_hitbox( AT_NSPECIAL, 1, x, y );
 	sound_play(asset_get("sfx_abyss_hazard_burst"));
     spawn_hit_fx( x, y, player_id.splatter);
     instance_destroy();//remove article
     exit;//exits the code (not 100% necessary but its good to be safe)
-
 }
 
 
@@ -228,6 +299,7 @@ if (state == 98){ //
 	image_index = 7;
 	
 	if (state_timer == 1) {
+		if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
 		var explosionHitbox = create_hitbox( AT_NSPECIAL, 3, x, y );
 		sound_play(asset_get("sfx_abyss_hazard_burst"));
 	    spawn_hit_fx( x, y, player_id.splatter);

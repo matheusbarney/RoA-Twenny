@@ -152,7 +152,7 @@ if (state == 1){ //
 	    
 	    //warp you
 	    with (oPlayer) {
-	        if ("is_twenny" in self && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance) {
+	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance) {
 	        	other.do_warp_effects = true;
 	        	
 	            x = other.warpcoord_x;

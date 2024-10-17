@@ -160,22 +160,24 @@ switch(attack) {
     			}
     			break;
     		case 2:
-    			can_move = false;
-    			if (left_down) hsp -= 0.5;
-    			if (right_down) hsp += 0.5;
-    			hsp = clamp(abs(hsp), 3, 8) * spr_dir;
-    			
-    			if (window_timer % 3 == 0 && !hitpause) {
-    				spawn_base_dust(x+(16*spr_dir), y, "dash");
-    			}
-    			
-    			if (window_timer == window_end_time && !hitpause) {
-    				loops++;
-    				if (special_down && loops < 2) {
-    					window_timer = 0;
-    					attack_end();
-    					sound_play(get_window_value(attack, 1, AG_WINDOW_SFX));
-    				}
+    			if (!hitpause) {
+	    			can_move = false;
+	    			if (left_down) hsp -= 0.5;
+	    			if (right_down) hsp += 0.5;
+	    			hsp = clamp(abs(hsp), 3, 8) * spr_dir;
+	    			
+	    			if (window_timer % 3 == 0) {
+	    				spawn_base_dust(x+(16*spr_dir), y, "dash");
+	    			}
+	    			
+	    			if (window_timer == window_end_time) {
+	    				loops++;
+	    				if (special_down && loops < 2) {
+	    					window_timer = 0;
+	    					attack_end();
+	    					sound_play(get_window_value(attack, 1, AG_WINDOW_SFX));
+	    				}
+	    			}
     			}
     			break;
     		case 3:
