@@ -60,5 +60,5 @@ set_hitbox_value(AT_FSTRONG, 1, HG_BASE_HITPAUSE, 10);
 set_hitbox_value(AT_FSTRONG, 1, HG_HITPAUSE_SCALING, 1.2);
 set_hitbox_value(AT_FSTRONG, 1, HG_VISUAL_EFFECT_X_OFFSET, 18);
 set_hitbox_value(AT_FSTRONG, 1, HG_HIT_SFX, asset_get("sfx_absa_uair"));
-set_hitbox_value(AT_FSTRONG, 1, HG_VISUAL_EFFECT, 304);
+set_hitbox_value(AT_FSTRONG, 1, HG_VISUAL_EFFECT, thunder_big);
 set_hitbox_value(AT_FSTRONG, 1, HG_TWENNY_ELECTRIC, 1);

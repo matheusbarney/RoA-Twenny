@@ -190,6 +190,7 @@ splsh = hit_fx_create( sprite_get( "vfx_splattersplash" ), 21 );
 splatter = hit_fx_create( sprite_get( "vfx_splatter" ), 21 );
 ustr_corpse = hit_fx_create( sprite_get( "vfx_ustrong_corpse" ), 48 );
 thunder_small = hit_fx_create( sprite_get( "vfx_thunder_small" ), 18 );
+thunder_big = hit_fx_create( sprite_get( "vfx_thunder_big" ), 28 );
 livespark_death = hit_fx_create( sprite_get( "vfx_livespark_death" ), 20 );
 bigbomb_expl = hit_fx_create( sprite_get( "vfx_bigbomb_explosion" ), 24 );
 hex_fx = hit_fx_create( sprite_get( "fx_hex" ), 15 );

@@ -70,6 +70,7 @@ sprite_change_offset("vfx_splattersplash", 47, 46);
 sprite_change_offset("vfx_splatter",  128, 120);
 sprite_change_offset("vfx_ustrong_corpse", 128, 159, true);
 sprite_change_offset("vfx_thunder_small", 64, 63);
+sprite_change_offset("vfx_thunder_big", 112, 111);
 sprite_change_offset("vfx_livespark_death", 64, 63);
 sprite_change_offset("vfx_bigbomb_explosion", 128, 161);
 
@@ -98,3 +99,6 @@ sprite_change_offset("hstance_jump", 48, 63);
 sprite_change_offset("hstance_airdodge", 48, 63);
 sprite_change_offset("hstance_hurt", 48, 63);
 sprite_change_offset("hstance_land", 48, 63);
+
+set_victory_bg( sprite_get( "twenny_victorybg" ));
+set_victory_theme( sound_get( "mus_twenny_victory" ));
