@@ -35,7 +35,24 @@ switch (attack) {
         break;
     
     case AT_NSPECIAL:
-        if (my_hitboxID.hbox_num == 3) sound_play(asset_get("sfx_swish_medium"), false, noone, 1.2, 0.6)
+        if (my_hitboxID.hbox_num == 3) {
+            sound_play(asset_get("sfx_swish_medium"), false, noone, 1.2, 0.6);
+            
+            if (!hit_player_obj.twenny_hexed) {
+                hit_player_obj.twenny_text_timer = 120;
+                sound_play(sound_get("hexed"));
+            }
+            
+            hit_player_obj.twenny_hexed = true;
+            hit_player_obj.twenny_hex_owner = player;
+            hit_player_obj.twenny_hex_timer = 360;
+            hit_player_obj.twenny_hex_outline = brittle_outline;
+            
+            with (hit_player_obj) {
+                outline_color = twenny_hex_outline;
+                init_shader();
+            }
+        }
         break;
 
     

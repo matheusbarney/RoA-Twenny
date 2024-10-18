@@ -90,6 +90,9 @@ sprite_change_offset("b_bagbomb_mask", 64, 63);
 
 sprite_change_offset("p_livespark", 64, 63);
 
+sprite_change_offset("sick", -36, 72);
+sprite_change_offset("fx_hex", 10, 20);
+
 //-- HEAD STANCE LOAD
 sprite_change_offset("hstance_jump", 48, 63);
 sprite_change_offset("hstance_airdodge", 48, 63);
