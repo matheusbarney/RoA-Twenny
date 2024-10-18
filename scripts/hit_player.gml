@@ -47,6 +47,7 @@ switch (attack) {
             hit_player_obj.twenny_hex_owner = player;
             hit_player_obj.twenny_hex_timer = 360;
             hit_player_obj.twenny_hex_outline = brittle_outline;
+            hit_player_obj.knockback_scaling += brittle_kb_mod;
             
             with (hit_player_obj) {
                 outline_color = twenny_hex_outline;

@@ -172,6 +172,7 @@ brittle_outline = [ // constant; gets passed to twenny_hex_outline on hit
     get_color_profile_slot_g(p_col, 0),
     get_color_profile_slot_b(p_col, 0),
 ];
+brittle_kb_mod = 0.1;
 
 //-- NSPEC: THE BOMB
 nspec_charge = 0;

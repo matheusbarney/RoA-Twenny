@@ -1,4 +1,5 @@
 //postdraws (draws over) other players
+if ("twenny_text_timer" not in self || !instance_exists(other)) exit;
 	
 if (twenny_text_timer > 0 && twenny_hex_owner == other_player_id.player) with (other_player_id) {
     var a = other.twenny_text_timer > 10 ? 1 : other.twenny_text_timer/10;
