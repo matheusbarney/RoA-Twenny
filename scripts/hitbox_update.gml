@@ -29,7 +29,7 @@ switch (attack){
             spawn_hit_fx(x, y, destroy_fx);
         }
         break;
-    case AT_DSPECIAL: // electroghost
+    case AT_DSPECIAL: // livespark
         if (proj_angle == 0 && vsp < -2) vsp += 0.4;
         else if (abs(proj_angle) == 45 && vsp < -1.5) {
             hsp -= 0.3*spr_dir;

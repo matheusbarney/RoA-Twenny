@@ -69,6 +69,9 @@ sprite_change_offset("vfx_sting", 52, 52);
 sprite_change_offset("vfx_splattersplash", 47, 46);
 sprite_change_offset("vfx_splatter",  128, 120);
 sprite_change_offset("vfx_ustrong_corpse", 128, 159, true);
+sprite_change_offset("vfx_thunder_small", 64, 63);
+sprite_change_offset("vfx_livespark_death", 64, 63);
+sprite_change_offset("vfx_bigbomb_explosion", 128, 161);
 
 sprite_change_offset("pipe_straight", 64, 95);
 sprite_change_offset("pipe_mask", 64, 95);
@@ -85,7 +88,7 @@ sprite_change_offset("b_scrapbomb_mask", 64, 63);
 sprite_change_offset("b_bagbomb", 64, 63);
 sprite_change_offset("b_bagbomb_mask", 64, 63);
 
-sprite_change_offset("p_electroghost", 64, 63);
+sprite_change_offset("p_livespark", 64, 63);
 
 //-- HEAD STANCE LOAD
 sprite_change_offset("hstance_jump", 48, 63);

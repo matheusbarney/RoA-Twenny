@@ -326,11 +326,11 @@ if (state == 98){ //
 	
 	if (state_timer == 1) {
 		if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
-		var explosionHitbox = create_hitbox( AT_NSPECIAL, 3, x, y );
 		sound_play(asset_get("sfx_abyss_hazard_burst"));
-	    spawn_hit_fx( x, y, player_id.splatter);
+	    spawn_hit_fx( x, y, player_id.bigbomb_expl);
 	}
-    if (state_timer == 5) {
+    if (state_timer == 4) {
+    	var explosionHitbox = create_hitbox( AT_NSPECIAL, 3, x, y-8 );
 	    instance_destroy();//remove article
 	    exit;//exits the code (not 100% necessary but its good to be safe)
     }

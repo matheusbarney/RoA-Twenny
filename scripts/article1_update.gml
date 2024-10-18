@@ -122,7 +122,7 @@ if (state == 1){ //
 	    }
 	    if (electrified) {
 	    	with (elec_owner) {
-	    		var spark = create_hitbox(electroghost_attack, electroghost_index, other.warpcoord_x, other.warpcoord_y);
+	    		var spark = create_hitbox(livespark_attack, livespark_index, other.warpcoord_x, other.warpcoord_y);
 	    	}
 	    	
 	    	if (warpcoord_angle == 90) {

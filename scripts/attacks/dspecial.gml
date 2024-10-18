@@ -64,7 +64,7 @@ set_hitbox_value(AT_DSPECIAL, 1, HG_HITPAUSE_SCALING, .7);
 set_hitbox_value(AT_DSPECIAL, 1, HG_HIT_SFX, asset_get("sfx_blow_medium2"));
 set_hitbox_value(AT_DSPECIAL, 1, HG_VISUAL_EFFECT, 301);
 
-// electroghost
+// livespark
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITBOX_TYPE, 2);
 set_hitbox_value(AT_DSPECIAL, 2, HG_WINDOW, 999);
 set_hitbox_value(AT_DSPECIAL, 2, HG_LIFETIME, 36);
@@ -77,13 +77,13 @@ set_hitbox_value(AT_DSPECIAL, 2, HG_ANGLE, 90);
 set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_KNOCKBACK, 8);
 set_hitbox_value(AT_DSPECIAL, 2, HG_KNOCKBACK_SCALING, 0.3);
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITSTUN_MULTIPLIER, 0.8);
-set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_SPRITE, sprite_get("p_electroghost"));
-set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_ANIM_SPEED, 0.3);
+set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_SPRITE, sprite_get("p_livespark"));
+set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_ANIM_SPEED, 0.3334);
 set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_MASK, -1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_GROUND_BEHAVIOR, 1);
 set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_WALL_BEHAVIOR, 1);
-set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_DESTROY_EFFECT, HFX_ABS_ZAP_SMALL);
-set_hitbox_value(AT_DSPECIAL, 2, HG_VISUAL_EFFECT, sting);
+set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_DESTROY_EFFECT, livespark_death);
+set_hitbox_value(AT_DSPECIAL, 2, HG_VISUAL_EFFECT, thunder_small);
 set_hitbox_value(AT_DSPECIAL, 2, HG_BASE_HITPAUSE, 9);
 set_hitbox_value(AT_DSPECIAL, 2, HG_HITPAUSE_SCALING, 0.8);
 set_hitbox_value(AT_DSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_absa_harderhit"));

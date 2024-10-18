@@ -152,11 +152,11 @@ pipe_distance = 48;
 last_dist_check_x = 0;
 pipewarp_cd = 0;
 
-//electroghost handling
+//livespark handling
 HG_TWENNY_ELECTRIC = 64;
 has_twenny_electric = true; // Used for efficiency when checking hitboxes
-electroghost_attack = AT_DSPECIAL; // Since pipes need to be able to fetch electroghosts from any instance of Twenny
-electroghost_index = 2;
+livespark_attack = AT_DSPECIAL; // Since pipes need to be able to fetch livesparks from any instance of Twenny
+livespark_index = 2;
 // Technically, this is compat : ^)
 
 //-- NSPEC: THE BOMB
@@ -175,3 +175,6 @@ sting = hit_fx_create( sprite_get( "vfx_sting" ), 21 );
 splsh = hit_fx_create( sprite_get( "vfx_splattersplash" ), 21 );
 splatter = hit_fx_create( sprite_get( "vfx_splatter" ), 21 );
 ustr_corpse = hit_fx_create( sprite_get( "vfx_ustrong_corpse" ), 48 );
+thunder_small = hit_fx_create( sprite_get( "vfx_thunder_small" ), 18 );
+livespark_death = hit_fx_create( sprite_get( "vfx_livespark_death" ), 20 );
+bigbomb_expl = hit_fx_create( sprite_get( "vfx_bigbomb_explosion" ), 24 );
