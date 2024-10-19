@@ -127,6 +127,7 @@ with (oPlayer) if (twenny_hexed && twenny_hex_owner == other.player) {
 		var brittle_break = spawn_hit_fx(x, y-floor(char_height/2), HFX_ETA_ICE_BIG);
 		brittle_break.depth = depth-1;
 		twenny_hex_timer = 20; // Note that multihits will reset this a few times, ensuring consistency
+		if (twenny_text_timer > 20) twenny_text_timer = 20;
 	}
     
     twenny_hex_timer--;
