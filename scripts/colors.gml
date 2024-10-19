@@ -26,11 +26,11 @@ set_color_profile_slot_range( 5, 4, 12, 14 );
 
 // Rag
 set_color_profile_slot( 0, 6, 201, 185, 189 );
-set_color_profile_slot_range( 6, 4, 12, 7 );
+set_color_profile_slot_range( 6, 9, 16, 24 );
 
 // Acid
 set_color_profile_slot( 0, 7, 255, 109, 222 );
-set_color_profile_slot_range( 7, 2, 44, 59 );
+set_color_profile_slot_range( 7, 2, 47, 59 );
 
 
 // ALTERNATE COLORS
@@ -229,6 +229,6 @@ set_color_profile_slot( 19, 7, 120, 91, 101 ); //Acid
 
 /* This is a comment used by that one RoA colors.gml generator tool to store palette data. You can safely keep it in your colors.gml if you plan to re-use the tool later, or safely remove it if you don't.
 === BEGIN JSON PALETTE ===
-{"formatversion":1,"data":[{"name":"Bowtrash","colors":[{"r":187,"g":70,"b":135,"main":true},{"r":154,"g":39,"b":102}]},{"name":"Monitor","colors":[{"r":110,"g":101,"b":148,"main":true},{"r":82,"g":71,"b":129}]},{"name":"Screen","colors":[{"r":88,"g":47,"b":134,"main":true},{"r":63,"g":30,"b":100}]},{"name":"FaceElec","colors":[{"r":74,"g":163,"b":235,"main":true},{"r":154,"g":210,"b":253},{"r":40,"g":105,"b":158}]},{"name":"PipeMetal","colors":[{"r":169,"g":144,"b":175,"main":true},{"r":131,"g":93,"b":140},{"r":53,"g":25,"b":60}]},{"name":"Pinky","colors":[{"r":243,"g":211,"b":245,"main":true},{"r":211,"g":159,"b":212}]},{"name":"Rag","colors":[{"r":201,"g":185,"b":189,"main":true},{"r":187,"g":151,"b":158}]},{"name":"Acid","colors":[{"r":255,"g":109,"b":222,"main":true},{"r":231,"g":60,"b":193},{"r":173,"g":27,"b":140},{"r":255,"g":184,"b":239},{"r":140,"g":0,"b":108},{"r":106,"g":0,"b":83}]}]}
+{"formatversion":1,"data":[{"name":"Bowtrash","colors":[{"r":187,"g":70,"b":135,"main":true},{"r":154,"g":39,"b":102}]},{"name":"Monitor","colors":[{"r":110,"g":101,"b":148,"main":true},{"r":82,"g":71,"b":129}]},{"name":"Screen","colors":[{"r":88,"g":47,"b":134,"main":true},{"r":63,"g":30,"b":100}]},{"name":"FaceElec","colors":[{"r":74,"g":163,"b":235,"main":true},{"r":154,"g":210,"b":253},{"r":40,"g":105,"b":158}]},{"name":"PipeMetal","colors":[{"r":169,"g":144,"b":175,"main":true},{"r":131,"g":93,"b":140},{"r":53,"g":25,"b":60}]},{"name":"Pinky","colors":[{"r":243,"g":211,"b":245,"main":true},{"r":211,"g":159,"b":212}]},{"name":"Rag","colors":[{"r":201,"g":185,"b":189,"main":true},{"r":187,"g":151,"b":158},{"r":144,"g":111,"b":115}]},{"name":"Acid","colors":[{"r":255,"g":109,"b":222,"main":true},{"r":231,"g":60,"b":193},{"r":173,"g":27,"b":140},{"r":255,"g":184,"b":239},{"r":140,"g":0,"b":108},{"r":106,"g":0,"b":83},{"r":255,"g":227,"b":249}]}]}
 === END JSON PALETTE ===
 */
