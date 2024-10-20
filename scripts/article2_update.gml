@@ -8,7 +8,6 @@ if (bomb_fuse == 0 && state < 97) {
 
 if (!hitstop) state_timer++; //progress the timer
 
-
 // // // // STATE 1 - SCRAPBOMB IDLE
 if (state == 1) { //
 	state_end = 30; //duration of this state in frames
@@ -77,6 +76,11 @@ if (state == 1) { //
     if (free) {
     	vsp += 0.5
     	was_free = true;
+    	
+    	// platform collision is unreliable, so we have to supplement it [dan why :(]
+		if (vsp > 0 && place_meeting(x, y+vsp, asset_get("par_jumpthrough")) && place_meeting(x+hsp, y+vsp, asset_get("par_jumpthrough"))) {
+			vsp = floor(vsp);
+		}
     }
     else if (!free) {
 		if (has_bounced) {
@@ -94,6 +98,8 @@ if (state == 1) { //
 			sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
 		}
 	}
+	
+	
     
     // FSpec collision
     with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && attack == AT_FSPECIAL && place_meeting(x, y, other)) {
@@ -187,30 +193,32 @@ if (state == 11) { //
 
 	// Movement init.
 	// Bag bombs cannot be spawned from pipes, so a TPD check is not needed.
-	if (state_timer == 1) switch (bomb_angle) {
-		case 45:
-			vsp = -9;
-			hsp = 3.5*spr_dir;
-			break;
-		case 90:
-			vsp = -10;
-			hsp = 2.5*spr_dir;
-			break;
-		case 0:
-			vsp = -3.5;
-			hsp = 5.5*spr_dir;
-			break;
+	if (state_timer == 1) {
+		switch (bomb_angle) {
+			case 45:
+				vsp = -9;
+				hsp = 3.5*spr_dir;
+				break;
+			case 90:
+				vsp = -10;
+				hsp = 2.5*spr_dir;
+				break;
+			case 0:
+				vsp = -3.5;
+				hsp = 5.5*spr_dir;
+				break;
+		}
+		old_hsp = hsp;
 	}
 	
     // Bomb gravity physics
-    if (free) vsp += 0.5
+    if (free) vsp += 0.5;
     else if (vsp >= 0) {
     	hsp = 0;
     	fuse_active = true;
     }
     
     // Bag bomb collision
-    hsp = 0;
     if (!free) with obj_article2 {
     	if (!free && "is_twenny_bomb" in self && state == 11 && self != other && place_meeting(x, y, other)) {
     		if (x < other.x) {
