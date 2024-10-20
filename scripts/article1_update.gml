@@ -1,6 +1,4 @@
 
-// // // // STATE 0 - START
-
 if (init == 0){
 	var num_pipes = 0;
     with (asset_get("obj_article1")) if (player_id == other.player_id) {
@@ -25,6 +23,12 @@ if (init == 0){
     init = 1;
 }
 
+if (free) {
+	spawn_hit_fx(x, y-30, HFX_GEN_OMNI);
+	player_id.num_pipes--;
+	instance_destroy();
+	exit;
+}
 
 state_timer++; //progress the timer
 if (pipe_flash_timer > 0) pipe_flash_timer--;
@@ -78,6 +82,7 @@ if (state == 1){ //
     }
     
     if (player_id.num_pipes > 1) {
+    	mask_index = warp_mask_index;
         with (asset_get("obj_article1")){
             if (id != other.id && player_id == other.player_id) {
 		    	other.warpcoord_dir = spr_dir;
@@ -92,6 +97,7 @@ if (state == 1){ //
 		    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
             }
         }
+        mask_index = collision_mask_index;
     }
     
     //Warp handling

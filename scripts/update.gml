@@ -99,12 +99,12 @@ if (in_hstance) {
     hurtbox_spr = sprite_get("3_headhbox");
     
     if (!free) {
+    	attack_end();
         state = PS_ATTACK_GROUND;
         state_timer = 0;
         attack = AT_EXTRA_1;
         window = 1;
         window_timer = 0;
-        attack_end();
     }
     
     move_cooldown[AT_NSPECIAL] = 9999;

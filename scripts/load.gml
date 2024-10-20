@@ -81,6 +81,7 @@ sprite_change_offset("pipe_mask", 64, 95);
 sprite_change_offset("pipe_slanted", 64, 95);
 sprite_change_offset("pipe_mask_slanted", 64, 95);
 
+sprite_change_offset("pipe_mask_collision", 64, 95);
 sprite_change_offset("pipe_cracks", 64, 95);
 sprite_change_offset("pipe_outline", 64, 95);
 sprite_change_offset("pipe_blueprints", 64, 95);

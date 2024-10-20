@@ -1,7 +1,9 @@
 init = 0;
 
 sprite_index = sprite_get("empty_sprite") 
-mask_index = sprite_get("pipe_mask") 
+mask_index = sprite_get("pipe_mask_collision") 
+collision_mask_index = sprite_get("pipe_mask_collision");
+warp_mask_index = sprite_get("pipe_mask");
 depth = 1;
 article_xscale = 1;
 article_yscale = 1;
@@ -50,11 +52,11 @@ do_warp_effects = 0;
 //--- PIPE'S ANGLE gets defined here.
 pipe_angle = player_id.latest_pipe_angle
 if (pipe_angle == 90) {
-    mask_index = sprite_get("pipe_mask") 
+    warp_mask_index = sprite_get("pipe_mask") 
     sprite_index_pipe =  sprite_get("pipe_straight")   
 }
 else {
-    mask_index = sprite_get("pipe_mask_slanted"); 
+    warp_mask_index = sprite_get("pipe_mask_slanted"); 
     sprite_index_pipe =  sprite_get("pipe_slanted");
     spr_dir = player_id.latest_pipe_dir;
     image_xscale = player_id.latest_pipe_dir;
