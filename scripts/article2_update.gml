@@ -18,16 +18,16 @@ if (state == 1) { //
 		// A normal scrapbomb, that has never teleported before.
 		if (!has_tpd) switch (bomb_angle) {
 			case 45:
-				vsp = -9;
-				hsp = 3.5*spr_dir;
+				vsp = -7.5;
+				hsp = 5*spr_dir;
 				break;
 			case 90:
-				vsp = -10;
-				hsp = 2.5*spr_dir;
+				vsp = -14;
+				hsp = 1*spr_dir;
 				break;
 			case 0:
-				vsp = -3.5;
-				hsp = 5.5*spr_dir;
+				vsp = -1;
+				hsp = 2.5*spr_dir;
 				break;
 		}
 	    // A scrapbomb that hs teleported to a pipe and returned from "stasis"

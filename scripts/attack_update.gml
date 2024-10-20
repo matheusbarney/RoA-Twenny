@@ -73,7 +73,7 @@ switch(attack) {
 			bomb_angle = 45;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create(x+(48*spr_dir), y-62, "obj_article2");
-			spawn_hit_fx(x+(48*spr_dir), y-62, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
+			spawn_hit_fx(x+(48*spr_dir), y-62, (nspec_charge >= nspec_charge_threshold) ? splatter : splsh);
 		}
 		
 		//-- SHOOT HIGH
@@ -81,7 +81,7 @@ switch(attack) {
 			bomb_angle = 90;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create(x+(32*spr_dir), y-80, "obj_article2");
-			spawn_hit_fx(x+(32*spr_dir), y-80, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
+			spawn_hit_fx(x+(32*spr_dir), y-80, (nspec_charge >= nspec_charge_threshold) ? splatter  : splsh);
 		} 
 		
 		//-- SHOOT LOW
@@ -89,7 +89,7 @@ switch(attack) {
 			bomb_angle = 0;
 			bomb_type = (nspec_charge >= nspec_charge_threshold);
 			instance_create(x+(56*spr_dir), y-32, "obj_article2");
-			spawn_hit_fx(x+(56*spr_dir), y-32, (nspec_charge >= nspec_charge_threshold) ? HFX_GEN_OMNI : splsh);
+			spawn_hit_fx(x+(56*spr_dir), y-32, (nspec_charge >= nspec_charge_threshold) ? splatter  : splsh);
 		} 
 		break;
 	

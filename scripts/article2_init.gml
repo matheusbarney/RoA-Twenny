@@ -33,7 +33,7 @@ was_free = false; // used for sfx
 
 spr_dir = player_id.spr_dir
 bomb_angle = player_id.bomb_angle;
-bomb_fuse = bomb_type ? 200 : 45; // 45 = scrap, 200 = bag
+bomb_fuse = bomb_type ? 150 : 45; // 45 = scrap, 150 = bag
 fuse_active = false;
 fuse_color = /*#*/$ffffff;
 
