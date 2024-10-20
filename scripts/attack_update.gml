@@ -45,7 +45,7 @@ switch(attack) {
 			nspec_charge++;
     		if (nspec_charge == nspec_charge_threshold) {
     			sound_play(asset_get("mfx_star"));
-    			spawn_hit_fx(x-(48*spr_dir), y-4, HFX_GEN_SWEET);
+    			spawn_hit_fx(x-(32*spr_dir), y-8, splsh);
     		}
     		if (!special_down or nspec_charge >= nspec_charge_threshold + 10) {
     			if (bomb_angle == 45) window = 3;

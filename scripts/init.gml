@@ -159,20 +159,21 @@ livespark_attack = AT_DSPECIAL; // Since pipes need to be able to fetch livespar
 livespark_index = 2;
 // Technically, this is compat : ^)
 
-//status (mirrored in other_init.gml)
-twenny_hexed = false;
-twenny_hex_owner = noone;
-twenny_hex_timer = 0;
-twenny_text_timer = 0;
-twenny_hex_outline = []; // gets set on hit
-
-var p_col = get_player_color(player);
-brittle_outline = [ // constant; gets passed to twenny_hex_outline on hit
-    get_color_profile_slot_r(p_col, 0),
-    get_color_profile_slot_g(p_col, 0),
-    get_color_profile_slot_b(p_col, 0),
-];
-brittle_kb_mod = 0.1;
+// Implement as rune later
+////status (mirrored in other_init.gml)
+//twenny_hexed = false;
+//twenny_hex_owner = noone;
+//twenny_hex_timer = 0;
+//twenny_text_timer = 0;
+//twenny_hex_outline = []; // gets set on hit
+//
+//var p_col = get_player_color(player);
+//brittle_outline = [ // constant; gets passed to twenny_hex_outline on hit
+//    get_color_profile_slot_r(p_col, 0),
+//    get_color_profile_slot_g(p_col, 0),
+//    get_color_profile_slot_b(p_col, 0),
+//];
+//brittle_kb_mod = 0.1;
 
 //-- NSPEC: THE BOMB
 nspec_charge = 0;
