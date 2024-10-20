@@ -195,3 +195,4 @@ thunder_big = hit_fx_create( sprite_get( "vfx_thunder_big" ), 28 );
 livespark_death = hit_fx_create( sprite_get( "vfx_livespark_death" ), 20 );
 bigbomb_expl = hit_fx_create( sprite_get( "vfx_bigbomb_explosion" ), 24 );
 hex_fx = hit_fx_create( sprite_get( "fx_hex" ), 15 );
+corpsedeath = hit_fx_create( sprite_get( "vfx_uspecial_corpse_death" ), 21 );

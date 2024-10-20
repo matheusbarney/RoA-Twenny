@@ -2,6 +2,23 @@
 
 var window_end_time = get_window_value(attack, window, AG_WINDOW_LENGTH);
 
+//dust
+//good dust
+switch(attack)
+{
+	case AT_JAB:
+    	if (window == 1 && window_timer == window_end_time)
+    		spawn_base_dust(x+(7*spr_dir),y, "dash_start", -spr_dir);
+    break;
+    
+    case AT_FTILT:
+    	if (window == 1 && window_timer == window_end_time) spawn_base_dust(x+(7*spr_dir),y, "dash", -spr_dir);
+    	else if (window == 2 && window_timer == 3) spawn_base_dust(x+(7*spr_dir),y, "dash_start", -spr_dir);
+    break;
+    
+    break;	
+}
+
 switch(attack) {
 	
 	// Scrapbomb and Trashbag Bomb
@@ -153,7 +170,7 @@ switch(attack) {
     				hsp = 5.5*spr_dir;
     				if (free) vsp = -3;
     				loops = 0;
-    				spawn_base_dust(x+(10*spr_dir), y, free ? "n_wavedash" : "dash_start");
+    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump" : "dash_start");
     			} else {
     				hsp = 0;
     				vsp = 0;
@@ -187,7 +204,7 @@ switch(attack) {
     				else set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
     				hsp = 1*spr_dir;
     				vsp = -4;
-    				spawn_base_dust(x+(10*spr_dir), y, "jump");
+    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump" : "jump");
     			}
     			break;
     		case 4:
@@ -295,14 +312,28 @@ switch(attack) {
 	
 	case AT_EXTRA_1:
 		if (has_long_endlag) {
-			set_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH, 14);
-			set_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH, 28);
+			set_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH, 12);
+			set_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH, 24);
 		} else {
 			reset_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH);
 			reset_window_value(AT_EXTRA_1, 2, AG_WINDOW_LENGTH);
 		}
 		can_move = false;
 		if (in_hstance) in_hstance = false;
+		
+		if (window == 1) {
+			if (window_timer == window_end_time) {
+				sound_play(asset_get("sfx_forsburn_cape_swipe"), false, 0, 0.2, 1.2);
+			}
+		} else if (window == 2) {
+			if (window_timer % 6 == 0) {
+				sound_play(sound_get("metal_clatter"), false, 0, 0.2, (random_func(3, 5, true) + 9) * 0.1);
+			}
+			if (window_timer == 6) {
+				sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.5, 1.2);
+				sound_play(asset_get("sfx_ell_cooldown"), false, 0, 0.2, 1.5);
+			}
+		}
 		break;
 }
 

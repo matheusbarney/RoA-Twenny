@@ -3,6 +3,32 @@
 // Image Mask
 if (get_gameplay_time() > 100 && !start_predraw) start_predraw = true;
 
+// Intro
+if (state == PS_SPAWN) {
+	switch (state_timer) {
+		case 21:
+			sound_play(asset_get("sfx_plant_ready"))
+		break;
+		case 40:
+			sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.5, 1);
+			sound_play(asset_get("sfx_forsburn_cape_swipe"), false, 0, 0.4, 0.9);
+			sound_play(asset_get("sfx_kragg_roll_loop"), false, 0, 0.7, 1.6);
+		break;
+		case 65:
+			sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.9, 1.1);
+			sound_play(asset_get("sfx_ell_cooldown"), false, 0, 0.5, 1.35);
+		break;
+	}
+	
+	if (state_timer > 40 && state_timer < 80) {
+		if (state_timer % 10 == 0) {
+				sound_play(asset_get("sfx_shovel_swing_light1"), false, 0, 0.5, (random_func(3, 5, true) + 8) * 0.1);
+		} else if (state_timer % 8 == 0) {
+				sound_play(sound_get("metal_clatter"), false, 0, 0.3, (random_func(3, 5, true) + 10) * 0.1);
+		}
+	}
+}
+
 // Pipe warp cd
 if (pipewarp_cd > 0) pipewarp_cd--;
 
