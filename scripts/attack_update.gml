@@ -238,7 +238,10 @@ switch(attack) {
     	break;
     
     case AT_USTRONG:
-    	if (2 < window && window < 6) in_hstance = true;
+    	if (2 < window && window < 6) {
+    		in_hstance = true;
+    		can_fast_fall = false;
+    	}
     	
     	switch window {
     		case 1:

@@ -59,6 +59,7 @@ set_hitbox_value(AT_DSTRONG, 2, HG_WINDOW, 3);
 set_hitbox_value(AT_DSTRONG, 2, HG_LIFETIME, 3);
 set_hitbox_value(AT_DSTRONG, 2, HG_HITBOX_X, -52);
 set_hitbox_value(AT_DSTRONG, 2, HG_HITBOX_Y, -56);
+set_hitbox_value(AT_DSTRONG, 2, HG_TWENNY_ELECTRIC, 1);
 
 set_hitbox_value(AT_DSTRONG, 3, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_DSTRONG, 3, HG_WINDOW, 3);

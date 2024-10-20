@@ -99,11 +99,13 @@ if (in_hstance) {
     hurtbox_spr = sprite_get("3_headhbox");
     
     if (!free) {
-        state = PS_ATTACK_GROUND
-        attack = AT_EXTRA_1
+        state = PS_ATTACK_GROUND;
+        state_timer = 0;
+        attack = AT_EXTRA_1;
+        window = 1;
+        window_timer = 0;
+        attack_end();
     }
-    
-    knockback_adj = hstance_knockback_adj
     
     move_cooldown[AT_NSPECIAL] = 9999;
     move_cooldown[AT_FSPECIAL] = 9999;

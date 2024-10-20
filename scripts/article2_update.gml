@@ -209,6 +209,20 @@ if (state == 11) { //
     	fuse_active = true;
     }
     
+    // Bag bomb collision
+    hsp = 0;
+    if (!free) with obj_article2 {
+    	if (!free && "is_twenny_bomb" in self && state == 11 && self != other && place_meeting(x, y, other)) {
+    		if (x < other.x) {
+    			hsp = -2;
+    			other.hsp = 2;
+    		} else {
+    			hsp = 2;
+    			other.hsp = -2;
+    		}
+    	}
+    }
+    
     // FSpec collision
     with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && attack == AT_FSPECIAL && place_meeting(x, y, other)) {
     	player_id.has_hit = true;
