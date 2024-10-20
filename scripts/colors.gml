@@ -36,25 +36,25 @@ set_color_profile_slot_range( 7, 2, 47, 59 );
 // ALTERNATE COLORS
 set_num_palettes( 20 );
 
-// Red
-set_color_profile_slot( 1, 0, 237, 81, 104 ); //Bowtrash
-set_color_profile_slot( 1, 1, 111, 69, 125 ); //Monitor
-set_color_profile_slot( 1, 2, 161, 76, 137 ); //Screen
-set_color_profile_slot( 1, 3, 247, 146, 109 ); //FaceElec
-set_color_profile_slot( 1, 4, 189, 169, 177 ); //PipeMetal
-set_color_profile_slot( 1, 5, 230, 188, 188 ); //Pinky
-set_color_profile_slot( 1, 6, 232, 225, 209 ); //Rag
-set_color_profile_slot( 1, 7, 255, 109, 158 ); //Acid
-
 // Blue
-set_color_profile_slot( 2, 0, 68, 151, 219 ); //Bowtrash
-set_color_profile_slot( 2, 1, 114, 132, 179 ); //Monitor
-set_color_profile_slot( 2, 2, 71, 83, 134 ); //Screen
-set_color_profile_slot( 2, 3, 69, 224, 245 ); //FaceElec
-set_color_profile_slot( 2, 4, 160, 169, 186 ); //PipeMetal
-set_color_profile_slot( 2, 5, 161, 198, 212 ); //Pinky
-set_color_profile_slot( 2, 6, 247, 250, 255 ); //Rag
-set_color_profile_slot( 2, 7, 109, 209, 255 ); //Acid
+set_color_profile_slot( 1, 0, 68, 151, 219 ); //Bowtrash
+set_color_profile_slot( 1, 1, 114, 132, 179 ); //Monitor
+set_color_profile_slot( 1, 2, 71, 83, 134 ); //Screen
+set_color_profile_slot( 1, 3, 69, 224, 245 ); //FaceElec
+set_color_profile_slot( 1, 4, 160, 169, 186 ); //PipeMetal
+set_color_profile_slot( 1, 5, 161, 198, 212 ); //Pinky
+set_color_profile_slot( 1, 6, 247, 250, 255 ); //Rag
+set_color_profile_slot( 1, 7, 109, 209, 255 ); //Acid
+
+// Red
+set_color_profile_slot( 2, 0, 237, 81, 104 ); //Bowtrash
+set_color_profile_slot( 2, 1, 111, 69, 125 ); //Monitor
+set_color_profile_slot( 2, 2, 161, 76, 137 ); //Screen
+set_color_profile_slot( 2, 3, 247, 146, 109 ); //FaceElec
+set_color_profile_slot( 2, 4, 189, 169, 177 ); //PipeMetal
+set_color_profile_slot( 2, 5, 230, 188, 188 ); //Pinky
+set_color_profile_slot( 2, 6, 232, 225, 209 ); //Rag
+set_color_profile_slot( 2, 7, 255, 109, 158 ); //Acid
 
 // Green
 set_color_profile_slot( 3, 0, 74, 214, 117 ); //Bowtrash

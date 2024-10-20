@@ -1,6 +1,15 @@
 
 init_shader();
-
+switch (get_player_color( player ) ){
+	default:
+		draw_sprite_ext(sprite_get("css_bg_main"),1,x+8,y+8,2,2,0,-1,1);
+    case 16:
+        draw_sprite_ext(sprite_get("css_bg_flowey"),1,x+8,y+8,2,2,0,-1,1);
+    break;
+    case 19:
+        draw_sprite_ext(sprite_get("css_bg_dead"),1,x+8,y+8,2,2,0,-1,1);
+    break;
+}
 
 
 //--- ---
