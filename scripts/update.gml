@@ -103,9 +103,7 @@ if (in_hstance) {
         attack = AT_EXTRA_1
     }
     
-    twenny_hexed = true;
-    twenny_hex_owner = player;
-    twenny_hex_timer = max(2, twenny_hex_timer);
+    knockback_adj = hstance_knockback_adj
     
     move_cooldown[AT_NSPECIAL] = 9999;
     move_cooldown[AT_FSPECIAL] = 9999;
@@ -138,31 +136,3 @@ if (in_hstance) {
     move_cooldown[AT_BAIR] = 0;
 }
 
-// Status
-with (oPlayer) if (twenny_hexed && twenny_hex_owner == other.player) {
-    outline_color = twenny_hex_outline;
-    
-    if (get_gameplay_time() % 2 == 0) with (other) {
-		var hexsparks = spawn_hit_fx( other.x-40+random_func( 1, 80, true ), other.y-(other.char_height/2)-48+random_func( 8, 96, true ), hex_fx );
-		hexsparks.spr_dir = other.spr_dir;
-	}
-	
-	// Hit heuristic
-    if (twenny_hex_timer != 360 && state_cat == SC_HITSTUN && hitstop == hitstop_full && hitstop != 0) {
-		sound_play(asset_get("sfx_oly_nspecial_flashbreak"));
-		var brittle_break = spawn_hit_fx(x, y-floor(char_height/2), HFX_ETA_ICE_BIG);
-		brittle_break.depth = depth-1;
-		twenny_hex_timer = 20; // Note that multihits will reset this a few times, ensuring consistency
-		if (twenny_text_timer > 20) twenny_text_timer = 20;
-	}
-    
-    twenny_hex_timer--;
-    twenny_text_timer--;
-    
-    if (twenny_hex_timer <= 0 || state == PS_RESPAWN) {
-        twenny_hexed = false;
-        outline_color = [0, 0, 0];
-        knockback_scaling -= other.brittle_kb_mod;
-        init_shader();
-    }
-}
