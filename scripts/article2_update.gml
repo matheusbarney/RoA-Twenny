@@ -79,7 +79,7 @@ if (state == 1) { //
     	
     	// platform collision is unreliable, so we have to supplement it [dan why :(]
 		if (vsp > 0 && place_meeting(x, y+vsp, asset_get("par_jumpthrough")) && place_meeting(x+hsp, y+vsp, asset_get("par_jumpthrough"))) {
-			vsp = floor(vsp);
+			vsp = ceil(vsp);
 		}
     }
     else if (!free) {
