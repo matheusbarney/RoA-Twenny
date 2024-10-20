@@ -1,5 +1,3 @@
-draw_debug_text( x, y, string(knockback_adj) )
-
 //draw_debug_text( x, y, string(my_twenny_pipes) )
 //draw_debug_text( x, y+32, string(num_pipes) )
 //
