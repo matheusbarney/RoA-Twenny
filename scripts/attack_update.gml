@@ -223,7 +223,76 @@ switch(attack) {
         }
         if (window == 3) {
         	vsp *= 0.94;
+        	if (debug && vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
+	        	attack_end();
+	        	attack = AT_EXTRA_2;
+	        	window = 1;
+	        	window_timer = 0;
+	        }
         }
+    	break;
+    
+    // Claw
+    case AT_EXTRA_2:
+    	can_fast_fall = false;
+    	switch window {
+    		case 1:
+    			if (window_timer == window_end_time) {
+	    			claw_rel_y = 0;
+	    			claw_abs_y = y;
+	    			claw_vsp = 12;
+	    			grabbed_player_obj = noone;
+	    			
+	    			claw_hitbox = create_hitbox(AT_EXTRA_2, 1, x, y);
+    			}
+    			break;
+    		case 2:
+    			vsp = min(vsp, 4);
+    			claw_rel_y += claw_vsp;
+    			claw_abs_y = y+claw_rel_y;
+    			claw_vsp -= 0.5;
+    			
+    			if (claw_rel_y <= 0) {
+    				attack_end();
+    				state = PS_IDLE_AIR;
+    				state_timer = 0;
+    				if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
+    			}
+    			
+    			else if (position_meeting(x,claw_abs_y, asset_get("par_block")) || position_meeting(x, claw_abs_y, asset_get("par_jumpthrough"))) {
+    				window = 3;
+    				window_timer = 0;
+    				if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
+    			}
+    			
+    			else if (instance_exists(claw_hitbox)) {
+    				claw_hitbox.length++;
+    				claw_hitbox.x = x;
+    				claw_hitbox.y = claw_abs_y;
+    				claw_hitbox.hsp = hsp;
+    				claw_hitbox.vsp = vsp + claw_vsp;
+    				if (claw_vsp <= 0) claw_hitbox.destroyed_next = true;
+    			}
+    			break;
+    		case 3:
+    			can_move = false;
+    			fall_through = instance_exists(grabbed_player_obj);
+    			hsp = 0;
+    			if (!hitpause) vsp = 15;
+    			if (instance_exists(grabbed_player_obj)) {
+    				grabbed_player_obj.hitstop++;
+    				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);
+    				
+    				var y_offset = 20;
+    				if (grabbed_player_obj.char_height <= 20) var y_offset = floor(char_height*0.75);
+    				if (y-y_offset >= grabbed_player_obj.y-char_height) {
+    					window = 4;
+    					window_timer = 0;
+    					vsp = -8;
+    				}
+    			}
+    			break;
+    	}
     	break;
     
     case AT_FSTRONG:

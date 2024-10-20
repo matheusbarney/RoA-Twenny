@@ -34,6 +34,21 @@ switch (attack) {
         has_long_endlag = false //pseudo whifflag
         break;
     
+    // Claw grab
+    case AT_EXTRA_2:
+        if (my_hitboxID.hbox_num == 1) {
+            print_debug(">:3")
+            window = 3;
+    		window_timer = 0;
+    		grabbed_player_obj = hit_player_obj;
+    		my_hitboxID.destroyed_next = true;
+    		
+    		hitpause = true;
+    		hitstop = hit_player_obj.hitstop;
+    		hitstop_full = hitstop;
+        }
+        break;
+    
     case AT_NSPECIAL:
         //turn into rune post-release
         //if (my_hitboxID.hbox_num == 3) {

@@ -24,3 +24,7 @@ if (attack == AT_DSPECIAL && state == PS_ATTACK_GROUND && window == 2) {
         break;
     }
 }
+
+if (attack == AT_EXTRA_2 && state == PS_ATTACK_AIR && window > 1 && window < 4) {
+    draw_sprite(sprite_get("b_scrapbomb_mask"), 0, x, claw_abs_y);
+}

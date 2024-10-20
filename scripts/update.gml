@@ -90,10 +90,6 @@ if (in_hstance) {
         knockback_adj = hstance_knockback_adj;
         walljump_hsp = hstance_walljump_hsp;
         walljump_vsp = hstance_walljump_vsp;
-        
-        twenny_hex_outline = brittle_outline;
-        outline_color = twenny_hex_outline;
-        init_shader();
     }
     
     hurtbox_spr = sprite_get("3_headhbox");
@@ -105,6 +101,13 @@ if (in_hstance) {
         attack = AT_EXTRA_1;
         window = 1;
         window_timer = 0;
+    } else if (debug && vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY))) {
+    	attack_end();
+        state = PS_ATTACK_AIR;
+        state_timer = 0;
+    	attack = AT_EXTRA_2;
+    	window = 1;
+    	window_timer = 0;
     }
     
     move_cooldown[AT_NSPECIAL] = 9999;
