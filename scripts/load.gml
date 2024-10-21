@@ -101,6 +101,7 @@ sprite_change_offset("hstance_jump", 48, 63);
 sprite_change_offset("hstance_airdodge", 48, 63);
 sprite_change_offset("hstance_hurt", 48, 63);
 sprite_change_offset("hstance_land", 48, 63);
+sprite_change_offset("hstance_walljump", 48, 63);
 
 set_victory_bg( sprite_get( "twenny_victorybg" ));
 set_victory_theme( sound_get( "mus_twenny_victory" ));

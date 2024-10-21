@@ -4,6 +4,8 @@ switch (attack){
         destroyed = (place_meeting(x, y, asset_get("par_block")))
             || (place_meeting(x, y, asset_get("par_jumpthrough")) && vsp > 0);
         
+        if (destroyed) sound_play(asset_get("sfx_abyss_hex_hit"));
+        
         if (hbox_num == 2) proj_angle = point_direction(0, 0, hsp, vsp)-90;
         else pipewarp_cd = 0; // acts as initialization
         
