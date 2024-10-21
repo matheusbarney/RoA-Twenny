@@ -105,7 +105,7 @@ if (in_hstance) {
     	attack_end();
         state = PS_ATTACK_AIR;
         state_timer = 0;
-    	attack = AT_EXTRA_2;
+    	attack = AT_EXTRA_3;
     	window = 1;
     	window_timer = 0;
     }

@@ -7,16 +7,15 @@ var window_end_time = get_window_value(attack, window, AG_WINDOW_LENGTH);
 switch(attack)
 {
 	case AT_JAB:
-    	if (window == 1 && window_timer == window_end_time)
-    		spawn_base_dust(x+(7*spr_dir),y, "dash_start", -spr_dir);
+    	if (window == 1 && window_timer == window_end_time - 2)
+    		spawn_base_dust(x+(24*spr_dir),y, "dash_start", -spr_dir);
     break;
     
     case AT_FTILT:
     	if (window == 1 && window_timer == window_end_time) spawn_base_dust(x+(7*spr_dir),y, "dash", -spr_dir);
-    	else if (window == 2 && window_timer == 3) spawn_base_dust(x+(7*spr_dir),y, "dash_start", -spr_dir);
+    	else if (window == 2 && window_timer == 3) spawn_base_dust(x+(32*spr_dir),y, "dash_start", -spr_dir);
     break;
     
-    break;	
 }
 
 switch(attack) {
@@ -225,7 +224,7 @@ switch(attack) {
         	vsp *= 0.94;
         	if (debug && vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
 	        	attack_end();
-	        	attack = AT_EXTRA_2;
+	        	attack = AT_EXTRA_3;
 	        	window = 1;
 	        	window_timer = 0;
 	        }
@@ -233,7 +232,7 @@ switch(attack) {
     	break;
     
     // Claw
-    case AT_EXTRA_2:
+    case AT_EXTRA_3:
     	can_fast_fall = false;
     	switch window {
     		case 1:
@@ -243,7 +242,7 @@ switch(attack) {
 	    			claw_vsp = 12;
 	    			grabbed_player_obj = noone;
 	    			
-	    			claw_hitbox = create_hitbox(AT_EXTRA_2, 1, x, y);
+	    			claw_hitbox = create_hitbox(AT_EXTRA_3, 1, x, y);
     			}
     			break;
     		case 2:

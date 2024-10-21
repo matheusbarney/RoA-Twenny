@@ -35,7 +35,7 @@ switch (attack) {
         break;
     
     // Claw grab
-    case AT_EXTRA_2:
+    case AT_EXTRA_3:
         if (my_hitboxID.hbox_num == 1) {
             print_debug(">:3")
             window = 3;
