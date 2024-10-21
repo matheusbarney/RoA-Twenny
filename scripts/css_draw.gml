@@ -1,14 +1,18 @@
 
 init_shader();
+
 switch (get_player_color( player ) ){
-    case 16:
-        draw_sprite_ext(sprite_get("css_bg_flowey"),1,x+8,y+8,2,2,0,-1,1);
+   case 6:
+        draw_sprite_ext(sprite_get("css_bg_alts"),0,x+8,y+8,2,2,0,-1,1);
+    	break;
+   case 16:
+        draw_sprite_ext(sprite_get("css_bg_alts"),1,x+8,y+8,2,2,0,-1,1);
     	break;
     case 19:
-        draw_sprite_ext(sprite_get("css_bg_dead"),1,x+8,y+8,2,2,0,-1,1);
+        draw_sprite_ext(sprite_get("css_bg_alts"),2,x+8,y+8,2,2,0,-1,1);
     	break;
     default:
-		draw_sprite_ext(sprite_get("css_bg_main"),1,x+8,y+8,2,2,0,-1,1);
+		draw_sprite_ext(sprite_get("css_bg_main"),0,x+8,y+8,2,2,0,-1,1);
 		break;
 }
 
@@ -95,121 +99,88 @@ if (!variable_instance_exists(id,"ae") || ye == true){
 	altsel = 0; // change the alt select sound here. if you don't want to change the sound, put 0 here.
 	color_desc_activate = true; // optional "alt color description button". set to "true" to turn it on.
 	
-	col_max = 24; // number of alternate color palettes. 0 is the default color, count it accordingly.
+	col_max = 19; // number of alternate color palettes. 0 is the default color, count it accordingly.
 	
 	//first array index is for alternate color. second array index is for distinguishing the information in it.
-	ce[0,0] = make_color_rgb(236, 0, 79) // "color preview square" color. can be any color!
+	ce[0,0] = make_color_rgb(187, 70, 135) // "color preview square" color. can be any color!
 	ce[0,1] = "An Ambrosian Anomaly" // the name of the alternate color.
-	ce[0,2] = "The default color." // description to display if "alt color description button" is on. keep it blank if none, and you can remove it if you didn't turn it on.
+	ce[0,2] = "> NAME'S TWENNY. D0N'T WEAR IT 0UT!" // description to display if "alt color description button" is on. keep it blank if none, and you can remove it if you didn't turn it on.
 	
-	ce[1,0] = make_color_rgb(110, 24, 53)
+	ce[1,0] = make_color_rgb(68, 151, 219)
 	ce[1,1] = "New Horizon"
-	ce[1,2] = "Blue alt, named lifted from SSL. [ROAACO]"
+	ce[1,2] = "> IS THE SKY AS PRETTY AS THIS BLUE? I'D L0VE T0 TASTE IT SOMEDAY."
 	
-	ce[2,0] = make_color_rgb(52, 156, 236)
+	ce[2,0] = make_color_rgb(237, 81, 104)
 	ce[2,1] = "Fiery Passion"
-	ce[2,2] = "Red alt, name lifted from SSL. [ROAACO]"
+	ce[2,2] = "> A RED LIKE THIS REMINDS ME 0F L0VE... WILL I EVER FIND MY TWIN PR0CESS0R?"
 	
-	ce[3,0] = make_color_rgb(91, 173, 95)
+	ce[3,0] = make_color_rgb(74, 214, 117)
 	ce[3,1] = "Green Envy"
-	ce[3,2] = "Green alt, name lifted from SSL. [ROAACO]"
+	ce[3,2] = "> WHAT'S THIS AB0UT ENVY?? I'M N0T JEAL0US 0F ANY 0F Y0U GERMS!!"
 	
-	ce[4,0] = make_color_rgb(255, 0, 234)
+	ce[4,0] = make_color_rgb(142, 109, 214)
 	ce[4,1] = "Of Hearts and Acid"
-	ce[4,2] = "Purple and pink alt, name lifted from SSL. [ROAACO]"
+	ce[4,2] = "> THE PINK STUFF? GUESS THAT'S KIND 0F ACID. IT D0ES MAKE GH0STS TINGLE."
 	
-	ce[5,0] = make_color_rgb(93, 83, 125)
+	ce[5,0] = make_color_rgb(123, 127, 145)
 	ce[5,1] = "Monochrome Monitor"
-	ce[5,2] = "When you're feeling grey. [ROAACO]"
+	ce[5,2] = "> I'D NEVER WEAR S0METHING S0 DRAB! S0... S0... SULLEN."
 	
-    ce[6,0] = make_color_rgb(162, 99, 44)
-	ce[6,1] = "Unpleasant Gradient"
-	ce[6,2] = "What are you doing when this shows up at your doorstep?"
+    ce[6,0] = make_color_rgb(167, 186, 74)
+	ce[6,1] = "Small Nostalgia"
+	ce[6,2] = "> SUPER SMALL LADS? S0RRY PAL, TH0SE KINDS 0F GAMES ARE F0R D0RKS."
 
-	ce[7,0] = make_color_rgb(204, 65, 105)
-	ce[7,1] = "CMYK Savant"
-	ce[7,2] = "Based on TehEnd's reaper, Avant."
+	ce[7,0] = make_color_rgb(173, 133, 98)
+	ce[7,1] = "Bittersweet Memories"
+	ce[7,2] = "> LIKE A SEPIA P0LAR0ID... KIND 0F MAKES ME REMEMB"
 	
-    ce[8,0] = make_color_rgb(193, 44, 45)
-	ce[8,1] = "Page of Excalibur"
-	ce[8,2] = "Based on F.Fungus's reaper Julee."
+    ce[8,0] = make_color_rgb(180, 69, 254)
+	ce[8,1] = "Infamous Star"
+	ce[8,2] = "> INFAM0US? N0 DUH!! I AM ALWAYS 'IN FAME'!"
 	
-    ce[9,0] = make_color_rgb(40, 46, 93)
-	ce[9,1] = "Bloody Revival"
-	ce[9,2] = "Based on scaurai's reaper, Saelune."
+    ce[9,0] = make_color_rgb(255, 189, 237)
+	ce[9,1] = "A Real Girl"
+	ce[9,2] = "> I SET MY MIND L0NG AG0, BUT JUST S0 WE'RE CLEAR, THIS IS WH0 I AM BABY!!!"
 	
-    ce[10,0] = make_color_rgb(148, 168, 146)
-	ce[10,1] = "Masked Nuzzle"
-	ce[10,2] = "Based on Nuzl's character, Lunzg."
+    ce[10,0] = make_color_rgb(66, 185, 212)
+	ce[10,1] = "Virtual Attachment"
+	ce[10,2] = " > HAUNTED S0FTWARE FR0M A WEIRD T0WN? WHAT A L0AD 0F BAL0NEY!!"
 	
-	ce[11,0] = make_color_rgb(224, 78, 217)
-	ce[11,1] = "Arisen Anew"
-	ce[11,2] = "this purple mfer with the smoke always keeps popping back up"
+	ce[11,0] = make_color_rgb(137, 232, 231)
+	ce[11,1] = "Singing Software"
+	ce[11,2] = "> THIS JUST REMINDS ME H0W L0NG IT T00K T0 FIGURE 0UT MY DAMN V0ICEB0XX!"
 	
-	ce[12,0] = make_color_rgb(27, 227, 100)
-	ce[12,1] = "Radiant Devourer"
-	ce[12,2] = "Based on Spider Boi's character, Chimera."
+	ce[12,0] = make_color_rgb(99, 99, 97)
+	ce[12,1] = "Want You Gone"
+	ce[12,2] = "> I D0 KNOW A THING 0R TW0 AB0UT THINKING WITH P0RTALS. TW0."
 	
-	ce[13,0] = make_color_rgb(117, 64, 128)
-	ce[13,1] = "Cold Cuts"
-	ce[13,2] = "Based on Kokacup's character, Sarolyn."
+	ce[13,0] = make_color_rgb(48, 122, 32)
+	ce[13,1] = "She Is Here"
+	ce[13,2] = "> 0H WHAT AN IC0N! H0W CAN I N0T GUSH?"
 	
-    ce[14,0] = make_color_rgb(132, 182, 205)
-	ce[14,1] = "Crude Spoonful"
-	ce[14,2] = "Based on Yuuma Toutetsu from Touhou Project."
+    ce[14,0] = make_color_rgb(48, 91, 182)
+	ce[14,1] = "Turquoise Troll"
+	ce[14,2] = "> WHAT'S THIS GUY'S DEAL?? IMAGINE SP0UTING AS MUCH INC0HERENT N0NSENSE AS THIS GUY!"
 	
-    ce[15,0] = make_color_rgb(99, 42, 142)
-	ce[15,1] = "Mirror Magic"
-	ce[15,2] = "Based on Badeline/Part of You from Celeste."
+    ce[15,0] = make_color_rgb(255, 135, 142)
+	ce[15,1] = "Maddened Mew"
+	ce[15,2] = "> THE CUTEST DULLAHAN EVER? YEAH, Y0U F-CK*NG WISH."
 	
-    ce[16,0] = make_color_rgb(222, 38, 167)
-	ce[16,1] = "Hopping Stalker"
-	ce[16,2] = "Based on Hsien-ko/Lei-Lei from Darkstalkers."
+    ce[16,0] = make_color_rgb(143, 184, 49)
+	ce[16,1] = "Your Best Nightmare"
+	ce[16,2] = "> S0ME FL0WER FREAK, RIGHT? WHAT D0ES HE EVEN HAVE T0 D0 WITH SCREENS??"
 	
-	ce[17,0] = make_color_rgb(165, 174, 82)
-	ce[17,1] = "Welcome to Chaos"
-	ce[17,2] = "Based on Kaiman from Dorohedoro."
+	ce[17,0] = make_color_rgb(111, 209, 255)
+	ce[17,1] = "Q5U4EX7YY2E9N"
+	ce[17,2] = " > THIS W0MAN IS A C0MPUTER T00? I'D L0VE T0 GRAB A GLASS 0F ACID WITH HER!"
 	
-	ce[18,0] = make_color_rgb(250, 200, 228)
-	ce[18,1] = "Pastel Clouds"
-	ce[18,2] = "Eat the sky."
+	ce[18,0] = make_color_rgb(148, 181, 174)
+	ce[18,1] = "Creative Freedom"
+	ce[18,2] = "> T0 BE F0RG0TTEN LIKE THAT... P- PSSH! IMAGINE THAT! SUCKER!!"
 	
-	ce[19,0] = make_color_rgb(144, 83, 194)
-	ce[19,1] = "Generous Envy"
-	ce[19,2] = "Eat your heart out."
-	
-    ce[20,0] = make_color_rgb(98, 66, 214)
-	ce[20,1] = "All-Starve"
-	ce[20,2] = "Based on the color scheme for the All-Star Heroines pack."
-	
-    ce[21,0] = make_color_rgb(240, 194, 46)
-	ce[21,1] = "Feasting & Winning"
-	ce[21,2] = "Based on the color scheme for the Black Lives Winning group."
-	
-	ce[22,0] = make_color_rgb(48, 236, 0)
-	ce[22,1] = "Gutrolce"
-	ce[22,2] = "Putrolce's evil twin from lore who is kind of green."
-	
-    ce[23,0] = make_color_rgb(152, 168, 181)
-	ce[23,1] = "Colorful Stances"
-	ce[23,2] = "Changes colors based on your current stance."
-	
-	ce[24,0] = make_color_rgb(206, 17, 38)
-	ce[24,1] = "Mexico"
-	ce[24,2] = "
-	hell yes."
-	
-	ce[25,0] = make_color_rgb(206, 17, 38)
-	ce[25,1] = "Undefined"
-	ce[25,2] = ""
-	
-	ce[26,0] = make_color_rgb(206, 17, 38)
-	ce[26,1] = "Undefined"
-	ce[26,2] = ""
-	
-	ce[27,0] = make_color_rgb(206, 17, 38)
-	ce[27,1] = "Undefined"
-	ce[27,2] = ""
+	ce[19,0] = make_color_rgb(0, 0, 0)
+	ce[19,1] = "An End."
+	ce[19,2] = "Note: FATAL ERROR .We are sorry, but an internal error occurred. Please re-install the product to fix the problem."
 	
 
 	// you can add more, by copypasting and changing the first index of the array accordingly.
@@ -245,7 +216,7 @@ if (ee > 0){
 	var tw_e = (ease_quartOut(0, 1, ee, ee_m)/6) + (ease_quartIn(0, 1, ee, ee_m)/8);
 	var tw_f = (ease_quartOut(0, 1, ee, ee_m)/8) + (ease_quartIn(0, 1, ee, ee_m)/6);
 	var tw_g = (ease_quartOut(0, 1, ee, ee_m)) + (ease_quartIn(0, 1, ee, ee_m)/3);
-	var dist = 16;//14
+	var dist = 24;//14
 	var typ = round(ease_expoIn(0, dist, ee, ee_m-2));
 	//using muno's function;
 	//up
@@ -300,7 +271,7 @@ if (color_desc_activate){
 	draw_set_alpha(dial_ease/500);
 	draw_rectangle_colour(tmp_xl1, tmp_yl1+3, tmp_xl2, tmp_yl2, c_white, c_white, c_white, c_white, false);
 	draw_set_alpha(1);
-	textDraw(x+14, (y+87)-round(dial_ease/30), "fName", c_white, 18, 200, 1, false, dial_ease/100, string(ue)+": "+ce[ue,1]);
+	textDraw(x+14, (y+87)-round(dial_ease/30), "fName", ce[clamp(ue,0,col_max),0], 18, 200, 1, false, dial_ease/100, string(ue)+": "+ce[ue,1]);
 	textDraw(x+14, (y+107)-round(dial_ease/30), "fName", c_gray, 18, 200, 1, false, dial_ease/100, ce[ue,2]);
 }
 //ae code end
@@ -382,7 +353,6 @@ css_intro_timer++;
 //--- ---
 
 
-
 #define textDraw(x, y, font, color, lineb, linew, scale, outline, alpha, string)
 
 draw_set_font(asset_get(argument[2]));
@@ -406,11 +376,11 @@ return string_width_ext(argument[9], argument[4], argument[5]);
 
 //draw_set_alpha(argument[6]);
 //main
-draw_sprite_ext( sprite_get("stomachCSS"), 0, argument[0], argument[1], 1, 1, 0, argument[4], argument[6] )
+draw_sprite_ext( sprite_get("css_wireslots"), 0, argument[0], argument[1], 1, 1, 0, argument[4], argument[6] )
 //draw_rectangle_color(argument[0], argument[1], argument[2], argument[3], argument[5], argument[5], argument[5], argument[5], false);
 //outline
 //draw_set_alpha(argument[6]*1.5);
-draw_sprite_ext( sprite_get("stomachCSS"), 1, argument[0], argument[1], 1, 1, 0, argument[5], argument[6]*1.5 )
+draw_sprite_ext( sprite_get("css_wireslots"), 1, argument[0], argument[1], 1, 1, 0, argument[5], argument[6]*1.5 )
 //draw_rectangle_color(argument[0]+2, argument[1]+2, argument[2]-2, argument[3]-2, argument[4], argument[4], argument[4], argument[4], false);
 //draw_set_alpha(1);
 

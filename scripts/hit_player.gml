@@ -45,7 +45,8 @@ switch (attack) {
     		hitpause = true;
     		hitstop = hit_player_obj.hitstop;
     		hitstop_full = hitstop;
-        }
+        } else if (my_hitboxID.hbox_num == 2 || my_hitboxID.hbox_num == 3) sound_play(asset_get("sfx_frog_uspecial_cast"), false, noone, 0.6, 1.2);
+        else if (my_hitboxID.hbox_num == 4) sound_play(asset_get("sfx_abyss_hazard_burst"));
         break;
     
     case AT_NSPECIAL:

@@ -1,9 +1,13 @@
 //init shader
 
-//Image Mask
-if  (get_player_color(player) == 1) { 
-    if("start_predraw" in self) && start_predraw{
-    set_character_color_slot( 0, 0, 0, 0, 0); 
-    set_article_color_slot( 0, 0, 0, 0, 0); 
-    }
+switch (get_player_color(player)) {
+    case 6:
+        for (var slot_num = 0; slot_num < 8; slot_num++) {
+            set_character_color_shading( slot_num, 0 );
+        }
+        outline_color=[35, 67, 49]
+    break;
+    case 19: 
+        set_character_color_shading( 2, 0 );
+        set_character_color_shading( 3, 0 );
 }

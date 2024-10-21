@@ -13,7 +13,7 @@ set_window_value(AT_EXTRA_3, 1, AG_WINDOW_ANIM_FRAMES, 2);
 set_window_value(AT_EXTRA_3, 3, AG_WINDOW_ANIM_FRAME_START, 0);
 set_window_value(AT_EXTRA_3, 1, AG_WINDOW_HAS_SFX, 1);
 set_window_value(AT_EXTRA_3, 1, AG_WINDOW_SFX_FRAME, 5);
-set_window_value(AT_EXTRA_3, 1, AG_WINDOW_SFX, asset_get("sfx_ell_eject"));
+set_window_value(AT_EXTRA_3, 1, AG_WINDOW_SFX, asset_get("sfx_waveland_ell"));
 set_window_value(AT_EXTRA_3, 1, AG_WINDOW_CUSTOM_GRAVITY, 0.2);
 
 // Claw out
@@ -100,7 +100,7 @@ set_hitbox_value(AT_EXTRA_3, 2, HG_KNOCKBACK_SCALING, 0.2);
 set_hitbox_value(AT_EXTRA_3, 2, HG_BASE_HITPAUSE, 5); 
 set_hitbox_value(AT_EXTRA_3, 2, HG_HITPAUSE_SCALING, .5); 
 set_hitbox_value(AT_EXTRA_3, 2, HG_HIT_SFX, asset_get("sfx_blow_medium2"));
-set_hitbox_value(AT_EXTRA_3, 2, HG_VISUAL_EFFECT, splsh);
+set_hitbox_value(AT_EXTRA_3, 2, HG_VISUAL_EFFECT, splatter);
 
 // footstool
 set_hitbox_value(AT_EXTRA_3, 3, HG_PARENT_HITBOX, 2);

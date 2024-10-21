@@ -1,4 +1,4 @@
-
+shader_start()
 
 if (attack == AT_NSPECIAL && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND) && window == 2) {
     switch (bomb_angle) {
@@ -31,3 +31,5 @@ if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR && window == 3) {
     draw_sprite_stretched(sprite_get("uspec_claw_wire"), 0, claw_x-6+l_off, y-38, 10, claw_abs_y-y+36);
     draw_sprite(sprite_get("uspec_claw_tip"), 0, claw_x+l_off, claw_abs_y);
 }
+
+shader_end();

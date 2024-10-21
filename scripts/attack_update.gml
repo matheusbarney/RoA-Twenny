@@ -357,7 +357,7 @@ switch(attack) {
     			if (instance_exists(grabbed_player_obj)) {
     				grabbed_player_obj.hitstop++;
     				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);
-    				y = grabbed_player_obj.y - grabbed_player_obj.char_height + min(28, 0.25*grabbed_player_obj.char_height);
+    				y = grabbed_player_obj.y - grabbed_player_obj.char_height + min(38, grabbed_player_obj.char_height);
     			}
     			break;
     		case 7:
@@ -396,15 +396,15 @@ switch(attack) {
 	    			sound_play(asset_get("sfx_ori_stomp_spin"), false, noone, 0.2,  1.1);
 	    			var ustrong_corpse = spawn_hit_fx( x, y+10, ustr_corpse);
 	    		}
-	    		else if (window_timer == 12) sound_play(sound_get("metal_clatter"), false, noone, 0.2, 0.5);
-	    		else if (window_timer == window_end_time) sound_play(asset_get("sfx_absa_cloud_crackle"), false, noone, 0.2, 1);
+	    		else if (window_timer == 12) sound_play(sound_get("metal_clatter"), false, noone, 0.4, 0.5);
+	    		else if (window_timer == window_end_time) sound_play(asset_get("sfx_absa_cloud_crackle"), false, noone, 0.4, 1);
     			break;
     			
     		case 4:
     			sound_stop(asset_get("sfx_ori_stomp_spin"));
 	    		if (window_timer == window_end_time) {
-	    			sound_play(sound_get("electricshock"), false, noone, 0.1, 1);
-	    			sound_play(sound_get("thunderwave"), false, noone, 0.3, 1);
+	    			sound_play(sound_get("electricshock"), false, noone, 0.3, 1);
+	    			sound_play(sound_get("thunderwave"), false, noone, 0.7, 1);
 	    		} 
 	    		break;
     	}
