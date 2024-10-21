@@ -315,7 +315,6 @@ switch css_intro_state {
 		if (css_intro_timer == 0) sound_play(sound_get("charselect"));
 	
 		var a = (4 < css_intro_timer) ? ease_circIn(0, 1, css_intro_timer-4, 16) : 0;
-		print_debug(a);
 	
 		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_black, 1);
 		gpu_set_fog(true, c_white, 0, 0);

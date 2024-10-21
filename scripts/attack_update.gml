@@ -339,16 +339,30 @@ switch(attack) {
     				grabbed_player_obj.hitstop++;
     				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);
     				
-    				var y_offset = 20;
-    				if (grabbed_player_obj.char_height <= 20) var y_offset = floor(char_height*0.75);
-    				if (y-y_offset >= grabbed_player_obj.y-char_height) {
+    				var target = grabbed_player_obj.y - grabbed_player_obj.char_height + min(28, 0.25*grabbed_player_obj.char_height);
+    				if (y+vsp >= target) {
     					window = 4;
     					window_timer = 0;
-    					vsp = -8;
     				}
     			}
     			else if (window_timer == window_end_time) { // loop, but maintain the last anim frame
     				window_timer -= 3;
+    			}
+    			break;
+    		case 4:
+    		case 5:
+    		case 6:
+    			hsp = 0;
+    			vsp = 0;
+    			if (instance_exists(grabbed_player_obj)) {
+    				grabbed_player_obj.hitstop++;
+    				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);
+    				y = grabbed_player_obj.y - grabbed_player_obj.char_height + min(28, 0.25*grabbed_player_obj.char_height);
+    			}
+    			break;
+    		case 7:
+    			if (window_timer == 1) {
+    				if (!hitstun) vsp = -8;
     			}
     			break;
     	}
