@@ -197,3 +197,17 @@ livespark_death = hit_fx_create( sprite_get( "vfx_livespark_death" ), 20 );
 bigbomb_expl = hit_fx_create( sprite_get( "vfx_bigbomb_explosion" ), 24 );
 hex_fx = hit_fx_create( sprite_get( "fx_hex" ), 15 );
 corpsedeath = hit_fx_create( sprite_get( "vfx_uspecial_corpse_death" ), 21 );
+
+//Victory Screen
+twenny_handled_victory_quote = false;
+twenny_will_victory_quote = true;
+twenny_victory_quote = "> SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
+twenny_vic_face = "vicf_laugh";
+twenny_vic_line = "vic_another_twenny"
+twenny_randquote_icon = "vicf_base";
+
+// just in case
+is_voiced = true;
+
+//if (get_player_color(player) == 19) dead_alt = true 
+//else dead_alt = false;

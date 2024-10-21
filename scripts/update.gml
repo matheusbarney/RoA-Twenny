@@ -1,4 +1,5 @@
 // update
+//end_match(player)
 
 // Image Mask
 if (get_gameplay_time() > 100 && !start_predraw) start_predraw = true;
@@ -18,6 +19,16 @@ if (state == PS_SPAWN) {
 			sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.9, 1.1);
 			sound_play(asset_get("sfx_ell_cooldown"), false, 0, 0.5, 1.35);
 		break;
+		case 1:
+			if (is_voiced) {
+				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 6, true)
+				print_debug (get_gameplay_time() % 50)
+				print_debug (voice_line)
+				if (voice_line == 1) sound_play(sound_get("intro_1"), false, 0, 1, 1);
+				else if (voice_line == 2) sound_play(sound_get("intro_2"), false, 0, 1, 1);
+				else if (voice_line == 3) sound_play(sound_get("intro_3"), false, 0, 1, 1);
+				else if (voice_line == 4) sound_play(sound_get("intro_4"), false, 0, 1, 1);
+			}
 	}
 	
 	if (state_timer > 40 && state_timer < 80) {

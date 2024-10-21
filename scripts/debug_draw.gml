@@ -1,4 +1,4 @@
-//draw_debug_text( x, y, string(my_twenny_pipes) )
+//draw_debug_text( x, y, string(dead_alt) )
 //draw_debug_text( x, y+32, string(num_pipes) )
 //
 
