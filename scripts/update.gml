@@ -101,7 +101,7 @@ if (in_hstance) {
         attack = AT_EXTRA_1;
         window = 1;
         window_timer = 0;
-    } else if (debug && vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY))) {
+    } else if (vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY))) {
     	attack_end();
         state = PS_ATTACK_AIR;
         state_timer = 0;

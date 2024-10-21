@@ -222,7 +222,7 @@ switch(attack) {
         }
         if (window == 3) {
         	vsp *= 0.94;
-        	if (debug && vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
+        	if (vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
 	        	attack_end();
 	        	attack = AT_EXTRA_3;
 	        	window = 1;
@@ -238,7 +238,7 @@ switch(attack) {
     		case 1:
     			if (window_timer == window_end_time) {
 	    			claw_rel_y = 0;
-	    			claw_abs_y = y;
+	    			claw_abs_y = y+vsp;
 	    			claw_vsp = 12;
 	    			grabbed_player_obj = noone;
 	    			
@@ -248,30 +248,36 @@ switch(attack) {
     		case 2:
     			vsp = min(vsp, 4);
     			claw_rel_y += claw_vsp;
-    			claw_abs_y = y+claw_rel_y;
+    			claw_abs_y = y+claw_rel_y+vsp;
     			claw_vsp -= 0.5;
     			
     			if (claw_rel_y <= 0) {
-    				attack_end();
-    				state = PS_IDLE_AIR;
-    				state_timer = 0;
-    				if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
-    			}
-    			
-    			else if (position_meeting(x,claw_abs_y, asset_get("par_block")) || position_meeting(x, claw_abs_y, asset_get("par_jumpthrough"))) {
-    				window = 3;
+    				window = 10;
     				window_timer = 0;
     				if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
     			}
     			
-    			else if (instance_exists(claw_hitbox)) {
-    				claw_hitbox.length++;
-    				claw_hitbox.x = x;
-    				claw_hitbox.y = claw_abs_y;
-    				claw_hitbox.hsp = hsp;
-    				claw_hitbox.vsp = vsp + claw_vsp;
-    				if (claw_vsp <= 0) claw_hitbox.destroyed_next = true;
+    			else if (position_meeting(claw_x,claw_abs_y, asset_get("par_block")) || position_meeting(claw_x, claw_abs_y, asset_get("par_jumpthrough"))) {
+    				window = 3;
+    				window_timer = 0;
+    				if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
+    				sound_play(asset_get("sfx_metal_hit_strong"));
     			}
+    			
+    			else {
+    				if (instance_exists(claw_hitbox)) {
+	    				claw_hitbox.length++;
+	    				claw_hitbox.x = claw_x;
+	    				claw_hitbox.y = claw_abs_y;
+	    				claw_hitbox.hsp = hsp;
+	    				claw_hitbox.vsp = vsp;
+	    				if (claw_vsp <= 0) claw_hitbox.destroyed_next = true;
+    				}
+    				if (window_timer == window_end_time) { // loop, but maintain the last anim frame
+	    				window_timer -= 3;
+	    			}
+    			}
+    			
     			break;
     		case 3:
     			can_move = false;
@@ -290,8 +296,12 @@ switch(attack) {
     					vsp = -8;
     				}
     			}
+    			else if (window_timer == window_end_time) { // loop, but maintain the last anim frame
+    				window_timer -= 3;
+    			}
     			break;
     	}
+    	claw_x = x+(2*spr_dir)+hsp;
     	break;
     
     case AT_FSTRONG:

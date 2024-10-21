@@ -25,6 +25,9 @@ if (attack == AT_DSPECIAL && state == PS_ATTACK_GROUND && window == 2) {
     }
 }
 
-if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR && window > 1 && window < 4) {
-    draw_sprite(sprite_get("b_scrapbomb_mask"), 0, x, claw_abs_y);
+//Duplicated for window 2 in post_draw
+if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR && window == 3) {
+    var l_off = (spr_dir == -1) ? 2 : 0; // since we don't flip based on spr_dir, extra alignment is needed
+    draw_sprite_stretched(sprite_get("uspec_claw_wire"), 0, claw_x-6+l_off, y-38, 10, claw_abs_y-y+36);
+    draw_sprite(sprite_get("uspec_claw_tip"), 0, claw_x+l_off, claw_abs_y);
 }

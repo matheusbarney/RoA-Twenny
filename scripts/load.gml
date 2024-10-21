@@ -61,6 +61,9 @@ sprite_change_offset("dspecial_error", 64, 79, true);
 sprite_change_offset("uspecial_corpse", 128, 159);
 sprite_change_offset("vfx_uspecial_corpse_death", 128, 159);
 
+sprite_change_offset("uspecial_claw", 48, 63, true);
+sprite_change_offset("uspec_claw_tip", 30, 15);
+
 sprite_change_offset("plat", 64, 94);
 sprite_change_offset("intro", 64, 79, true);
 
