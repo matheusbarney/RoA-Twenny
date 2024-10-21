@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 hurtbox_spr = sprite_get("1_idlehbox");
 crouchbox_spr = sprite_get("2_crouchhbox");

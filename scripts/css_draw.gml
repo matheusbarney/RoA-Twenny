@@ -1,15 +1,26 @@
 
 init_shader();
 switch (get_player_color( player ) ){
-	default:
-		draw_sprite_ext(sprite_get("css_bg_main"),1,x+8,y+8,2,2,0,-1,1);
     case 16:
         draw_sprite_ext(sprite_get("css_bg_flowey"),1,x+8,y+8,2,2,0,-1,1);
-    break;
+    	break;
     case 19:
         draw_sprite_ext(sprite_get("css_bg_dead"),1,x+8,y+8,2,2,0,-1,1);
-    break;
+    	break;
+    default:
+		draw_sprite_ext(sprite_get("css_bg_main"),1,x+8,y+8,2,2,0,-1,1);
+		break;
 }
+
+if (get_player_color(player) != 19) {
+	shader_end();
+	var a = 0.02*(1+sin(pi*css_intro_timer/16));
+	gpu_set_fog(true, c_white, 0, 0);
+	draw_sprite_ext(sprite_get("css_bg_main"), 0, x+8, y+8, 2, 2, 0, c_white, a);
+	gpu_set_fog(false, c_white, 0, 0);
+	init_shader();
+}
+// 
 
 
 //--- ---
@@ -296,24 +307,74 @@ if (color_desc_activate){
 
 
 //aesthetics
+shader_end();
 
-if (get_player_color( player ) == 23) { // Stance colors
-    if (get_gameplay_time() % 90 == 89) {
-    	stance++;
-    	if (stance == 5) stance = 1;
-    	init_shader();
-    	char_flash_alpha = 0.6;
-    }
-    char_flash_alpha -= 0.06;
+switch css_intro_state {
+	// black -> white fade
+	case 0:
+		if (css_intro_timer == 0) sound_play(sound_get("charselect"));
+	
+		var a = (4 < css_intro_timer) ? ease_circIn(0, 1, css_intro_timer-4, 16) : 0;
+		print_debug(a);
+	
+		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_black, 1);
+		gpu_set_fog(true, c_white, 0, 0);
+		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_white, a);
+		gpu_set_fog(false, c_white, 0, 0);
+		
+		if (css_intro_timer >= 20) {
+			css_intro_state = 1;
+			css_intro_timer = 0;
+		}
+		break;
+	// glitchy
+	case 1:
+		var a = (css_intro_timer < 8) ? ease_circOut(1, 0, css_intro_timer, 8) : 0.05*(1+sin(pi*css_intro_timer/16));
+		var i = (75 < css_intro_timer) ? (css_intro_timer-75)/3 : 0;
+		
+		draw_sprite_ext(sprite_get("css_bg_aframes"), i, x+8, y+8, 2, 2, 0, c_white, 1);
+		gpu_set_fog(true, c_white, 0, 0);
+		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_white, a);
+		gpu_set_fog(false, c_white, 0, 0);
+		
+		if (css_intro_timer == 80) sound_play(sound_get("charselect"));
+		
+		if (css_intro_timer >= 90) {
+			css_intro_state = 2;
+			css_intro_timer = 0;
+		}
+		break;
+	// glitchy -> white fade
+	case 2:
+		var a = ease_circIn(0, 1, css_intro_timer, 8);
+		var i = css_intro_timer/3;
+		
+		draw_sprite_ext(sprite_get("css_bg_aframes"), i, x+8, y+8, 2, 2, 0, c_white, 1);
+		gpu_set_fog(true, c_white, 0, 0);
+		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_white, a);
+		gpu_set_fog(false, c_white, 0, 0);
+		
+		if (css_intro_timer >= 8) {
+			css_intro_state = 3;
+			css_intro_timer = 0;
+		}
+		break;
+	// white -> css fade
+	case 3:
+		var a = ease_circOut(1, 0, css_intro_timer, 8);
+		
+		gpu_set_fog(true, c_white, 0, 0);
+		draw_sprite_ext(sprite_get("css_bg_aframes"), 0, x+8, y+8, 2, 2, 0, c_white, a);
+		gpu_set_fog(false, c_white, 0, 0);
+		
+		if (css_intro_timer >= 8) {
+			css_intro_state = 4;
+			css_intro_timer = 0;
+			sound_play(sound_get("charselect_laugh"), false, noone, 3);
+		}
+		break;
 }
-else char_flash_alpha = 0;
-
-if (char_flash_alpha > 0) {
-	shader_end();
-	gpu_set_fog(true, c_white, 0, 0);
-	draw_sprite_ext(get_char_info(player, INFO_CHARSELECT), 0, x+8, y+8, 2, 2, 0, c_white, char_flash_alpha);
-	gpu_set_fog(false, c_white, 0, 0);
-}
+css_intro_timer++;
 
 //
 
