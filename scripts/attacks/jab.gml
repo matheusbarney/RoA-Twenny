@@ -70,7 +70,7 @@ set_hitbox_value(AT_JAB, 2, HG_BASE_KNOCKBACK, 8);
 set_hitbox_value(AT_JAB, 2, HG_KNOCKBACK_SCALING, .55);
 set_hitbox_value(AT_JAB, 2, HG_BASE_HITPAUSE, 5);
 set_hitbox_value(AT_JAB, 2, HG_HITPAUSE_SCALING, .7);
-set_hitbox_value(AT_JAB, 2, HG_VISUAL_EFFECT, 302);
+set_hitbox_value(AT_JAB, 2, HG_VISUAL_EFFECT, splsh);
 set_hitbox_value(AT_JAB, 2, HG_VISUAL_EFFECT_X_OFFSET, 0);
 set_hitbox_value(AT_JAB, 2, HG_HIT_SFX, asset_get("sfx_blow_medium2"));
 set_hitbox_value(AT_JAB, 2, HG_ANGLE_FLIPPER, 0);

@@ -45,7 +45,7 @@ set_hitbox_value(AT_DAIR, 1, HG_KNOCKBACK_SCALING, 0.45); //this is normal spike
 set_hitbox_value(AT_DAIR, 1, HG_BASE_HITPAUSE, 10); 
 set_hitbox_value(AT_DAIR, 1, HG_HITPAUSE_SCALING, .9); 
 set_hitbox_value(AT_DAIR, 1, HG_HIT_SFX, asset_get("sfx_blow_heavy2"));
-set_hitbox_value(AT_DAIR, 1, HG_VISUAL_EFFECT, 304);
+set_hitbox_value(AT_DAIR, 1, HG_VISUAL_EFFECT, splatter);
 
 set_hitbox_value(AT_DAIR, 2, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_DAIR, 2, HG_WINDOW, 2);
@@ -62,6 +62,7 @@ set_hitbox_value(AT_DAIR, 2, HG_KNOCKBACK_SCALING, 0.6);
 set_hitbox_value(AT_DAIR, 2, HG_BASE_HITPAUSE, 7); 
 set_hitbox_value(AT_DAIR, 2, HG_HITPAUSE_SCALING, .5); 
 set_hitbox_value(AT_DAIR, 2, HG_HIT_SFX, asset_get("sfx_blow_medium2"));
+set_hitbox_value(AT_DAIR, 2, HG_VISUAL_EFFECT, splsh);
 
 set_hitbox_value(AT_DAIR, 3, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_DAIR, 3, HG_WINDOW, 2);
