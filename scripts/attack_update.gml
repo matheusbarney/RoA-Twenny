@@ -467,6 +467,13 @@ switch(attack) {
 			}
 		}
 		break;
+		
+	case AT_TAUNT:
+    	if (window == 1 && window_timer == window_end_time) {
+    		sound_play( asset_get("mfx_star"), false, noone, 0.4, 1);
+    		sound_play( sound_get("heart"), false, noone, 0.3, 1);
+    	}
+	break;
 }
 
 //iasa_script (insantly as soon as, aka switch back into full control/idle) without having to check for !was_parried
