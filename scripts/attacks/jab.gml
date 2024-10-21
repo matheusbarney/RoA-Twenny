@@ -26,7 +26,7 @@ set_window_value(AT_JAB, 4, AG_WINDOW_HAS_SFX, 1);
 set_window_value(AT_JAB, 4, AG_WINDOW_SFX, asset_get("sfx_abyss_hazard_burst"));
 set_window_value(AT_JAB, 4, AG_WINDOW_SFX_FRAME, 5);
 
-set_window_value(AT_JAB, 5, AG_WINDOW_LENGTH, 2);
+set_window_value(AT_JAB, 5, AG_WINDOW_LENGTH, 3);
 set_window_value(AT_JAB, 5, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_JAB, 5, AG_WINDOW_ANIM_FRAME_START, 11);
 
@@ -57,7 +57,7 @@ set_hitbox_value(AT_JAB, 1, HG_FORCE_FLINCH, 1);
 
 set_hitbox_value(AT_JAB, 2, HG_HITBOX_TYPE, 1);
 set_hitbox_value(AT_JAB, 2, HG_WINDOW, 5);
-set_hitbox_value(AT_JAB, 2, HG_LIFETIME, 2);
+set_hitbox_value(AT_JAB, 2, HG_LIFETIME, 3);
 set_hitbox_value(AT_JAB, 2, HG_HITBOX_X, 70);
 set_hitbox_value(AT_JAB, 2, HG_HITBOX_Y, -16);
 set_hitbox_value(AT_JAB, 2, HG_WIDTH, 69);

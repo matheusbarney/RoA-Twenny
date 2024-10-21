@@ -8,14 +8,65 @@ switch(attack)
 {
 	case AT_JAB:
     	if (window == 1 && window_timer == window_end_time - 2)
-    		spawn_base_dust(x+(24*spr_dir),y, "dash_start", -spr_dir);
+    		spawn_base_dust(x+(36*spr_dir),y, "dash_start", -spr_dir);
     break;
     
     case AT_FTILT:
     	if (window == 1 && window_timer == window_end_time) spawn_base_dust(x+(7*spr_dir),y, "dash", -spr_dir);
-    	else if (window == 2 && window_timer == 3) spawn_base_dust(x+(32*spr_dir),y, "dash_start", -spr_dir);
+    	else if (window == 2 && window_timer == 3) spawn_base_dust(x+(48*spr_dir),y, "dash_start", -spr_dir);
     break;
     
+    case AT_UTILT:
+    	if (window == 1 && window_timer == 5) spawn_base_dust(x-(24*spr_dir),y, "dash", spr_dir);
+    	else if (window == 3 && window_timer == window_end_time) spawn_base_dust(x+(40*spr_dir),y, "dash_start", -spr_dir);
+    break;
+    
+    case AT_FSTRONG:
+    	if (window == 2 && window_timer == window_end_time)
+    		spawn_base_dust(x+(12*spr_dir),y, "dash", -spr_dir);
+    break;
+    
+    case AT_DATTACK:
+    	if (window == 1 && window_timer == window_end_time) {
+    		spawn_base_dust(x+(64*spr_dir),y, "n_wavedash", spr_dir);
+    	}
+    break;
+    
+    case AT_DSTRONG:
+    	if (window == 2 && window_timer == window_end_time) {
+    		spawn_base_dust(x+(36*spr_dir),y, "dash_start", -spr_dir);
+    		spawn_base_dust(x-(36*spr_dir),y, "dash_start", spr_dir);
+    	}
+    break;
+    
+    case AT_USTRONG:
+    	if (window == 2 && window_timer == window_end_time) {
+    		spawn_base_dust(x+(12*spr_dir),y, "dash", -spr_dir);
+    	}
+    break;
+    
+    case AT_DSPECIAL:
+    	if (window == 4 && window_timer == 1) {
+    		spawn_base_dust(x+(56*spr_dir),y, "dash", -spr_dir);
+    		spawn_base_dust(x-(24*spr_dir),y, "dash", spr_dir);
+    	}
+    break;
+    
+    case AT_USTRONG:
+    	if (window == 2 && window_timer == window_end_time) spawn_base_dust(x,y-64, "djump", spr_dir);
+    break;
+    
+    case AT_USPECIAL:
+    	if (window == 1 && window_timer == window_end_time) spawn_base_dust(x,y-64, "djump", spr_dir);
+    	else if (window == 2 && window_timer % 3 == 1) spawn_base_dust(x,y-64, "djump_small", spr_dir);
+    break;
+    
+    case AT_FSPECIAL:
+    	if (window == 2) {
+    		if (window_timer % 7 == 1) {
+    			spawn_hit_fx(x, y - random_func_2(5, 24, true) - 24, splsh);
+    		}
+    	}
 }
 
 switch(attack) {
@@ -169,7 +220,7 @@ switch(attack) {
     				hsp = 5.5*spr_dir;
     				if (free) vsp = -3;
     				loops = 0;
-    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump" : "dash_start");
+    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump_small" : "dattack");
     			} else {
     				hsp = 0;
     				vsp = 0;
@@ -182,9 +233,9 @@ switch(attack) {
 	    			if (right_down) hsp += 0.5;
 	    			hsp = clamp(abs(hsp), 3, 8) * spr_dir;
 	    			
-	    			if (window_timer % 3 == 0) {
-	    				spawn_base_dust(x+(16*spr_dir), y, "dash");
-	    			}
+	    			if (window_timer % 5 == 0 && !free) {
+	    				spawn_base_dust(x+(16*spr_dir), y, "dattack");
+	    			}	
 	    			
 	    			if (window_timer == window_end_time) {
 	    				loops++;
@@ -203,7 +254,7 @@ switch(attack) {
     				else set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
     				hsp = 1*spr_dir;
     				vsp = -4;
-    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump" : "jump");
+    				spawn_base_dust(x+(10*spr_dir), y, free ? "djump_small" : "jump");
     			}
     			break;
     		case 4:
@@ -476,10 +527,10 @@ switch(attack) {
 var dlen; //dust_length value
 var dfx; //dust_fx value
 var dfg; //fg_sprite value
-var dfa = 0; //draw_angle value
 var dust_color = 0;
 var x = argument[0], y = argument[1], name = argument[2];
 var dir = argument_count > 3 ? argument[3] : 0;
+var angle = argument_count > 4 ? argument[4] : 0;
 
 switch (name) {
     default: 
@@ -493,14 +544,26 @@ switch (name) {
     case "walljump": dlen = 24; dfx = 0; dfg = 2629; dfa = dir != 0 ? -90*dir : -90*spr_dir; break;
     case "n_wavedash": dlen = 24; dfx = 0; dfg = 2620; dust_color = 1; break;
     case "wavedash": dlen = 16; dfx = 4; dfg = 2656; dust_color = 1; break;
+    
+    //
+    //bar-kun additions (note: idk how fg_sprite work)
+    //
+    case "dattack": dlen = 22; dfx = 12; dfg = 0; break;
+    case "b_bounce_bg": dlen = 10; dfx = 7; dfg = 0; break;
+	case "b_bounce_fg": dlen = 14; dfx = 8; dfg = 0; break;
+    case "s_bounce_bg": dlen = 18; dfx = 7; dfg = 0; break;
+    case "s_bounce_fg": dlen = 19; dfx = 8; dfg = 0; break;
+    case "doublejump_small": 
+    case "djump_small": dlen = 21; dfx = 16; dfg = 0; break;
 }
 var newdust = spawn_dust_fx(x,y,asset_get("empty_sprite"),dlen);
 newdust.dust_fx = dfx; //set the fx id
 if dfg != -1 newdust.fg_sprite = dfg; //set the foreground sprite
 newdust.dust_color = dust_color; //set the dust color
 if dir != 0 newdust.spr_dir = dir; //set the spr_dir
-newdust.draw_angle = dfa;
+newdust.draw_angle = angle;
 return newdust;
+
 
 #define update_pipe_distance
 pipe_distance = get_ground_distance(56, 0, 6)-16;

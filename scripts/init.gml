@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 
 hurtbox_spr = sprite_get("1_idlehbox");
 crouchbox_spr = sprite_get("2_crouchhbox");
@@ -103,7 +103,7 @@ roll_backward_max = 9;
 
 land_sound = asset_get("sfx_land_med");
 landing_lag_sound = asset_get("sfx_land");
-waveland_sound = asset_get("sfx_waveland_zet");
+waveland_sound = asset_get("sfx_waveland_abs");
 jump_sound = asset_get("sfx_jumpground");
 djump_sound = asset_get("sfx_jumpair");
 air_dodge_sound = asset_get("sfx_quick_dodge");
