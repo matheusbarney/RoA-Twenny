@@ -42,8 +42,8 @@ if (winner == player /* && uhc_batteries */)
         draw_sprite_ext(sprite_get("vic_box"), 1, 
                     twenny_quote_current_pos_x, quote_pos_y, 2, 2, 0, c_white, 1);
         draw_sprite_ext(sprite_get(twenny_vic_face), results_timer*sprite_get_number(sprite_get(twenny_vic_face))/twenny_vic_face_speed, 
-                    twenny_quote_current_pos_x + 44, quote_pos_y + 14, 0.5, 0.5, 0, c_white, 1);
-        draw_win_quote(twenny_quote_current_pos_x+135, quote_pos_y + 78, 
+                    twenny_quote_current_pos_x + 44, quote_pos_y + 16, 0.5, 0.5, 0, c_white, 1);
+        draw_win_quote(twenny_quote_current_pos_x+135, quote_pos_y + 80, 
                         twenny_victory_quote);
     }
     
