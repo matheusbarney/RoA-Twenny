@@ -231,7 +231,10 @@ if (state == 2){ //
 
 // State 3 - despawn routine
 if (state == 3) {
-	if (instance_exists(pipewarp_other)) pipewarp_other.pipewarp_other = noone;
+	if (instance_exists(pipewarp_other)) {
+		pipewarp_other.pipewarp_other = noone;
+		pipewarp_other.pipe_id = 2;
+	}
 	player_id.num_pipes--;
 	instance_destroy();
 	exit;
