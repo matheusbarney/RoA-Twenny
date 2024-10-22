@@ -299,6 +299,7 @@ switch(attack) {
     	can_fast_fall = false;
     	switch window {
     		case 1:
+    			if (window_timer == 1) set_attack_value(attack, AG_CATEGORY, 1);
     			if (window_timer == window_end_time) {
 	    			claw_rel_y = 0;
 	    			claw_abs_y = y+vsp;
@@ -355,6 +356,7 @@ switch(attack) {
     				if (y+vsp >= target) {
     					window = 4;
     					window_timer = 0;
+    					set_attack_value(attack, AG_CATEGORY, 2);
     				}
     			}
     			else if (window_timer == window_end_time) { // loop, but maintain the last anim frame

@@ -1,9 +1,6 @@
 // update
 //end_match(player)
 
-// Image Mask
-if (get_gameplay_time() > 100 && !start_predraw) start_predraw = true;
-
 // Intro
 if (state == PS_SPAWN) {
 	switch (state_timer) {
@@ -105,7 +102,7 @@ if (in_hstance) {
     
     hurtbox_spr = sprite_get("3_headhbox");
     
-    if (!free) {
+    if (!free && !(state == PS_ATTACK_GROUND && attack == AT_EXTRA_3 && 4 <= window && window <= 7)) {
     	attack_end();
         state = PS_ATTACK_GROUND;
         state_timer = 0;

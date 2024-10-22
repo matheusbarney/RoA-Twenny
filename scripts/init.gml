@@ -128,10 +128,6 @@ bubble_y = 8;
 //intro ---------------------------------------------------------------------------------
 intro_anim_frame = 0;
 
-//unique variables = less mess with other variable owners
-
-//Image Mask
-start_predraw = false;
 
 //////////hi twenny
 is_twenny = true;
