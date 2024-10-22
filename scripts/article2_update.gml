@@ -8,6 +8,15 @@ if (bomb_fuse == 0 && state < 97) {
 
 if (!hitstop) state_timer++; //progress the timer
 
+// Blast zone checks
+if (!is_playtest && (
+	x < get_stage_data(SD_LEFT_BLASTZONE_X)
+	|| get_stage_data(SD_RIGHT_BLASTZONE_X) < x
+	|| get_stage_data(SD_BOTTOM_BLASTZONE_Y) < y
+)) {
+	state = 99; // destroy
+}
+
 // // // // STATE 1 - SCRAPBOMB IDLE
 if (state == 1) { //
 	state_end = 30; //duration of this state in frames

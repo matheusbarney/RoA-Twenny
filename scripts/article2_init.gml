@@ -1,4 +1,5 @@
 is_twenny_bomb = true;
+is_playtest = (player_id.object_index == oTestPlayer);
 
 bomb_type = player_id.bomb_type; // 0 = scrap, 1 = bag
 
