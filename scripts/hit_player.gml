@@ -33,6 +33,10 @@ switch (attack) {
         else if (my_hitboxID.hbox_num == 7) sound_play(asset_get("sfx_absa_kickhit"), false, noone, 1,  1);
         has_long_endlag = false //pseudo whifflag
         break;
+        
+    case AT_DSTRONG:
+        if (my_hitboxID.hbox_num > 2) sound_play(asset_get("sfx_blow_medium2"), false, noone, 1,  0.8);
+        break;
     
     // Claw grab
     case AT_EXTRA_3:

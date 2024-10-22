@@ -93,11 +93,18 @@ switch(attack) {
     			if (spr_dir == 1 && left_down) spr_dir = -1;
     			else if (spr_dir == -1 && right_down) spr_dir = 1;
 			}
+		
 			
-			if (window_timer == window_end_time && special_down) window_timer = 1;
+			if (window_timer == window_end_time && special_down) {
+				window_timer = 1;
+			}
 			
 			// Handle charge
 			nspec_charge++;
+			if (nspec_charge % 14 == 1) {
+				sound_play(asset_get("sfx_frog_fspecial_charge_gained_2"), false, noone, 0.2 , 1 + (nspec_charge / 100))
+				spawn_hit_fx(x-(32*spr_dir), y-8, splsh);
+			}
     		if (nspec_charge == nspec_charge_threshold) {
     			sound_play(asset_get("mfx_star"));
     			spawn_hit_fx(x-(32*spr_dir), y-8, splsh);
@@ -385,11 +392,11 @@ switch(attack) {
     			if (rand == 0) fstrong_voiceline = "fstrong_voice2"
     			else if (rand == 1) fstrong_voiceline = "fstrong_voice3"
     			else if (rand == 2) fstrong_voiceline = "fstrong_voice4"
-    			
+
     			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
     			sound_play(asset_get("sfx_pom_fstrong_hit"), false, noone, 0.2,  1);
     			print_debug(fstrong_voiceline)
-    			sound_play(sound_get(fstrong_voiceline), false, noone, 0.4,  1.3 - (random_func(get_gameplay_time(), 4, true) / 10)  );
+    			sound_play(sound_get(fstrong_voiceline), false, noone, 0.4,  1.1 - (random_func(get_gameplay_time(), 2, true) / 10)  );
     		}
     	}
     	break;
@@ -454,8 +461,9 @@ switch(attack) {
     	break;
     
     case AT_DAIR:
+    	can_fast_fall = true;
     	if (window == 1 && window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
-		else if (!hitpause && window == 2 && window_timer == 1 && dair_used == false) {
+		else if (!hitpause && window == 2 && window_timer == 1 && dair_used == false && !fast_falling) {
     		vsp = clamp(vsp, -3, -7);
     		dair_used = true;
     	}

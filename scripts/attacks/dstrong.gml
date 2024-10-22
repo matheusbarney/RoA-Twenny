@@ -75,10 +75,10 @@ set_hitbox_value(AT_DSTRONG, 3, HG_ANGLE, 70);
 set_hitbox_value(AT_DSTRONG, 3, HG_ANGLE_FLIPPER, 6);
 set_hitbox_value(AT_DSTRONG, 3, HG_BASE_KNOCKBACK, 7);
 set_hitbox_value(AT_DSTRONG, 3, HG_KNOCKBACK_SCALING, 1);
-set_hitbox_value(AT_DSTRONG, 3, HG_BASE_HITPAUSE, 7);
+set_hitbox_value(AT_DSTRONG, 3, HG_BASE_HITPAUSE, 8);
 set_hitbox_value(AT_DSTRONG, 3, HG_HITPAUSE_SCALING, 1);
-set_hitbox_value(AT_DSTRONG, 3, HG_HIT_SFX, asset_get("sfx_absa_dattack"));
-set_hitbox_value(AT_DSTRONG, 3, HG_VISUAL_EFFECT, thunder_small);
+set_hitbox_value(AT_DSTRONG, 3, HG_HIT_SFX, asset_get("sfx_absa_whip2"));
+set_hitbox_value(AT_DSTRONG, 3, HG_VISUAL_EFFECT, thunder_big);
 set_hitbox_value(AT_DSTRONG, 3, HG_TWENNY_ELECTRIC, 1);
 
 set_hitbox_value(AT_DSTRONG, 4, HG_PARENT_HITBOX, 3);

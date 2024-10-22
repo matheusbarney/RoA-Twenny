@@ -348,10 +348,10 @@ if (state == 98){ //
 	
 	if (state_timer == 1) {
 		if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
-		sound_play(asset_get("sfx_mol_uspec_explode"), false, 0, 0.3, 1);
-		sound_play(asset_get("sfx_swish_medium"), false, 0, 0.3, 0.9);
-		sound_play(asset_get("sfx_mol_norm_explode"), false, 0, 0.4, 1);
-		sound_play(sound_get("bomb_giggle"), false, 0, 0.25, 1);
+		sound_play(asset_get("sfx_ell_utilt_cannon"), false, 0, 0.6, 1);
+		sound_play(asset_get("sfx_swish_heavy"), false, 0, 0.1, 0.9);
+		asset_get("sfx_ell_strong_attack_explosion")
+		sound_play(sound_get("bomb_giggle"), false, 0, 0.15, 1);
 	    spawn_hit_fx( x, y, player_id.bigbomb_expl);
 	}
     if (state_timer == 4) {
