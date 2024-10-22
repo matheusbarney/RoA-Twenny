@@ -397,7 +397,7 @@ switch(attack) {
 
     			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
     			sound_play(asset_get("sfx_pom_fstrong_hit"), false, noone, 0.2,  1);
-    			print_debug(fstrong_voiceline)
+    			//print_debug(fstrong_voiceline)
     			sound_play(sound_get(fstrong_voiceline), false, noone, 0.4,  1.1 - (random_func(get_gameplay_time(), 2, true) / 10)  );
     		}
     	}

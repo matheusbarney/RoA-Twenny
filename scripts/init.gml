@@ -142,7 +142,6 @@ crawl_sound = noone;
 fake_img = 0;
 
 //warp pipe article
-num_pipes = 0;
 latest_pipe_angle = 90;
 pipe_distance = 48;
 last_dist_check_x = 0;

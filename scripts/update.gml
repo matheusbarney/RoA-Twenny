@@ -18,9 +18,9 @@ if (state == PS_SPAWN) {
 		break;
 		case 1:
 			if (is_voiced) {
-				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 6, true)
-				print_debug (get_gameplay_time() % 50)
-				print_debug (voice_line)
+				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 6, true); // TODO: does this desync?
+				//print_debug (get_gameplay_time() % 50)
+				//print_debug (voice_line)
 				if (voice_line == 1) sound_play(sound_get("intro_1"), false, 0, 1, 1);
 				else if (voice_line == 2) sound_play(sound_get("intro_2"), false, 0, 1, 1);
 				else if (voice_line == 3) sound_play(sound_get("intro_3"), false, 0, 1, 1);

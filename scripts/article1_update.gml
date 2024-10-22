@@ -1,6 +1,5 @@
 
 if (init == 0){
-	var num_pipes = 0;
     with (asset_get("obj_article1")) if (player_id == other.player_id) {
         if (pipe_id == 1) { // Next pipe to be removed
         	pipewarp_other = noone;
@@ -15,14 +14,9 @@ if (init == 0){
         	other.pipewarp_other = self;
         	other.pipe_flash_timer = other.pipe_flash_duration;
         	sound_play(asset_get("sfx_boss_shine"), false, noone, 1, 1.4);
-        	num_pipes++;
         }
-        else {
-        	pipe_id = 2;
-        	num_pipes++;
-        }
+        else pipe_id = 2;
     }
-    player_id.num_pipes = num_pipes;
     init = 1;
 }
 
@@ -78,11 +72,13 @@ if (state == 1){ //
     	}
     }
     
-    if (player_id.num_pipes == 1) {
+    var has_pipewarp_other = instance_exists(pipewarp_other);
+    
+    if (!has_pipewarp_other) {
     	pipe_color = pipe_inactive;
     }
     
-    if (instance_exists(pipewarp_other)) with (pipewarp_other) {
+    if (has_pipewarp_other) with (pipewarp_other) {
     	other.warpcoord_dir = spr_dir;
     	other.warpcoord_angle = pipe_angle;
     	if (pipe_angle == 90) {
@@ -96,7 +92,7 @@ if (state == 1){ //
     }
     
     mask_index = warp_mask_index;
-    var do_pipewarp = (instance_exists(pipewarp_other) && pipewarp_cd <= 0);
+    var do_pipewarp = (has_pipewarp_other && pipewarp_cd <= 0);
     
     //Warp handling
     if (do_pipewarp) {
@@ -145,7 +141,7 @@ if (state == 1){ //
 	    
 	    //warp bomb
 	    if (do_pipewarp) with (asset_get("obj_article2")) {
-	        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
+	        if ("is_twenny_bomb" in self && (state == 1 && !has_hit || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
 	            //--flavor
 	            sound_play(sound_get("door_close"));
 	            spawn_hit_fx( x, y, HFX_GEN_SPIN);
@@ -236,7 +232,6 @@ if (state == 3) {
 		pipewarp_other.pipewarp_other = noone;
 		pipewarp_other.pipe_id = 2;
 	}
-	player_id.num_pipes--;
 	instance_destroy();
 	exit;
 }

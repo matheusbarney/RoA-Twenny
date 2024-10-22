@@ -54,7 +54,7 @@ if (!twenny_handled_victory_quote)
             var builtin_voiceline = try_get_voiceline(url);
             data.icon = builtin_icon;
             data.voiceline = builtin_voiceline
-            print_debug(builtin_voiceline);
+            //print_debug(builtin_voiceline);
             
             var builtin_quote = try_get_quote(url);
             if (string_length(builtin_quote) > 0)

@@ -43,6 +43,7 @@ has_boosted = false;
 tp_dir = 1;
 
 contact_hitbox = noone;
+has_hit = false;
 
 hit_cooldown = 0; // for fspec
 was_hit = 0; // one-frame flag; used to replenish hitbox

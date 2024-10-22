@@ -1,5 +1,4 @@
 //draw_debug_text( x, y, string(dead_alt) )
-//draw_debug_text( x, y+32, string(num_pipes) )
 //
 
 //draw_debug_text( x, y, string(strong_charge) )
