@@ -46,7 +46,7 @@ switch(attack)
     break;
     
     case AT_DSPECIAL:
-    	if (window == 4 && window_timer == 1) {
+    	if (window == 4 && window_timer == 1 && !hitpause) {
     		spawn_base_dust(x+(56*spr_dir),y, "dash", -spr_dir);
     		spawn_base_dust(x-(24*spr_dir),y, "dash", spr_dir);
     	}
