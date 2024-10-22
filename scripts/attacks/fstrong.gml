@@ -6,12 +6,12 @@ set_attack_value(AT_FSTRONG, AG_HURTBOX_SPRITE, sprite_get("fstrong_hurt"));
 
 //pre charge
 set_window_value(AT_FSTRONG, 1, AG_WINDOW_TYPE, 1);
-set_window_value(AT_FSTRONG, 1, AG_WINDOW_LENGTH, 11);
+set_window_value(AT_FSTRONG, 1, AG_WINDOW_LENGTH, 10);
 set_window_value(AT_FSTRONG, 1, AG_WINDOW_ANIM_FRAMES, 2);
 
 //postcharge
 set_window_value(AT_FSTRONG, 2, AG_WINDOW_TYPE, 1);
-set_window_value(AT_FSTRONG, 2, AG_WINDOW_LENGTH, 8);
+set_window_value(AT_FSTRONG, 2, AG_WINDOW_LENGTH, 7);
 set_window_value(AT_FSTRONG, 2, AG_WINDOW_ANIM_FRAME_START, 2);
 set_window_value(AT_FSTRONG, 2, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_FSTRONG, 2, AG_WINDOW_HSPEED, 1.5);

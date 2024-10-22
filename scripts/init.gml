@@ -209,5 +209,15 @@ twenny_randquote_icon = "vicf_base";
 // just in case
 is_voiced = true;
 
+// compat
+knight_compat_dream = 
+    [
+        "W0AH, THE R0ACHES HERE ARE EVEN BIGGER THAN IN THE SEWERS!",
+        "0R IS IT A GH0ST? AM I A GH0ST?",
+        "AM I... N0T THIS AGAIN."
+    ]
+arena_title = "Ambrosia's CUTEST Anomaly"
+mamizou_transform_spr = sprite_get("mami_transformation");
+
 //if (get_player_color(player) == 19) dead_alt = true 
 //else dead_alt = false;

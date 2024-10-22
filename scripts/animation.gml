@@ -68,6 +68,7 @@ if (in_hstance) {
 			sprite_index = sprite_get("hstance_walljump")
 		break;
 		case PS_HITSTUN: 
+		case PS_TUMBLE:
 			sprite_index = sprite_get("hstance_hurt");
 		break;
 		case PS_LAND:

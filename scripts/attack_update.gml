@@ -84,9 +84,14 @@ switch(attack) {
 		if (window == 2) {
 			// Update aim
 			if (!joy_pad_idle) {
+				// Update aim
 				if (up_down) bomb_angle = 90;
     			else if (down_down) bomb_angle = 0;
     			else bomb_angle = 45;
+    			
+    			// Change directions
+    			if (spr_dir == 1 && left_down) spr_dir = -1;
+    			else if (spr_dir == -1 && right_down) spr_dir = 1;
 			}
 			
 			if (window_timer == window_end_time && special_down) window_timer = 1;
@@ -384,7 +389,7 @@ switch(attack) {
     			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
     			sound_play(asset_get("sfx_pom_fstrong_hit"), false, noone, 0.2,  1);
     			print_debug(fstrong_voiceline)
-    			sound_play(sound_get(fstrong_voiceline), false, noone, 0.2,  1.3 - (random_func(get_gameplay_time(), 4, true) / 10)  );
+    			sound_play(sound_get(fstrong_voiceline), false, noone, 0.4,  1.3 - (random_func(get_gameplay_time(), 4, true) / 10)  );
     		}
     	}
     	break;
@@ -478,15 +483,15 @@ switch(attack) {
 		
 		if (window == 1) {
 			if (window_timer == window_end_time) {
-				sound_play(asset_get("sfx_forsburn_cape_swipe"), false, 0, 0.2, 1.2);
+				sound_play(asset_get("sfx_forsburn_cape_swipe"), false, 0, 0.4, 1.2);
 			}
 		} else if (window == 2) {
 			if (window_timer % 6 == 0) {
-				sound_play(sound_get("metal_clatter"), false, 0, 0.2, (random_func(3, 5, true) + 9) * 0.1);
+				sound_play(sound_get("metal_clatter"), false, 0, 0.4, (random_func(3, 5, true) + 9) * 0.1);
 			}
 			if (window_timer == 6) {
-				sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.5, 1.2);
-				sound_play(asset_get("sfx_ell_cooldown"), false, 0, 0.2, 1.5);
+				sound_play(asset_get("sfx_waveland_mol"), false, 0, 0.8, 1.2);
+				sound_play(asset_get("sfx_ell_cooldown"), false, 0, 0.4, 1.5);
 			}
 		}
 		break;
@@ -498,6 +503,11 @@ switch(attack) {
     		sound_play( sound_get("twenny_taunt"), false, noone, 0.5, 1);
     	}
 	break;
+}
+
+//B - Reversals
+if (attack == AT_NSPECIAL || attack == AT_FSPECIAL || attack == AT_DSPECIAL || attack == AT_USPECIAL){
+    trigger_b_reverse();
 }
 
 //iasa_script (insantly as soon as, aka switch back into full control/idle) without having to check for !was_parried

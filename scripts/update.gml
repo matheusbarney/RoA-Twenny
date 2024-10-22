@@ -53,7 +53,7 @@ switch (state) {
         if (state_timer == 0) sound_play(sound_get("keyboard"), false, 0, 1, 1.1);
         // no break
     case PS_DASH:
-        if (state_timer % 4 == 1) sound_play(sound_get("keyboard"), false, 0, 0.2, (random_func(2, 4, true) + 8) * 0.1);
+        if (state_timer % 4 == 1) sound_play(sound_get("keyboard"), false, 0, 0.9, (random_func(2, 4, true) + 8) * 0.1);
         break;
     case PS_CROUCH:
         was_crouching = true;
@@ -68,7 +68,7 @@ switch (state) {
             var mod_check = floor(crawl_time % max_check);
             if (crawl_time % 20 == 1) {
                 sound_stop(asset_get("sfx_gus_jump"));
-                crawl_sound = sound_play(asset_get("sfx_gus_jump"), false, 0, 0.15, (random_func(2, 3, true) + 8) * 0.2);
+                crawl_sound = sound_play(asset_get("sfx_gus_jump"), false, 0, 0.5, (random_func(2, 3, true) + 8) * 0.2);
             }
     
             if (right_down && spr_dir || left_down && -spr_dir) fake_img = crawl_time * crawl_anim_speed;

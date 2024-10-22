@@ -138,7 +138,16 @@ if (!twenny_handled_victory_quote)
         case "2552853220": // Fumo Reimu
         case "2839808881": // Kirby
         case "2229887722": // Amber
+        case "2871608790": //  Azi
             quote = "> LITTLE CUTIEPIES LIKE Y0U MAKE MY WIRES CHURN. Y0U KN0W DAMN WELL I’M STILL THE CUTEST!!";
+            break;
+            
+        // rat civilization
+        case "2867341866": // Aur
+        case "2930066171": // Chad
+        case CH_POMME:
+        case CH_OLYMPIA:
+            quote = "> THIS WILL SURELY PLEASE THE SEWER RAT DEM0GRAPHIC."
             break;
             
         // Putrolce
@@ -175,17 +184,43 @@ if (!twenny_handled_victory_quote)
         // Thara
         case "2292289481": //Thara
         case "2540332317": //Thara
-            quote = "VERMIN ALERT! EITHER I SQUASH Y0U N0W 0R Y0U CAN G0 WATCH MY SH0W LATER T0NIGHT, H0W AB0UT IT?";
+            quote = "> VERMIN ALERT! EITHER I SQUASH Y0U N0W 0R Y0U CAN G0 WATCH MY SH0W LATER T0NIGHT, H0W AB0UT IT?";
             break;
         
         // Truck-kun
         case "2997493298": //Truck-kun
-            quote = "HEY H0TSH0T, ARE YA SINGLE? SW00000N.";
+            quote = "> HEY H0TSH0T, ARE YA SINGLE? SW00000N.";
             break;
         
         // N/A
         case "2229832619": //N/A
-            quote = "AWW WELL AREN’T Y0U THE CUTEST THING? I W0NDER IF I CAN FIT IT D0WN IN THE SEWERS.";
+            quote = "> AWW WELL AREN’T Y0U THE CUTEST THING? I W0NDER IF I CAN FIT IT D0WN IN THE SEWERS.";
+            break;
+            
+        // Tamat
+        case "2273328517": //Tamat
+            quote = "> WAIT... I F0RG0T T0 GET HER AUTOGRAPH! QUICK, BEF0RE SHE DISSAPEARS INT0 MYSTERI0US ARG G00P!!";
+            break;
+            
+        // Spooky
+        //case "": //Spooky
+        //    quote = "I'LL ADD THESE 'JUMPSCARES' T0 MY S0OW IF IT MEANS M0RE GH0STS WILL LIKE IT, H0WZABOUDIT?!"
+        //    break;
+        
+        case "3120902361": // Desperado
+            quote = "> GH0STS B0RN FR0M BITTERNESS ARE THE W0RST- THEY ALM0ST NEVER WANNA WATCH MY SH*T!"
+            break;
+            
+        case "2816145042": // SSL NAC
+            quote = "You are alone, child. There is only darkness for you, and only death for your people."
+            break;
+            
+        case "2201608216": // Blake
+            quote = "> THIS LIL' SCRAPPYP00 ISN'T 0NE OF MY TRASH CR0NIES, IS IT? MAYBE I NEED T0 DISSECT IT..."
+            break;
+            
+        case "2823288287": // SSL Twenny, same as base twenny
+            quote = "> SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
             break;
         
         default: break;
@@ -217,6 +252,7 @@ return quote
         case "3307937190": //Pastelle;
         case "2229832619": //N/A
         //case "": // Celeste
+        case "2823288287": // SSL Twenny, same as base twenny
             icon = "vicf_laugh";
         
         //angry
@@ -228,6 +264,7 @@ return quote
         case "2552853220": // Fumo Reimu
         case "2839808881": // Kirby
         case "2229887722": // Amber
+        case "3120902361": // Desperado
             icon = "vicf_angry";
             break;
             
@@ -265,9 +302,24 @@ return quote
         case "3351719064": // darkrai
         case "3352057377": // charlotte
         case "3047409367": //Nano
+        case "2201608216": // Blake
             icon = "vicf_glitch";
             break;
 
+        // nothing
+        case "2816145042": // SSL NAC
+            icon = "vicf_nothing";
+            break;
+            
+        
+        // stare
+        case "2867341866": // Aur
+        case "2930066171": // Chad
+        case CH_POMME:
+        case CH_OLYMPIA:
+        case "2273328517": //Tamat
+            icon = "vicf_stare";
+            break;
         
         default: break;
     }
@@ -332,6 +384,14 @@ return icon
             voiceline = "vic_cute_char"
             break;
         
+        // rat society
+        case "2867341866": // Aur
+        case "2930066171": // Chad
+        case CH_POMME:
+        case CH_OLYMPIA:
+            voiceline = "vic_d4"
+            break;
+        
         //nothing
         case "3302238950": //Alexis
         case "3309240911": //Putrolce
@@ -345,6 +405,7 @@ return icon
         case "2996263079": //Yuuko
         case "3316053085": //Venus
         case "2601775097": //Reygard
+        case "2273328517": //Tamat
             voiceline = "nothing";
             break;
 

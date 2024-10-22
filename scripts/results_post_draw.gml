@@ -120,7 +120,7 @@ if (winner == player /* && uhc_batteries */)
     //
     //
     quotes[i++] = "> THIS WILL SURELY PLEASE THE SEWER RAT DEM0GRAPHIC.";
-    icons[i_i++] = "vicf_base";
+    icons[i_i++] = "vicf_stare";
     voiceclips[v_i++] = "vic_d4";
     //
     //

@@ -41,6 +41,7 @@ switch (attack) {
     		window_timer = 0;
     		grabbed_player_obj = hit_player_obj;
     		my_hitboxID.destroyed_next = true;
+    		has_long_endlag = false;
     		
     		hitpause = true;
     		hitstop = hit_player_obj.hitstop;
