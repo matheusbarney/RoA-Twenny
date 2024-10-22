@@ -3,6 +3,7 @@ if (init == 0){
 	var num_pipes = 0;
     with (asset_get("obj_article1")) if (player_id == other.player_id) {
         if (pipe_id == 1) { // Next pipe to be removed
+        	pipewarp_other = noone;
         	pipe_id = -2;
         	state = 2;
 			state_timer = 0;
