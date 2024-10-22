@@ -167,9 +167,7 @@ if (state == 1){ //
 	    
 	    //warp you
 	    if (do_pipewarp) with (oPlayer) {
-	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance
-	        	&& !(attack == AT_EXTRA_3 && state == PS_ATTACK_AIR && grabbed_player_obj != noone)
-	        ) {
+	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance) {
 	        	other.do_warp_effects = true;
 	        	
 	            x = other.warpcoord_x;

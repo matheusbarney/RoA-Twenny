@@ -296,6 +296,7 @@ switch(attack) {
     
     // Claw
     case AT_EXTRA_3:
+    	if (window > 1 && (grabbed_player_obj != noone || grabbed_bomb_obj != noone)) pipewarp_cd = 2; // block pipe warps
     	can_fast_fall = false;
     	switch window {
     		case 1:
@@ -305,6 +306,7 @@ switch(attack) {
 	    			claw_abs_y = y+vsp;
 	    			claw_vsp = 12;
 	    			grabbed_player_obj = noone;
+	    			grabbed_bomb_obj = noone;
 	    			
 	    			claw_hitbox = create_hitbox(AT_EXTRA_3, 1, x, y);
     			}
@@ -342,12 +344,25 @@ switch(attack) {
 	    			}
     			}
     			
+    			// In addition to the above checks, check for bag bombs
+				with (obj_article2) if ("is_twenny_bomb" in self && state == 11 && position_meeting(other.claw_x, other.claw_abs_y, self)) {
+					bomb_fuse = 999;
+					fuse_active = false;
+					with (other) {
+						grabbed_bomb_obj = other;
+						window = 3;
+    					window_timer = 0;
+    					if (instance_exists(claw_hitbox)) claw_hitbox.destroyed_next = true;
+					}
+				}
+    			
     			break;
     		case 3:
     			can_move = false;
     			fall_through = instance_exists(grabbed_player_obj);
     			hsp = 0;
     			if (!hitpause) vsp = 15;
+    			
     			if (instance_exists(grabbed_player_obj)) {
     				grabbed_player_obj.hitstop++;
     				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);
@@ -359,15 +374,36 @@ switch(attack) {
     					set_attack_value(attack, AG_CATEGORY, 2);
     				}
     			}
-    			else if (window_timer == window_end_time) { // loop, but maintain the last anim frame
+    			
+    			if (instance_exists(grabbed_bomb_obj)) {
+    				grabbed_bomb_obj.fuse_active = false;
+    				grabbed_bomb_obj.x = lerp(grabbed_bomb_obj.x, x, 0.5);
+    				
+    				if (!instance_exists(grabbed_player_obj) && y+vsp >= grabbed_bomb_obj.y+28) {
+    					window = 4;
+    					window_timer = 0;
+    					set_attack_value(attack, AG_CATEGORY, 2);
+    				}
+    			}
+    			
+    			if (window_timer == window_end_time) { // loop, but maintain the last anim frame
     				window_timer -= 3;
     			}
     			break;
     		case 4:
+    			if (window_timer == window_end_time && !instance_exists(grabbed_player_obj)) {
+    				window = 7;
+    				window_timer = 0;
+    			}
     		case 5:
     		case 6:
     			hsp = 0;
     			vsp = 0;
+    			if (instance_exists(grabbed_bomb_obj) && grabbed_bomb_obj.state == 11) {
+    				grabbed_bomb_obj.fuse_active = false;
+    				grabbed_bomb_obj.x = lerp(grabbed_bomb_obj.x, x, 0.5);
+    				y = grabbed_bomb_obj.y+28;
+    			}
     			if (instance_exists(grabbed_player_obj)) {
     				grabbed_player_obj.hitstop++;
     				grabbed_player_obj.x = lerp(grabbed_player_obj.x, x, 0.5);

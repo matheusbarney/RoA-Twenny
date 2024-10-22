@@ -243,20 +243,21 @@ if (state == 11) { //
     	}
     }
     
-    // FSpec collision
-    with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && attack == AT_FSPECIAL && place_meeting(x, y, other)) {
+    // FSpec/Claw collision
+    with pHitBox if (player_id.is_twenny && other.hit_cooldown <= 0 && (attack == AT_FSPECIAL || attack == AT_EXTRA_3 && hbox_num == 4) && place_meeting(x, y, other)) {
     	player_id.has_hit = true;
 		if (!player_id.hitpause) {
 			player_id.old_hsp = player_id.hsp;
 			player_id.old_vsp = player_id.vsp;
 		}
 		player_id.hitpause = true;
-		player_id.hitstop = max(player_id.hitstop, hitpause+10);
+		var bomb_hitpause = (attack == AT_FSPECIAL) ? hitpause+10 : hitpause;
+		player_id.hitstop = max(player_id.hitstop, bomb_hitpause);
 		player_id.hitstop_full = player_id.hitstop;
 		
 		spawn_hit_fx(floor((x+other.x)/2)+hit_effect_x, floor((y+other.y)/2)+hit_effect_y, hit_effect);
 		sound_play(sound_effect);
-		other.hitstop = max(other.hitstop, hitpause+10);
+		other.hitstop = floor(max(other.hitstop, bomb_hitpause));
 		
 		sound_play(asset_get("sfx_forsburn_combust"), false, noone, 0.8, 1);
 		
@@ -274,13 +275,13 @@ if (state == 11) { //
 		other.hit_cooldown = self.length;
 		other.was_hit = true;
 		other.tp_dir = player_id.spr_dir;
+		other.bomb_angle = (attack == AT_FSPECIAL) ? 45 : 90;
     }
     if (!hitstop && hit_cooldown > 0) hit_cooldown--;
     
     if (was_hit) {
     	state = 12;
-    	state_timer = 9;
-    	bomb_angle = 45;
+    	state_timer = 10;
     }
     
     // Hitbox management
@@ -313,7 +314,7 @@ if (state == 12) { // BAG BOMB SPLIT (teleport/fspec behavior)
 	hsp = clamp(hsp, 0, 0)
 	vsp = clamp(vsp, 0, 0)
 	
-    if (state_timer == state_end){//when the timer reaches end of this state's duration
+    if (!hitstop && state_timer >= state_end){//when the timer reaches end of this state's duration
     	player_id.bomb_type = 0;
     	
     	player_id.bomb_angle = bomb_angle;
