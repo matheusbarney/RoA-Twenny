@@ -82,7 +82,6 @@ if (state == 1){ //
     }
     
     if (player_id.num_pipes > 1) {
-    	mask_index = warp_mask_index;
         with (asset_get("obj_article1")){
             if (id != other.id && player_id == other.player_id) {
 		    	other.warpcoord_dir = spr_dir;
@@ -97,8 +96,9 @@ if (state == 1){ //
 		    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
             }
         }
-        mask_index = collision_mask_index;
     }
+    
+    mask_index = warp_mask_index;
     
     //Warp handling
     if (player_id.num_pipes == 2 && pipewarp_cd <= 0) {
@@ -204,6 +204,8 @@ if (state == 1){ //
 		    }
 	    }
     }
+    
+    mask_index = collision_mask_index;
     
     if (warp_usages >= warp_usages_max){//kill it when its teleported twice already
         state_timer = 0; //reset state timer
