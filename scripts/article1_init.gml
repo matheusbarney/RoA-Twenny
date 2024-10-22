@@ -35,6 +35,7 @@ pipe_id = -1;
 summon_time = 8;
 
 //--- Hey Peebrain, You Teleport?
+pipewarp_other = noone;
 warpcoord_x = 0;
 warpcoord_y = 0;
 warpcoord_dir = 1;

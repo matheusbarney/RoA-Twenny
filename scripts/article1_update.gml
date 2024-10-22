@@ -10,6 +10,8 @@ if (init == 0){
         else if (pipe_id == 2) { // Last pipe placed
         	pipe_id--;
         	pipe_flash_timer = pipe_flash_duration;
+        	pipewarp_other = other;
+        	other.pipewarp_other = self;
         	other.pipe_flash_timer = other.pipe_flash_duration;
         	sound_play(asset_get("sfx_boss_shine"), false, noone, 1, 1.4);
         	num_pipes++;
@@ -25,9 +27,7 @@ if (init == 0){
 
 if (free) {
 	spawn_hit_fx(x, y-30, HFX_GEN_OMNI);
-	player_id.num_pipes--;
-	instance_destroy();
-	exit;
+	state = 3;
 }
 
 state_timer++; //progress the timer
@@ -81,27 +81,24 @@ if (state == 1){ //
     	pipe_color = pipe_inactive;
     }
     
-    if (player_id.num_pipes > 1) {
-        with (asset_get("obj_article1")){
-            if (id != other.id && player_id == other.player_id) {
-		    	other.warpcoord_dir = spr_dir;
-		    	other.warpcoord_angle = pipe_angle;
-		    	if (pipe_angle == 90) {
-		    		other.warpcoord_x = x;
-		    		other.warpcoord_y = y - 24;
-		    	} else {
-		    		other.warpcoord_x = x + spr_dir * 16;
-            		other.warpcoord_y = y - 12;
-		    	}
-		    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
-            }
-        }
+    if (instance_exists(pipewarp_other)) with (pipewarp_other) {
+    	other.warpcoord_dir = spr_dir;
+    	other.warpcoord_angle = pipe_angle;
+    	if (pipe_angle == 90) {
+    		other.warpcoord_x = x;
+    		other.warpcoord_y = y - 24;
+    	} else {
+    		other.warpcoord_x = x + spr_dir * 16;
+    		other.warpcoord_y = y - 12;
+    	}
+    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
     }
     
     mask_index = warp_mask_index;
+    var do_pipewarp = (instance_exists(pipewarp_other) && pipewarp_cd <= 0);
     
     //Warp handling
-    if (player_id.num_pipes == 2 && pipewarp_cd <= 0) {
+    if (do_pipewarp) {
     
 	    //check for electric hitboxes
 	    var electrified = false;
@@ -146,8 +143,8 @@ if (state == 1){ //
 	    }
 	    
 	    //warp bomb
-	    if (player_id.num_pipes >= 2) with (asset_get("obj_article2")) {
-	        if (other.pipewarp_cd == 0 && "is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
+	    if (do_pipewarp) with (asset_get("obj_article2")) {
+	        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
 	            //--flavor
 	            sound_play(sound_get("door_close"));
 	            spawn_hit_fx( x, y, HFX_GEN_SPIN);
@@ -172,9 +169,8 @@ if (state == 1){ //
 	    }
 	    
 	    //warp you
-	    with (oPlayer) {
-	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0
-	        	&& other.pipewarp_cd <= 0 && other.player_id.num_pipes == 2 && in_hstance
+	    if (do_pipewarp) with (oPlayer) {
+	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance
 	        	&& !(attack == AT_EXTRA_3 && state == PS_ATTACK_AIR && grabbed_player_obj != noone)
 	        ) {
 	        	other.do_warp_effects = true;
@@ -223,17 +219,23 @@ if (state == 2){ //
 	pipe_color = pipe_darkener
 	
 	with (asset_get("obj_article1")){
-            if (id != other.id && player_id == other.player_id) {
-		    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
-            }
+        if (id != other.id && player_id == other.player_id) {
+	    	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
         }
+    }
 	
     if (state_timer == state_end){//when the timer reaches end of this state's duration
-        instance_destroy();
-        exit;
+        state = 3;
     }
 }
 
+// State 3 - despawn routine
+if (state == 3) {
+	if (instance_exists(pipewarp_other)) pipewarp_other.pipewarp_other = noone;
+	player_id.num_pipes--;
+	instance_destroy();
+	exit;
+}
 
 if (do_warp_effects) {
     sound_play(sound_get("door_close"));
