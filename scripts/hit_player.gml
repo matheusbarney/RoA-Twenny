@@ -29,9 +29,18 @@ switch (attack) {
         break;
     
     case AT_USTRONG:
-        if (my_hitboxID.hbox_num > 1 && my_hitboxID.hbox_num < 7) sound_play(asset_get("sfx_absa_singlezap1"), false, noone, 1,  1);
-        else if (my_hitboxID.hbox_num == 7) sound_play(asset_get("sfx_absa_kickhit"), false, noone, 1,  1);
+        if (my_hitboxID.hbox_num == 5) sound_play(asset_get("sfx_absa_kickhit"), false, noone, 1,  1);
+        else if (my_hitboxID.hbox_num > 1) sound_play(asset_get("sfx_absa_singlezap1"), false, noone, 1,  1);
         has_long_endlag = false //pseudo whifflag
+        
+        // Multihits: pull opponents down through plats if necessary
+        if (2 <= my_hitboxID.hbox_num && my_hitboxID.hbox_num <= 4 &&
+            my_hitboxID.y > hit_player_obj.y && !hit_player_obj.free &&
+            hit_player_obj.ground_type == 2)
+        {
+            hit_player_obj.y += 2;
+            hit_player_obj.free = false;
+        }
         break;
         
     case AT_DSTRONG:

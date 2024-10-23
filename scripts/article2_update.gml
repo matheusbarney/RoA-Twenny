@@ -135,8 +135,8 @@ if (state == 1) { //
 		sound_play(asset_get("sfx_mol_norm_bounce1"), false, noone, 0.4, 1.4+(0.4*random_func(0, 1, false)));
 		
 		if (hbox_num < 5) {
-			other.hsp = (player_id.x - other.x)/4 + (5*spr_dir);
-			other.vsp = (player_id.y < other.y)/10 - 6;
+			other.hsp = (x - other.x)/5 + (player_id.hsp);
+			other.vsp = (y - other.y)/5 - 5;
 		} else {
 			other.hsp = 8 * player_id.spr_dir;
 			other.vsp = -8;
