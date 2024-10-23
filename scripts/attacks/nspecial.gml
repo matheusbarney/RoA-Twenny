@@ -81,7 +81,7 @@ i++;
 // scrap bomb basic hitbox
 set_hitbox_value(AT_NSPECIAL, i, HG_HITBOX_TYPE, 2);
 set_hitbox_value(AT_NSPECIAL, i, HG_WINDOW, 999);
-set_hitbox_value(AT_NSPECIAL, i, HG_LIFETIME, 999);
+set_hitbox_value(AT_NSPECIAL, i, HG_LIFETIME, 2);
 set_hitbox_value(AT_NSPECIAL, i, HG_WIDTH, 12);
 set_hitbox_value(AT_NSPECIAL, i, HG_HEIGHT, 12);
 set_hitbox_value(AT_NSPECIAL, i, HG_PRIORITY, 1);
@@ -131,12 +131,14 @@ set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0.8);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_springgo"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
 set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_IS_TRANSCENDENT, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PLASMA_SAFE, 1);
 i++;
 
 // bag bomb basic hitbox
 set_hitbox_value(AT_NSPECIAL, i, HG_HITBOX_TYPE, 2);
 set_hitbox_value(AT_NSPECIAL, i, HG_WINDOW, 999);
-set_hitbox_value(AT_NSPECIAL, i, HG_LIFETIME, 999);
+set_hitbox_value(AT_NSPECIAL, i, HG_LIFETIME, 2);
 set_hitbox_value(AT_NSPECIAL, i, HG_WIDTH, 30);
 set_hitbox_value(AT_NSPECIAL, i, HG_HEIGHT, 30);
 set_hitbox_value(AT_NSPECIAL, i, HG_PRIORITY, 1);
@@ -158,5 +160,4 @@ set_hitbox_value(AT_NSPECIAL, i, HG_BASE_HITPAUSE, 10);
 set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_blow_medium1"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
-set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
-
+set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1)

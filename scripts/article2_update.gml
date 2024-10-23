@@ -17,6 +17,13 @@ if (!is_playtest && (
 	state = 99; // destroy
 }
 
+// Clairen checks
+if (place_meeting(x, y, asset_get("plasma_field_obj"))) {
+    sound_play(asset_get("sfx_clairen_hit_weak"));
+    spawn_hit_fx(x, y, HFX_CLA_PLASMA_PLUS);
+    state = 99; // destroy
+}
+
 // // // // STATE 1 - SCRAPBOMB IDLE
 if (state == 1) { //
 	state_end = 30; //duration of this state in frames
@@ -179,6 +186,7 @@ if (state == 1) { //
 			contact_hitbox.hsp = 0;
 			contact_hitbox.vsp = 0;
 		}
+		contact_hitbox.length++;
 		if (!free) contact_hitbox.length = 0; 
     }
 
@@ -291,7 +299,7 @@ if (state == 11) { //
 		contact_hitbox.y = y;
 		contact_hitbox.hsp = hsp;
 		contact_hitbox.vsp = vsp;
-		// if (contact_hitbox.has_hit) bomb_fuse = 10;
+		contact_hitbox.length++;
 		if (!free && state_timer > 1) contact_hitbox.length = 0; 
 		has_hit = true;
 	}
@@ -377,7 +385,7 @@ if (state == 98){ //
 
 // // // // STATE 99 - DIE SILENTLY OR DIE TRYING
 if (state == 99){ //
-
+	
     instance_destroy();//remove article
     exit;//exits the code (not 100% necessary but its good to be safe)
 
