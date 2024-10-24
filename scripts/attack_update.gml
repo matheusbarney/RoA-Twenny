@@ -176,8 +176,10 @@ switch(attack) {
     			window_timer = 1;
     		} else if !special_down {
     			no_pipes_here = true;
-    			if (place_meeting(x+pipe_distance*spr_dir, y, asset_get("obj_article1"))) {
-    				no_pipes_here = false;
+    			var _x = x+pipe_distance*spr_dir;
+    			var _y = y-2;
+    			with (obj_article1) if ("is_twenny_pipe" in self && position_meeting(_x, _y, self)) {
+    				other.no_pipes_here = false;
     			}
     			if (no_pipes_here) {
     				window = 3;
