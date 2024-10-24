@@ -285,6 +285,9 @@ switch(attack) {
         	has_long_endlag = true;
         }
         if (window == 3) {
+        	if (window_timer > 3) {
+        		can_shield = true;
+        	}
         	vsp *= 0.94;
         	if (vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
 	        	attack_end();
@@ -617,8 +620,8 @@ var dfx; //dust_fx value
 var dfg; //fg_sprite value
 var dust_color = 0;
 var x = argument[0], y = argument[1], name = argument[2];
-var dir = argument_count > 3 ? argument[3] : 0;
-var angle = argument_count > 4 ? argument[4] : 0;
+var dir; if (argument_count > 3) dir = argument[3]; else dir = 0;
+var angle; if (argument_count > 4) angle = argument[4]; else angle = 0;
 
 switch (name) {
     default: 
