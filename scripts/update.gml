@@ -85,6 +85,7 @@ switch (state) {
 }
 
 if (!free || state == PS_HITSTUN) {
+	move_cooldown[AT_FSPECIAL] = 0;
     dair_used = false;
     sound_stop(asset_get("sfx_absa_current_pop"));
 }

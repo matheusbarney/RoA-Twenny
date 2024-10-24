@@ -103,7 +103,7 @@ switch(attack) {
 			nspec_charge++;
 			if (nspec_charge % 14 == 1) {
 				sound_play(asset_get("sfx_frog_fspecial_charge_gained_2"), false, noone, 0.2 , 1 + (nspec_charge / 100))
-				spawn_hit_fx(x-(32*spr_dir), y-8, splsh);
+				spawn_hit_fx(x-(28*spr_dir)-(random_func(get_gameplay_time(), 16, true)), y-8-(random_func(get_gameplay_time(), 16, true)), splsh);
 			}
     		if (nspec_charge == nspec_charge_threshold) {
     			sound_play(asset_get("mfx_star"));
@@ -228,6 +228,7 @@ switch(attack) {
     
     // Spin
     case AT_FSPECIAL:
+    	if (free) move_cooldown[AT_FSPECIAL] = 30;
     	switch window {
     		case 1:
     			if (window_timer == window_end_time) {
@@ -264,8 +265,6 @@ switch(attack) {
     		case 3:
     			hsp = clamp(hsp, -6, 6);
     			if (window_timer == window_end_time) {
-    				if (free) set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 7);
-    				else set_window_value(AT_FSPECIAL, 5, AG_WINDOW_TYPE, 1);
     				hsp = 1*spr_dir;
     				vsp = -4;
     				spawn_base_dust(x+(10*spr_dir), y, free ? "djump_small" : "jump");

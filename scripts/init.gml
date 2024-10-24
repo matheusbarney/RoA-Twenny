@@ -174,7 +174,7 @@ livespark_index = 2;
 nspec_charge = 0;
 bomb_type = 0; // 0 = scrap, 1 = big
 bomb_angle = 45;
-nspec_charge_threshold = 45;// Frames to charge garbage bag
+nspec_charge_threshold = 20;// Frames to charge garbage bag
 
 //-- Monitor Head Stance.
 in_hstance = false; // Whether hstance values should be in effect.
