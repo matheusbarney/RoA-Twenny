@@ -184,8 +184,13 @@ if (state == 1){ //
 	            
 	            if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR) {
 	            	attack_end();
-	            	state = PS_IDLE_AIR;
-	            	state_timer = 0;
+	            	set_state(PS_IDLE_AIR);
+	            }
+	            
+	            else if (state == PS_AIR_DODGE) {
+	            	set_state(PS_IDLE_AIR);
+	            	hurtboxID.dodging = false;
+					hurtboxID.sprite_index = hurtbox_spr;
 	            }
 	            
 	            pipewarp_cd = 10;
