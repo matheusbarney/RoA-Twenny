@@ -213,6 +213,8 @@ knight_compat_dream =
     ]
 arena_title = "Ambrosia's CUTEST Anomaly"
 mamizou_transform_spr = sprite_get("mami_transformation");
+pot_compat_variable = sprite_get("pumbo_dish");
+pot_compat_text = "Spaghetti al Necrotico"
 
 //if (get_player_color(player) == 19) dead_alt = true 
 //else dead_alt = false;
