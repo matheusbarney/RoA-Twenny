@@ -45,7 +45,7 @@ pipewarp_cd = 0;
 pipewarp_cd_max = 120; //limits how many frames the cooldown is
 //
 warp_usages = 0;
-warp_usages_max = 2;
+warp_usages_max = 3;
 //
 do_warp_effects = 0;
 //---------------------------------

@@ -128,6 +128,7 @@ if (!twenny_handled_victory_quote)
         case "3351720915": // zombies
         case "3351719064": // darkrai
         case "3352057377": // charlotte
+        case "3353596512": // Employee
             quote = ">AWW, WHAT AN AD0RABLE HALL0WEEN C0STUME!~ DID Y0UR M0M MAKE IT? LET ME JUST PEEL IT 0FF."
             break; 
         
@@ -301,6 +302,7 @@ return quote
         case "3351720915": // zombies
         case "3351719064": // darkrai
         case "3352057377": // charlotte
+        case "3353596512": // Employee
         case "3047409367": //Nano
         case "2201608216": // Blake
             icon = "vicf_glitch";
@@ -372,6 +374,7 @@ return icon
         case "3351720915": // zombies
         case "3351719064": // darkrai
         case "3352057377": // charlotte
+        case "3353596512": // Employee
             voiceline = "vic_hjam_char"
             break;
         

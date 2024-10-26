@@ -135,6 +135,7 @@ if (state == 1){ //
 	    		spark.vsp = -9;
 	    	}
 	    	
+	    	warp_usages++;
 	    	pipewarp_cd = pipewarp_cd_max;
 			do_warp_effects = true;
 	    }
