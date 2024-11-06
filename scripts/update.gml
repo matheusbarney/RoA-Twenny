@@ -108,6 +108,7 @@ if (in_hstance) {
         state = PS_ATTACK_GROUND;
         state_timer = 0;
         attack = AT_EXTRA_1;
+        hurtboxID.sprite_index = sprite_get("uspecial_land_hurt");
         window = 1;
         window_timer = 0;
     } else if (vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY))) {
