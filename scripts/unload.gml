@@ -124,11 +124,13 @@ if (!twenny_handled_victory_quote)
         case "3351637675": // fiertay
         case "3351523308": // league guy
         case "3351696106": // void friend
-        // case "": // im not including the blob time cat bro
+        case "3351705451": // blob time cat
         case "3351720915": // zombies
         case "3351719064": // darkrai
         case "3352057377": // charlotte
         case "3353596512": // Employee
+        case "3357823813": // Dracula
+        case "3359393961": // Majin Sonic
             quote = ">AWW, WHAT AN AD0RABLE HALL0WEEN C0STUME!~ DID Y0UR M0M MAKE IT? LET ME JUST PEEL IT 0FF."
             break; 
         

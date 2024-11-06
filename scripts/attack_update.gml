@@ -73,7 +73,7 @@ switch(attack) {
 	
 	// Scrapbomb and Trashbag Bomb
 	case AT_NSPECIAL:
-		move_cooldown[AT_NSPECIAL] = 30;
+		move_cooldown[AT_NSPECIAL] = 45;
 	
 		// Allow holding to charge
 		if (window == 1) {
