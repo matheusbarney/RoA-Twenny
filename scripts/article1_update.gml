@@ -170,6 +170,7 @@ if (state == 1){ //
 	    if (do_pipewarp) with (oPlayer) {
 	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance) {
 	        	other.do_warp_effects = true;
+	        	other.single_warp_effect = true;
 	        	
 	            x = other.warpcoord_x;
 	            y = other.warpcoord_y;
@@ -177,22 +178,21 @@ if (state == 1){ //
 	            in_hstance = false;
 	            
 	            if (other.warpcoord_angle == 90) {
-	            	vsp = -13;
+	            	stored_hsp = 0;
+	            	stored_vsp = -13;
 	            } else {
-	            	hsp = other.warpcoord_dir * 10
-	            	vsp = -10
+	            	stored_hsp = other.warpcoord_dir * 10
+	            	stored_vsp = -10
 	            }
 	            
-	            if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR) {
-	            	attack_end();
-	            	set_state(PS_IDLE_AIR);
-	            }
-	            
+	            if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR) attack_end();
 	            else if (state == PS_AIR_DODGE) {
-	            	set_state(PS_IDLE_AIR);
 	            	hurtboxID.dodging = false;
 					hurtboxID.sprite_index = hurtbox_spr;
 	            }
+	            
+	            set_state(PS_ATTACK_GROUND);
+	            set_attack(AT_EXTRA_4);
 	            
 	            pipewarp_cd = 10;
 	            
@@ -243,9 +243,10 @@ if (state == 3) {
 if (do_warp_effects) {
     sound_play(sound_get("door_close"));
     sound_play(sound_get("door_open"));
-    spawn_hit_fx(x, y, HFX_GEN_SPIN);
-    spawn_hit_fx(warpcoord_x, warpcoord_y, HFX_GEN_SPIN);
+    spawn_hit_fx(x, y-10, HFX_GEN_SPIN);
+    if (!single_warp_effect) spawn_hit_fx(warpcoord_x, warpcoord_y, HFX_GEN_SPIN);
     do_warp_effects = false;
+    single_warp_effect = false;
 }
 
 #define set_spr_dir(new_dir)

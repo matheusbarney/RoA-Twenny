@@ -5,3 +5,8 @@ with (asset_get("obj_article1")) if (player == other.player) {
 }
 
 in_hstance = false;
+
+if (setting_visible) {
+    setting_visible = false;
+    // the game handles it from here
+}

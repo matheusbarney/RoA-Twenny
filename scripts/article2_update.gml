@@ -295,13 +295,20 @@ if (state == 11) { //
     // Hitbox management
     if (state_timer == 1) contact_hitbox = create_hitbox( AT_NSPECIAL, 4, x, y );
     if (instance_exists(contact_hitbox)){
+    	if (contact_hitbox.has_hit) {
+			if (!fuse_active) fuse_sound = sound_play(asset_get("sfx_mol_flash_light"), false, noone, 0.7, 1.3);
+			bomb_fuse = 7;
+			fuse_active = true;
+			has_hit = true;
+			hsp = clamp(hsp, -3, 3);
+			vsp = clamp(vsp, -3, 3);
+		}
 		contact_hitbox.x = x;
 		contact_hitbox.y = y;
 		contact_hitbox.hsp = hsp;
 		contact_hitbox.vsp = vsp;
 		contact_hitbox.length++;
 		if (!free && state_timer > 1) contact_hitbox.length = 0; 
-		has_hit = true;
 	}
     
     // Anim management

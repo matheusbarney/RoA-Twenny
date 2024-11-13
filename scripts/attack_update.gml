@@ -226,6 +226,23 @@ switch(attack) {
     	}
     	break;
     
+    // Pipe warp
+    case AT_EXTRA_4:
+    	if (window_timer < window_end_time) {
+    		setting_visible = true;
+    		visible = false;
+    		can_move = false;
+    		hsp = 0;
+    		vsp = 0;
+    	} else {
+    		setting_visible = false;
+    		visible = true;
+    		hsp = stored_hsp;
+    		vsp = stored_vsp;
+    		spawn_hit_fx(x, y-10, HFX_GEN_SPIN);
+    	}
+    	break;
+    
     // Spin
     case AT_FSPECIAL:
     	if (free) move_cooldown[AT_FSPECIAL] = 30;
@@ -620,8 +637,8 @@ var dfx; //dust_fx value
 var dfg; //fg_sprite value
 var dust_color = 0;
 var x = argument[0], y = argument[1], name = argument[2];
-var dir; if (argument_count > 3) dir = argument[3]; else dir = 0;
-var angle; if (argument_count > 4) angle = argument[4]; else angle = 0;
+var dir = argument_count > 3 ? argument[3] : 0;
+var angle = argument_count > 4 ? argument[4] : 0;
 
 switch (name) {
     default: 

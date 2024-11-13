@@ -146,6 +146,7 @@ latest_pipe_angle = 90;
 pipe_distance = 48;
 last_dist_check_x = 0;
 pipewarp_cd = 0;
+setting_visible = false; // used to ensure that visible is safely reset on hit or parry
 
 //livespark handling
 HG_TWENNY_ELECTRIC = 64;
