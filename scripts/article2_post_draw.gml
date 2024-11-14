@@ -1,5 +1,5 @@
 
-if (state == 1) draw_sprite_ext(sprite_get("b_scrapbomb"), image_index_scrapb, x, y, spr_dir, 1, angle_scrapb, c_white, 1);
+if (state == 1) draw_sprite_ext(sprite_get(scrapbomb_visual), image_index_scrapb, x, y, spr_dir, 1, angle_scrapb, c_white, 1);
 
 shader_end();
 
@@ -8,7 +8,7 @@ if (fuse_active && bomb_fuse < 40) {
     var intensity = upper/2 * (1 + cos(pi*bomb_fuse/8)); // 16f period
     
     gpu_set_fog(true, fuse_color, depth, depth);
-    if (state == 1) draw_sprite_ext(sprite_get("b_scrapbomb"), image_index_scrapb, x, y, spr_dir, 1, angle_scrapb, c_white, intensity);
+    if (state == 1) draw_sprite_ext(sprite_get(scrapbomb_visual), image_index_scrapb, x, y, spr_dir, 1, angle_scrapb, c_white, intensity);
     if (state == 11) draw_sprite_ext(sprite_index, image_index, x, y, spr_dir, 1, 0, c_white, intensity);
     gpu_set_fog(false, c_white, 0, 0);
 }

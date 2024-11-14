@@ -217,5 +217,38 @@ mamizou_transform_spr = sprite_get("mami_transformation");
 pot_compat_variable = sprite_get("pumbo_dish");
 pot_compat_text = "Spaghetti al Necrotico"
 
-//if (get_player_color(player) == 19) dead_alt = true 
-//else dead_alt = false;
+scrapbomb_visual = "b_scrapbomb"
+scrapbomb_alt_index = 0;
+
+// Alt Bombs
+switch (get_player_color(player)) {
+    case 6:
+    case 9:
+    case 13:
+    case 15:
+    case 16:
+    case 17:
+        scrapbomb_visual = "b_scrapbomb_variants";
+    break;
+}
+
+switch (get_player_color(player)) {
+    case 6:
+        scrapbomb_alt_index = 0;
+    break;
+    case 9:
+        scrapbomb_alt_index = 1;
+    break;
+    case 13:
+        scrapbomb_alt_index = 2;
+    break;
+    case 15:
+        scrapbomb_alt_index = 3;
+    break;
+    case 16:
+        scrapbomb_alt_index = 4;
+    break;
+    case 17:
+        scrapbomb_alt_index = 5;
+    break;
+}

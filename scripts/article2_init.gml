@@ -28,6 +28,9 @@ uses_shader = true;
 //
 
 image_index_scrapb = 0;
+scrapbomb_visual = player_id.scrapbomb_visual
+
+
 angle_scrapb = 0;
 has_bounced = false;
 was_free = false; // used for sfx

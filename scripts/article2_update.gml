@@ -27,7 +27,11 @@ if (place_meeting(x, y, asset_get("plasma_field_obj"))) {
 // // // // STATE 1 - SCRAPBOMB IDLE
 if (state == 1) { //
 	state_end = 30; //duration of this state in frames
-	image_index_scrapb =  state_timer * 3 / state_end;
+	if (scrapbomb_visual == "b_scrapbomb") image_index_scrapb =  state_timer * 3 / state_end;
+	else {
+		image_index_scrapb = player_id.scrapbomb_alt_index;
+	}
+	
 	
 	// Movement init.
 	if (state_timer == 1) {

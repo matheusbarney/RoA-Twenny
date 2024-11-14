@@ -91,6 +91,7 @@ sprite_change_offset("pipe_outline", 64, 95);
 sprite_change_offset("pipe_blueprints", 64, 95);
 
 sprite_change_offset("b_scrapbomb", 64, 63);
+sprite_change_offset("b_scrapbomb_variants", 64, 63);
 sprite_change_offset("b_scrapbomb_mask", 12, 11);
 sprite_change_offset("b_bagbomb", 64, 63);
 sprite_change_offset("b_bagbomb_mask", 24, -5);
