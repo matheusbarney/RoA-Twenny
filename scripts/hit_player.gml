@@ -1,5 +1,5 @@
 
-switch (attack) {
+switch (my_hitboxID.attack) {
     case AT_FTILT:
         if (my_hitboxID.hbox_num == 1) {
             sound_play(asset_get("sfx_blow_medium2"));
@@ -50,6 +50,7 @@ switch (attack) {
     // Claw grab
     case AT_EXTRA_3:
         if (my_hitboxID.hbox_num == 1) {
+            print_debug("hit!");
             window = 3;
     		window_timer = 0;
     		grabbed_player_obj = hit_player_obj;
