@@ -1,5 +1,5 @@
 
-switch (attack) {
+switch (my_hitboxID.attack) {
     case AT_FTILT:
         if (my_hitboxID.hbox_num == 1) {
             sound_play(asset_get("sfx_blow_medium2"));
