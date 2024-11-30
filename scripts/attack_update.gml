@@ -185,6 +185,9 @@ switch(attack) {
     				window = 3;
     				window_timer = 1;
     			} else { //-- "error" anim
+    				sound_play(asset_get("sfx_swipe_weak2"));
+    				sound_play(sound_get("error"), false, noone, 0.5, 1);
+    				//
     				attack = AT_EXTRA_2;
     				hurtboxID.sprite_index = sprite_get("dspecial_error_hurt");
     				window = 0;
@@ -218,6 +221,9 @@ switch(attack) {
     			sound_play(asset_get("mfx_orby_talk_done"));
     			sound_play(asset_get("sfx_swipe_weak1"), false, noone, 0.6,  0.8);
     		} else { //-- "error" anim
+    			sound_play(asset_get("sfx_swipe_weak2"));
+    			sound_play(sound_get("error"), false, noone, 0.5, 1);
+    			//
     			attack = AT_EXTRA_2;
     			hurtboxID.sprite_index = sprite_get("dspecial_error_hurt");
     			window = 0;
