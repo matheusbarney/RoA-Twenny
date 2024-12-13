@@ -103,7 +103,10 @@ if (in_hstance) {
     
     hurtbox_spr = sprite_get("3_headhbox");
     
-    if (!free && !(state == PS_ATTACK_GROUND && attack == AT_EXTRA_3 && 4 <= window && window <= 7)) {
+    if  (state == PS_TECH_GROUND || state == PS_TECH_FORWARD || state == PS_TECH_BACKWARD) {
+    	// Using the normal getup anim during techs causes massive headaches, so this just cancels hstance immediately instead.
+    	in_hstance = false;
+    } else if (!free && !(state == PS_ATTACK_GROUND && attack == AT_EXTRA_3 && 4 <= window && window <= 7)) {
     	attack_end();
         state = PS_ATTACK_GROUND;
         state_timer = 0;
