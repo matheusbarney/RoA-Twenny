@@ -529,7 +529,7 @@ switch(attack) {
     	can_fast_fall = true;
     	if (window == 1 && window_timer == window_end_time) sound_play(asset_get("sfx_ell_utilt_cannon"), false, noone, 0.7, 1.1);
 		else if (!hitpause && window == 2 && window_timer == 1 && dair_used == false && !fast_falling) {
-    		vsp = clamp(vsp, -3, -7);
+    		vsp = clamp(vsp, -3, -6);
     		dair_used = true;
     	}
 		break;

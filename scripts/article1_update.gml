@@ -168,7 +168,7 @@ if (state == 1){ //
 	    
 	    //warp you
 	    if (do_pipewarp) with (oPlayer) {
-	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance) {
+	        if (is_twenny && place_meeting(x, y, other) && free && vsp >= 0 && pipewarp_cd <= 0 && in_hstance && !hitpause) {
 	        	other.do_warp_effects = true;
 	        	other.single_warp_effect = true;
 	        	
