@@ -5,10 +5,10 @@ switch (get_player_color( player ) ){
    case 6:
         draw_sprite_ext(sprite_get("css_bg_alts"),0,x+8,y+8,2,2,0,-1,1);
     	break;
-   case 16:
+   case 17:
         draw_sprite_ext(sprite_get("css_bg_alts"),1,x+8,y+8,2,2,0,-1,1);
     	break;
-    case 19:
+    case 20:
         draw_sprite_ext(sprite_get("css_bg_alts"),2,x+8,y+8,2,2,0,-1,1);
     	break;
     default:
@@ -16,7 +16,7 @@ switch (get_player_color( player ) ){
 		break;
 }
 
-if (get_player_color(player) != 19) {
+if (get_player_color(player) != 20) {
 	shader_end();
 	var a = 0.02*(1+sin(pi*css_intro_timer/16));
 	gpu_set_fog(true, c_white, 0, 0);
@@ -99,7 +99,7 @@ if (!variable_instance_exists(id,"ae") || ye == true){
 	altsel = 0; // change the alt select sound here. if you don't want to change the sound, put 0 here.
 	color_desc_activate = true; // optional "alt color description button". set to "true" to turn it on.
 	
-	col_max = 19; // number of alternate color palettes. 0 is the default color, count it accordingly.
+	col_max = 20; // number of alternate color palettes. 0 is the default color, count it accordingly.
 	
 	//first array index is for alternate color. second array index is for distinguishing the information in it.
 	ce[0,0] = make_color_rgb(187, 70, 135) // "color preview square" color. can be any color!
@@ -162,25 +162,29 @@ if (!variable_instance_exists(id,"ae") || ye == true){
 	ce[14,1] = "Turquoise Troll"
 	ce[14,2] = "> WHAT'S THIS GUY'S DEAL?? IMAGINE SP0UTING AS MUCH INC0HERENT N0NSENSE AS THIS GUY!"
 	
-    ce[15,0] = make_color_rgb(255, 135, 142)
-	ce[15,1] = "Maddened Mew"
-	ce[15,2] = "> THE CUTEST DULLAHAN EVER? YEAH, Y0U F-CK*NG WISH."
+	ce[15,0] = make_color_rgb(150, 237, 119)
+	ce[15,1] = "Evil Genius"
+	ce[15,2] = "> THIS BROAD IS K0CA CRAZY! WH0 TURNS HALF THEIR B0DY INT0 G00P??"
 	
-    ce[16,0] = make_color_rgb(143, 184, 49)
-	ce[16,1] = "Your Best Nightmare"
-	ce[16,2] = "> S0ME FL0WER FREAK, RIGHT? WHAT D0ES HE EVEN HAVE T0 D0 WITH SCREENS??"
+    ce[16,0] = make_color_rgb(255, 135, 142)
+	ce[16,1] = "Maddened Mew"
+	ce[16,2] = "> THE CUTEST DULLAHAN EVER? YEAH, Y0U F-CK*NG WISH."
 	
-	ce[17,0] = make_color_rgb(111, 209, 255)
-	ce[17,1] = "Q5U4EX7YY2E9N"
-	ce[17,2] = " > THIS W0MAN IS A C0MPUTER T00? I'D L0VE T0 GRAB A GLASS 0F ACID WITH HER!"
+    ce[17,0] = make_color_rgb(143, 184, 49)
+	ce[17,1] = "Your Best Nightmare"
+	ce[17,2] = "> S0ME FL0WER FREAK, RIGHT? WHAT D0ES HE EVEN HAVE T0 D0 WITH SCREENS??"
 	
-	ce[18,0] = make_color_rgb(148, 181, 174)
-	ce[18,1] = "Creative Freedom"
-	ce[18,2] = "> T0 BE F0RG0TTEN LIKE THAT... P- PSSH! IMAGINE THAT! SUCKER!!"
+	ce[18,0] = make_color_rgb(111, 209, 255)
+	ce[18,1] = "Q5U4EX7YY2E9N"
+	ce[18,2] = " > THIS W0MAN IS A C0MPUTER T00? I'D L0VE T0 GRAB A GLASS 0F ACID WITH HER!"
 	
-	ce[19,0] = make_color_rgb(0, 0, 0)
-	ce[19,1] = "An End."
-	ce[19,2] = "Note: FATAL ERROR .We are sorry, but an internal error occurred. Please re-install the product to fix the problem."
+	ce[19,0] = make_color_rgb(148, 181, 174)
+	ce[19,1] = "Creative Freedom"
+	ce[19,2] = "> T0 BE F0RG0TTEN LIKE THAT... P- PSSH! IMAGINE THAT! SUCKER!!"
+	
+	ce[20,0] = make_color_rgb(0, 0, 0)
+	ce[20,1] = "An End."
+	ce[20,2] = "Note: FATAL ERROR .We are sorry, but an internal error occurred. Please re-install the product to fix the problem."
 	
 
 	// you can add more, by copypasting and changing the first index of the array accordingly.

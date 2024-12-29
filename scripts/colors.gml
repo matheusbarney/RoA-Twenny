@@ -34,7 +34,7 @@ set_color_profile_slot_range( 7, 2, 47, 59 );
 
 
 // ALTERNATE COLORS
-set_num_palettes( 20 );
+set_num_palettes( 21 );
 
 // Blue
 set_color_profile_slot( 1, 0, 68, 151, 219 ); //Bowtrash
@@ -176,55 +176,65 @@ set_color_profile_slot( 14, 5, 48, 91, 182 ); //Pinky
 set_color_profile_slot( 14, 6, 14, 22, 68 ); //Rag
 set_color_profile_slot( 14, 7, 255, 158, 6 ); //Acid
 
+// Nano
+set_color_profile_slot( 15, 0, 83, 109, 183 ); //Bowtrash
+set_color_profile_slot( 15, 1, 51, 45, 95 ); //Monitor
+set_color_profile_slot( 15, 2, 254, 103, 224 ); //Screen
+set_color_profile_slot( 15, 3, 51, 240, 255 ); //FaceElec
+set_color_profile_slot( 15, 4, 150, 237, 119 ); //PipeMetal
+set_color_profile_slot( 15, 5, 254, 103, 224 ); //Pinky
+set_color_profile_slot( 15, 6, 130, 170, 183 ); //Rag
+set_color_profile_slot( 15, 7, 254, 103, 224 ); //Acid
+
 // M. Mew Mew
-set_color_profile_slot( 15, 0, 255, 135, 142 ); //Bowtrash
-set_color_profile_slot( 15, 1, 255, 186, 190 ); //Monitor
-set_color_profile_slot( 15, 2, 255, 242, 243 ); //Screen
-set_color_profile_slot( 15, 3, 119, 168, 57 ); //FaceElec
-set_color_profile_slot( 15, 4, 165, 79, 87 ); //PipeMetal
-set_color_profile_slot( 15, 5, 255, 213, 97 ); //Pinky
-set_color_profile_slot( 15, 6, 255, 237, 238 ); //Rag
-set_color_profile_slot( 15, 7, 255, 181, 193 ); //Acid
+set_color_profile_slot( 16, 0, 255, 135, 142 ); //Bowtrash
+set_color_profile_slot( 16, 1, 255, 186, 190 ); //Monitor
+set_color_profile_slot( 16, 2, 255, 242, 243 ); //Screen
+set_color_profile_slot( 16, 3, 119, 168, 57 ); //FaceElec
+set_color_profile_slot( 16, 4, 165, 79, 87 ); //PipeMetal
+set_color_profile_slot( 16, 5, 255, 213, 97 ); //Pinky
+set_color_profile_slot( 16, 6, 255, 237, 238 ); //Rag
+set_color_profile_slot( 16, 7, 255, 181, 193 ); //Acid
 
 // Photoshop Flowey
-set_color_profile_slot( 16, 0, 143, 184, 49 ); //Bowtrash
-set_color_profile_slot( 16, 1, 110, 102, 100 ); //Monitor
-set_color_profile_slot( 16, 2, 0, 0, 0 ); //Screen
-set_color_profile_slot( 16, 3, 214, 214, 214 ); //FaceElec
-set_color_profile_slot( 16, 4, 158, 148, 158 ); //PipeMetal
-set_color_profile_slot( 16, 5, 217, 187, 182 ); //Pinky
-set_color_profile_slot( 16, 6, 212, 93, 81 ); //Rag
-set_color_profile_slot( 16, 7, 204, 255, 143 ); //Acid
+set_color_profile_slot( 17, 0, 143, 184, 49 ); //Bowtrash
+set_color_profile_slot( 17, 1, 110, 102, 100 ); //Monitor
+set_color_profile_slot( 17, 2, 0, 0, 0 ); //Screen
+set_color_profile_slot( 17, 3, 214, 214, 214 ); //FaceElec
+set_color_profile_slot( 17, 4, 158, 148, 158 ); //PipeMetal
+set_color_profile_slot( 17, 5, 217, 187, 182 ); //Pinky
+set_color_profile_slot( 17, 6, 212, 93, 81 ); //Rag
+set_color_profile_slot( 17, 7, 204, 255, 143 ); //Acid
 
 // Queen
-set_color_profile_slot( 17, 0, 111, 209, 255 ); //Bowtrash
-set_color_profile_slot( 17, 1, 242, 251, 255 ); //Monitor
-set_color_profile_slot( 17, 2, 73, 85, 97 ); //Screen
-set_color_profile_slot( 17, 3, 111, 209, 255 ); //FaceElec
-set_color_profile_slot( 17, 4, 242, 251, 255 ); //PipeMetal
-set_color_profile_slot( 17, 5, 242, 251, 255 ); //Pinky
-set_color_profile_slot( 17, 6, 87, 108, 128 ); //Rag
-set_color_profile_slot( 17, 7, 160, 255, 109 ); //Acid
+set_color_profile_slot( 18, 0, 111, 209, 255 ); //Bowtrash
+set_color_profile_slot( 18, 1, 242, 251, 255 ); //Monitor
+set_color_profile_slot( 18, 2, 73, 85, 97 ); //Screen
+set_color_profile_slot( 18, 3, 111, 209, 255 ); //FaceElec
+set_color_profile_slot( 18, 4, 242, 251, 255 ); //PipeMetal
+set_color_profile_slot( 18, 5, 242, 251, 255 ); //Pinky
+set_color_profile_slot( 18, 6, 87, 108, 128 ); //Rag
+set_color_profile_slot( 18, 7, 160, 255, 109 ); //Acid
 
 // Camellia
-set_color_profile_slot( 18, 0, 148, 181, 174 ); //Bowtrash
-set_color_profile_slot( 18, 1, 75, 91, 88 ); //Monitor
-set_color_profile_slot( 18, 2, 230, 250, 246 ); //Screen
-set_color_profile_slot( 18, 3, 75, 91, 88 ); //FaceElec
-set_color_profile_slot( 18, 4, 75, 91, 88 ); //PipeMetal
-set_color_profile_slot( 18, 5, 242, 55, 64 ); //Pinky
-set_color_profile_slot( 18, 6, 206, 242, 234 ); //Rag
-set_color_profile_slot( 18, 7, 217, 247, 237 ); //Acid
+set_color_profile_slot( 19, 0, 148, 181, 174 ); //Bowtrash
+set_color_profile_slot( 19, 1, 75, 91, 88 ); //Monitor
+set_color_profile_slot( 19, 2, 230, 250, 246 ); //Screen
+set_color_profile_slot( 19, 3, 75, 91, 88 ); //FaceElec
+set_color_profile_slot( 19, 4, 75, 91, 88 ); //PipeMetal
+set_color_profile_slot( 19, 5, 242, 55, 64 ); //Pinky
+set_color_profile_slot( 19, 6, 206, 242, 234 ); //Rag
+set_color_profile_slot( 19, 7, 217, 247, 237 ); //Acid
 
 // Dead
-set_color_profile_slot( 19, 0, 158, 100, 132 ); //Bowtrash
-set_color_profile_slot( 19, 1, 103, 98, 122 ); //Monitor
-set_color_profile_slot( 19, 2, 0, 0, 0 ); //Screen
-set_color_profile_slot( 19, 3, 0, 0, 0 ); //FaceElec
-set_color_profile_slot( 19, 4, 143, 124, 137 ); //PipeMetal
-set_color_profile_slot( 19, 5, 158, 100, 132 ); //Pinky
-set_color_profile_slot( 19, 6, 184, 160, 163 ); //Rag
-set_color_profile_slot( 19, 7, 120, 91, 101 ); //Acid
+set_color_profile_slot( 20, 0, 158, 100, 132 ); //Bowtrash
+set_color_profile_slot( 20, 1, 103, 98, 122 ); //Monitor
+set_color_profile_slot( 20, 2, 0, 0, 0 ); //Screen
+set_color_profile_slot( 20, 3, 0, 0, 0 ); //FaceElec
+set_color_profile_slot( 20, 4, 143, 124, 137 ); //PipeMetal
+set_color_profile_slot( 20, 5, 158, 100, 132 ); //Pinky
+set_color_profile_slot( 20, 6, 184, 160, 163 ); //Rag
+set_color_profile_slot( 20, 7, 120, 91, 101 ); //Acid
 
 
 /* This is a comment used by that one RoA colors.gml generator tool to store palette data. You can safely keep it in your colors.gml if you plan to re-use the tool later, or safely remove it if you don't.

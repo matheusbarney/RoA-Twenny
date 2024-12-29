@@ -228,6 +228,7 @@ switch (get_player_color(player)) {
     case 15:
     case 16:
     case 17:
+    case 18:
         scrapbomb_visual = "b_scrapbomb_variants";
     break;
 }
@@ -243,12 +244,15 @@ switch (get_player_color(player)) {
         scrapbomb_alt_index = 2;
     break;
     case 15:
-        scrapbomb_alt_index = 3;
+        scrapbomb_alt_index = 6;
     break;
     case 16:
-        scrapbomb_alt_index = 4;
+        scrapbomb_alt_index = 3;
     break;
     case 17:
+        scrapbomb_alt_index = 4;
+    break;
+    case 18:
         scrapbomb_alt_index = 5;
     break;
 }
