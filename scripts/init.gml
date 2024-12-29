@@ -56,7 +56,7 @@ fast_fall = 13; //fast fall speed
 gravity_speed = .5;
 hitstun_grav = .45;
 base_knockback_adj = 0.9;
-hstance_knockback_adj = 1.2;
+hstance_knockback_adj = 1.3;
 knockback_adj = base_knockback_adj;
 
 land_time = 6; // heavy landtime
