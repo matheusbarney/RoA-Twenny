@@ -26,6 +26,8 @@ if (place_meeting(x, y, asset_get("plasma_field_obj"))) {
 
 // // // // STATE 1 - SCRAPBOMB IDLE
 if (state == 1) { //
+	// be punchable
+	hit_detection()
 	
 	state_end = 30; //duration of this state in frames
 	if (scrapbomb_visual == "b_scrapbomb") image_index_scrapb =  state_timer * 3 / state_end;
@@ -367,6 +369,36 @@ if (state == 12) { // BAG BOMB SPLIT (teleport/fspec behavior)
     }
 }
 
+// // // // STATE 95 - SCRAP GRENADE DISARMED
+if (state == 95){ //
+	image_index = 7;
+	
+	if (state_timer == 1) {
+		//if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
+		sound_play(asset_get("sfx_swish_weak"), false, 0,  0.6, 1.2);
+	    spawn_hit_fx( x, y, player_id.splsh);
+	}
+    if (state_timer == 4) {
+	    instance_destroy();//remove article
+	    exit;//exits the code (not 100% necessary but its good to be safe)
+    }
+}
+
+// // // // STATE 96 - BAG BOMB DISARMED
+if (state == 96){ //
+	image_index = 7;
+	
+	if (state_timer == 1) {
+		//if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
+		sound_play(asset_get("sfx_swish_medium"), false, 0, 0.6, 0.65);
+	    spawn_hit_fx( x, y, player_id.splatter);
+	}
+    if (state_timer == 4) {
+	    instance_destroy();//remove article
+	    exit;//exits the code (not 100% necessary but its good to be safe)
+    }
+}
+
 // // // // STATE 97 - SCRAP BOMB EXPLODING
 if (state == 97){ //
 	if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
@@ -375,21 +407,6 @@ if (state == 97){ //
     spawn_hit_fx( x, y, player_id.splatter);
     instance_destroy();//remove article
     exit;//exits the code (not 100% necessary but its good to be safe)
-}
-
-// // // // STATE 97 - BAG BOMB DISARMED
-if (state == 97){ //
-	image_index = 7;
-	
-	if (state_timer == 1) {
-		//if (instance_exists(contact_hitbox)) contact_hitbox.destroyed_next = true;
-		sound_play(asset_get("sfx_swish_mid"), false, 0, 0.1, 0.9);
-	    spawn_hit_fx( x, y, 301);
-	}
-    if (state_timer == 4) {
-	    instance_destroy();//remove article
-	    exit;//exits the code (not 100% necessary but its good to be safe)
-    }
 }
 
 // // // // STATE 98 - BAG BOMB EXPLODING
@@ -472,7 +489,8 @@ with hit_player_obj { // use a with so that it's shaded correctly
     temp_fx.hit_angle = other.kb_dir;
 }
 
-state = 97;
+if (state == 1) state = 95;
+else if (state == 11) state = 96;
 state_timer = 0;
  
 #define filters(hbox)
