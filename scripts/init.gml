@@ -147,6 +147,8 @@ pipe_distance = 48;
 last_dist_check_x = 0;
 pipewarp_cd = 0;
 setting_visible = false; // used to ensure that visible is safely reset on hit or parry
+pipe_timer = -1; //breaks the pipes a bit every [this] amount of frames.
+pipe_timer_max = 300; //breaks the pipes a bit every [this] amount of frames.
 
 //livespark handling
 HG_TWENNY_ELECTRIC = 64;

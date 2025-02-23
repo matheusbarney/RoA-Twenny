@@ -46,6 +46,18 @@ if (state == PS_SPAWN) {
 // Pipe warp cd
 if (pipewarp_cd > 0) pipewarp_cd--;
 
+// Pipe breakage
+if (pipe_timer > 0) {
+	pipe_timer--
+} else if (pipe_timer == 0) {
+	with (obj_article1) if ("is_twenny_pipe" in self) {
+    	warp_usages++
+    	spawn_hit_fx(x, y, HFX_GEN_SWEET);
+    }
+    sound_play(asset_get("sfx_kragg_rock_pillar"), false, 0, 0.33, 1.5);
+    pipe_timer = pipe_timer_max
+}
+
 // Crawl and movement anims
 switch (state) {
     case PS_WALK:

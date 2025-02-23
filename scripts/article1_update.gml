@@ -14,6 +14,7 @@ if (init == 0){
         	other.pipewarp_other = self;
         	other.pipe_flash_timer = other.pipe_flash_duration;
         	sound_play(asset_get("sfx_boss_shine"), false, noone, 1, 1.4);
+        	player_id.pipe_timer = player_id.pipe_timer_max
         }
         else pipe_id = 2;
     }
@@ -218,6 +219,7 @@ if (state == 2){ //
 	state_end = 24; //duration of this state in frames
     image_index_pipe = 3 + state_timer * 4 / state_end;
 	pipe_color = pipe_darkener
+	player_id.pipe_timer = -1
 	
 	with (asset_get("obj_article1")){
         if (id != other.id && player_id == other.player_id) {
