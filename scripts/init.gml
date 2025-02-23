@@ -229,9 +229,12 @@ switch (get_player_color(player)) {
     case 16:
     case 17:
     case 18:
+    case 19:
         scrapbomb_visual = "b_scrapbomb_variants";
     break;
 }
+
+is_deadalt = false;
 
 switch (get_player_color(player)) {
     case 6:
@@ -254,5 +257,17 @@ switch (get_player_color(player)) {
     break;
     case 18:
         scrapbomb_alt_index = 5;
+    break;
+    case 19:
+        scrapbomb_alt_index = 7;
+    case 20:
+        set_hitbox_value(AT_DSPECIAL, 2, HG_PROJECTILE_SPRITE, sprite_get("p_livespark_alt"))
+        is_deadalt = true;
+        is_voiced = false;
+    break;
+    default:
+        is_deadalt = false;
+        set_victory_bg( sprite_get( "twenny_victorybg" ));
+        set_victory_theme( sound_get( "mus_twenny_victory" ));
     break;
 }

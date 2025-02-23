@@ -1,6 +1,12 @@
 // update
 //end_match(player)
 
+//-- alt
+if is_deadalt {
+	set_victory_bg( sprite_get( "--_victorybg" ));
+    set_victory_theme( sound_get( "mus_--" ));
+}
+
 // Intro
 if (state == PS_SPAWN) {
 	switch (state_timer) {
@@ -40,17 +46,25 @@ if (state == PS_SPAWN) {
 // Pipe warp cd
 if (pipewarp_cd > 0) pipewarp_cd--;
 
-// Crawl
+// Crawl and movement anims
 switch (state) {
     case PS_WALK:
         if (state_timer % 33) == 8 sound_play(sound_get("robotstep"), false, 0, 1, (random_func(2, 3, true) + 8) * 0.1);
         was_crouching = false;
         break;
     case PS_DASH_START:
-        if (state_timer == 0) sound_play(sound_get("keyboard"), false, 0, 1, 1.1);
-        // no break
+    	if is_deadalt {
+    		if is_deadalt if (state_timer == 0) sound_play(sound_get("robotstep"), false, 0, 1, 1);
+    	} else {
+    		if (state_timer == 0) sound_play(sound_get("keyboard"), false, 0, 1, 1.1);
+    	}
     case PS_DASH:
-        if (state_timer % 4 == 1) sound_play(sound_get("keyboard"), false, 0, 0.9, (random_func(2, 4, true) + 8) * 0.1);
+        if is_deadalt {
+        	if (state_timer % 10 == 1) sound_play(sound_get("robotstep"), false, 0, 0.9, (random_func(2, 4, true) + 8) * 0.08);
+        }
+        else {
+        	if (state_timer % 4 == 1) sound_play(sound_get("keyboard"), false, 0, 0.9, (random_func(2, 4, true) + 8) * 0.1);
+        }
         break;
     case PS_CROUCH:
         was_crouching = true;
@@ -65,7 +79,8 @@ switch (state) {
             var mod_check = floor(crawl_time % max_check);
             if (crawl_time % 20 == 1) {
                 sound_stop(asset_get("sfx_gus_jump"));
-                crawl_sound = sound_play(asset_get("sfx_gus_jump"), false, 0, 0.5, (random_func(2, 3, true) + 8) * 0.2);
+                if is_deadalt crawl_sound = sound_play(sound_get("robotstep"), false, 0, 0.5, (random_func(2, 3, true) + 8) * 0.08);
+                else crawl_sound = sound_play(asset_get("sfx_gus_jump"), false, 0, 0.5, (random_func(2, 3, true) + 8) * 0.2);
             }
     
             if (right_down && spr_dir || left_down && -spr_dir) fake_img = crawl_time * crawl_anim_speed;

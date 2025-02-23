@@ -13,3 +13,4 @@ sound_stop(sound_get("vic_pasta"));
 sound_stop(sound_get("vic_celeste"));
 sound_stop(sound_get("vic_another_twenny"));
 sound_stop(sound_get("vic_cute_char"));
+sound_stop(sound_get("vic_--"));

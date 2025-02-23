@@ -222,11 +222,19 @@ if (winner == player /* && uhc_batteries */)
         twenny_vic_face = data_array[best_player].icon;
         twenny_vic_line = data_array[best_player].voiceline;
         
-        if (string_length(twenny_victory_quote) < 1)
-        { var rand_quote_face = get_random_quote(); 
-            twenny_victory_quote = string(rand_quote_face[0]);
-            twenny_vic_face = string(rand_quote_face[1]);
-            twenny_vic_line = string(rand_quote_face[2]);
+        if get_player_color( player ) == 20 {
+            twenny_victory_quote = " ";
+            twenny_vic_face = "vicf_nothing"
+            twenny_vic_line = "vic_--"
+        }
+        else 
+        { if (string_length(twenny_victory_quote) < 1)
+            { 
+                var rand_quote_face = get_random_quote(); 
+                twenny_victory_quote = string(rand_quote_face[0]);
+                twenny_vic_face = string(rand_quote_face[1]);
+                twenny_vic_line = string(rand_quote_face[2]);
+            }
         }
     }
     

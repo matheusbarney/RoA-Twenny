@@ -1,6 +1,8 @@
 
 init_shader();
 
+//extra sprites
+//bgs
 switch (get_player_color( player ) ){
    case 6:
         draw_sprite_ext(sprite_get("css_bg_alts"),0,x+8,y+8,2,2,0,-1,1);
@@ -14,6 +16,34 @@ switch (get_player_color( player ) ){
     default:
 		draw_sprite_ext(sprite_get("css_bg_main"),0,x+8,y+8,2,2,0,-1,1);
 		break;
+}
+
+//bomb icons
+switch (get_player_color( player ) ){
+   case 6:
+        draw_sprite_ext(sprite_get("b_scrapbomb_variants"),0,x+132,y-18,1,1,0,-1,1);
+    	break;
+    case 9:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),1,x+132,y-18,1,1,0,-1,1);
+    	break;
+    case 13:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),2,x+132,y-18,1,1,0,-1,1);
+    	break;
+    case 15:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),6,x+132,y-18,1,1,0,-1,1);
+    	break;
+   case 16:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),3,x+132,y-18,1,1,0,-1,1);
+    	break;
+   case 17:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),4,x+132,y-18,1,1,0,-1,1);
+    	break;
+    case 18:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),5,x+132,y-18,1,1,0,-1,1);
+    	break;
+    case 19:
+    	draw_sprite_ext(sprite_get("b_scrapbomb_variants"),7,x+132,y-18,1,1,0,-1,1);
+    	break;
 }
 
 if (get_player_color(player) != 20) {
@@ -349,6 +379,11 @@ switch css_intro_state {
 		break;
 }
 css_intro_timer++;
+
+if (get_player_color( player ) != 0) {
+	css_intro_state = 4;
+	css_intro_timer = 0;
+}
 
 //
 

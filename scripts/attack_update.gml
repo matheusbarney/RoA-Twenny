@@ -46,7 +46,7 @@ switch(attack)
     break;
     
     case AT_DSPECIAL:
-    	if (window == 4 && window_timer == 1 && !hitpause) {
+    	if (window == 4 && window_timer == 1 && !hitpause && !free) {
     		spawn_base_dust(x+(56*spr_dir),y, "dash", -spr_dir);
     		spawn_base_dust(x-(24*spr_dir),y, "dash", spr_dir);
     	}
@@ -232,6 +232,14 @@ switch(attack) {
     	}
     	break;
     
+    // Error Shine
+    case AT_EXTRA_2:
+    	//errorshine could cancel into jump on hit (but it doesnt)
+		//if (has_hit && !hitpause && !was_parried) {
+		//	can_jump = true;
+		//}
+    break;
+    
     // Pipe warp
     case AT_EXTRA_4:
     	if (window_timer < window_end_time) {
@@ -342,7 +350,7 @@ switch(attack) {
     			vsp = min(vsp, 4);
     			claw_rel_y += claw_vsp;
     			claw_abs_y = y+claw_rel_y+vsp;
-    			claw_vsp -= 0.5;
+    			claw_vsp -= 0.8 ;
     			
     			if (claw_rel_y <= 0) {
     				window = 10;
@@ -451,12 +459,14 @@ switch(attack) {
     		if (window_timer == 1) {
     			sound_play(asset_get("sfx_swipe_medium1"), false, noone, 1,  1.2);
     		} else if (window_timer == window_end_time) {
-    			var fstrong_voiceline = "";
-    			var rand = (random_func(get_gameplay_time(), 3, true))
-    			
-    			if (rand == 0) fstrong_voiceline = "fstrong_voice2"
-    			else if (rand == 1) fstrong_voiceline = "fstrong_voice3"
-    			else if (rand == 2) fstrong_voiceline = "fstrong_voice4"
+    			if (is_voiced) {
+    				var fstrong_voiceline = "";
+    				var rand = (random_func(get_gameplay_time(), 3, true))
+    				
+    				if (rand == 0) fstrong_voiceline = "fstrong_voice2"
+    				else if (rand == 1) fstrong_voiceline = "fstrong_voice3"
+    				else if (rand == 2) fstrong_voiceline = "fstrong_voice4"
+    			}
 
     			sound_play(asset_get("sfx_pom_blast3"), false, noone, 0.5,  0.9);
     			sound_play(asset_get("sfx_pom_fstrong_hit"), false, noone, 0.2,  1);
@@ -571,9 +581,14 @@ switch(attack) {
 		
 	case AT_TAUNT:
     	if (window == 1 && window_timer == window_end_time) {
-    		sound_play( asset_get("mfx_star"), false, noone, 0.4, 1);
-    		sound_play( sound_get("heart"), false, noone, 0.3, 1);
-    		sound_play( sound_get("twenny_taunt"), false, noone, 0.5, 1);
+    		if (!is_deadalt) {
+    			sound_play( asset_get("mfx_star"), false, noone, 0.4, 1);
+    			sound_play( sound_get("heart"), false, noone, 0.3, 1);
+    			if is_voiced sound_play( sound_get("twenny_taunt"), false, noone, 0.5, 1);
+    		} else {
+    			sound_play( asset_get("sfx_swipe_weak1"), false, noone, 0.4, 0.4);
+    			sound_play( sound_get("heart"), false, noone, 0.7, 0.5);
+    		}
     	}
 	break;
 }

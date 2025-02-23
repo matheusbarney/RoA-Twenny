@@ -8,7 +8,7 @@ set_attack_value(AT_BAIR, AG_HURTBOX_SPRITE, sprite_get("bair_hurt"));
 
 //startup window
 set_window_value(AT_BAIR, 1, AG_WINDOW_TYPE, 1);
-set_window_value(AT_BAIR, 1, AG_WINDOW_LENGTH, 5);
+set_window_value(AT_BAIR, 1, AG_WINDOW_LENGTH, 4);
 set_window_value(AT_BAIR, 1, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_BAIR, 1, AG_WINDOW_VSPEED, -1);
 

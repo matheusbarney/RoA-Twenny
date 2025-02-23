@@ -35,21 +35,26 @@ sprite_change_offset("roll_forward", 48, 63);
 sprite_change_offset("roll_backward", 48, 63);
 sprite_change_offset("airdodge", 48, 63);
 sprite_change_offset("waveland", 48, 63);
-sprite_change_offset("tech", 32, 62);
+sprite_change_offset("tech", 32, 47);
 
 sprite_change_offset("jab", 48, 63, true);
 sprite_change_offset("dattack", 48, 63, true);
 sprite_change_offset("ftilt", 48, 63, true);
 sprite_change_offset("dtilt", 48, 63, true);
+sprite_change_offset("dtilt_alt", 48, 63, true);
 sprite_change_offset("utilt", 48, 63, true);
 sprite_change_offset("nair", 48, 63, true);
 sprite_change_offset("fair", 80, 95, true);
 sprite_change_offset("bair", 80, 95, true);
+sprite_change_offset("bair_alt", 80, 95, true);
 sprite_change_offset("uair", 80, 95, true);
 sprite_change_offset("dair", 64, 79, true);
 sprite_change_offset("fstrong", 80, 95, true);
+sprite_change_offset("fstrong_alt", 80, 95, true);
 sprite_change_offset("ustrong", 48, 63, true);
+sprite_change_offset("ustrong_alt", 48, 63, true);
 sprite_change_offset("dstrong", 64, 79, true);
+sprite_change_offset("dstrong_alt", 64, 79, true);
 sprite_change_offset("nspecial", 48, 63, true);
 sprite_change_offset("fspecial", 64, 79, true);
 sprite_change_offset("uspecial", 48, 63, true);
@@ -89,6 +94,7 @@ sprite_change_offset("pipe_mask_collision", 64, 95);
 sprite_change_offset("pipe_cracks", 64, 95);
 sprite_change_offset("pipe_outline", 64, 95);
 sprite_change_offset("pipe_blueprints", 64, 95);
+sprite_change_offset("pipe_countdown", 6, 6);
 
 sprite_change_offset("b_scrapbomb", 64, 63);
 sprite_change_offset("b_scrapbomb_variants", 64, 63);
@@ -97,6 +103,7 @@ sprite_change_offset("b_bagbomb", 64, 63);
 sprite_change_offset("b_bagbomb_mask", 24, -5);
 
 sprite_change_offset("p_livespark", 64, 63);
+sprite_change_offset("p_livespark_alt", 64, 63);
 
 sprite_change_offset("sick", -36, 72);
 sprite_change_offset("fx_hex", 10, 20);
@@ -107,6 +114,3 @@ sprite_change_offset("hstance_airdodge", 48, 63);
 sprite_change_offset("hstance_hurt", 48, 63);
 sprite_change_offset("hstance_land", 48, 63);
 sprite_change_offset("hstance_walljump", 48, 63);
-
-set_victory_bg( sprite_get( "twenny_victorybg" ));
-set_victory_theme( sound_get( "mus_twenny_victory" ));
