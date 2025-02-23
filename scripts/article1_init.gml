@@ -49,6 +49,8 @@ warp_usages_max = 3;
 //
 do_warp_effects = 0;
 single_warp_effect = 0; // if true, won't spawn particle on opposite pipe
+//
+head_teleported = false;
 //---------------------------------
 
 //--- PIPE'S ANGLE gets defined here.

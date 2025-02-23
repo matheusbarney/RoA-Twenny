@@ -90,6 +90,11 @@ if (state == 1){ //
     		other.warpcoord_y = y - 12;
     	}
     	if (other.warp_usages > warp_usages) warp_usages = other.warp_usages;
+    	if (other.head_teleported) {
+    		print_debug("lol")
+    		pipewarp_cd = pipewarp_cd_max;
+    		other.head_teleported = false;
+    	}
     }
     
     mask_index = warp_mask_index;
@@ -176,14 +181,17 @@ if (state == 1){ //
 	            x = other.warpcoord_x;
 	            y = other.warpcoord_y;
 	            spr_dir = other.warpcoord_dir;
-	            in_hstance = false;
+	            has_long_endlag = false;
+	            has_airdodge = true;
+	            has_walljump = true;
+	            //move_cooldown[AT_EXTRA_3] = 0; //prob too much 
 	            
 	            if (other.warpcoord_angle == 90) {
 	            	stored_hsp = 0;
 	            	stored_vsp = -13;
 	            } else {
-	            	stored_hsp = other.warpcoord_dir * 10
-	            	stored_vsp = -10
+	            	stored_hsp = other.warpcoord_dir * 7
+	            	stored_vsp = -7
 	            }
 	            
 	            if (attack == AT_EXTRA_3 && state == PS_ATTACK_AIR) attack_end();
@@ -197,8 +205,11 @@ if (state == 1){ //
 	            
 	            pipewarp_cd = 10;
 	            
+	            other.head_teleported = true
+	            
 	            other.warp_usages++;
 	            other.pipewarp_cd = other.pipewarp_cd_max;
+	            
 		    }
 	    }
     }
