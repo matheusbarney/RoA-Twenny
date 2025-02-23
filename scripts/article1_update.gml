@@ -142,7 +142,7 @@ if (state == 1){ //
 	    
 	    //warp bomb
 	    if (do_pipewarp) with (asset_get("obj_article2")) {
-	        if ("is_twenny_bomb" in self && (state == 1 && !has_hit || state == 11) && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
+	        if ("is_twenny_bomb" in self && (state == 1 || state == 11) && !has_hit && place_meeting(x, y, other) && free && vsp >= 0 && has_tpd != other.player) {
 	            //--flavor
 	            sound_play(sound_get("door_close"));
 	            spawn_hit_fx( x, y, HFX_GEN_SPIN);
