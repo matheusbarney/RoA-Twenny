@@ -42,6 +42,7 @@ switch(attack)
     case AT_USTRONG:
     	if (window == 2 && window_timer == window_end_time) {
     		spawn_base_dust(x+(12*spr_dir),y, "dash", -spr_dir);
+    		spawn_base_dust(x,y-64, "djump", spr_dir);
     	}
     break;
     
@@ -50,10 +51,6 @@ switch(attack)
     		spawn_base_dust(x+(56*spr_dir),y, "dash", -spr_dir);
     		spawn_base_dust(x-(24*spr_dir),y, "dash", spr_dir);
     	}
-    break;
-    
-    case AT_USTRONG:
-    	if (window == 2 && window_timer == window_end_time) spawn_base_dust(x,y-64, "djump", spr_dir);
     break;
     
     case AT_USPECIAL:
@@ -480,6 +477,10 @@ switch(attack) {
     	if (2 < window && window < 6) {
     		in_hstance = true;
     		can_fast_fall = false;
+    	} else if (window <= 2) {
+    		if free {
+    			state = PS_IDLE_AIR;
+    		}
     	}
     	
     	switch window {

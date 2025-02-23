@@ -8,19 +8,19 @@ set_attack_value(AT_USTRONG, AG_USES_CUSTOM_GRAVITY, 1);
 
 // pre-charge
 set_window_value(AT_USTRONG, 1, AG_WINDOW_TYPE, 1);
-set_window_value(AT_USTRONG, 1, AG_WINDOW_LENGTH, 8);
+set_window_value(AT_USTRONG, 1, AG_WINDOW_LENGTH, 9);
 set_window_value(AT_USTRONG, 1, AG_WINDOW_ANIM_FRAMES, 2);
 set_window_value(AT_USTRONG, 1, AG_WINDOW_CUSTOM_GRAVITY, 1);
 
 // post-charge
 set_window_value(AT_USTRONG, 2, AG_WINDOW_TYPE, 1);
-set_window_value(AT_USTRONG, 2, AG_WINDOW_LENGTH, 6);
+set_window_value(AT_USTRONG, 2, AG_WINDOW_LENGTH, 8);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_ANIM_FRAME_START, 2);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_CUSTOM_GRAVITY, 1);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_HAS_SFX, 1);
 set_window_value(AT_USTRONG, 2, AG_WINDOW_SFX, asset_get("sfx_swipe_medium2"));
-set_window_value(AT_USTRONG, 2, AG_WINDOW_SFX_FRAME, 5);
+set_window_value(AT_USTRONG, 2, AG_WINDOW_SFX_FRAME, 7);
 
 //in air
 set_window_value(AT_USTRONG, 3, AG_WINDOW_TYPE, 1);
@@ -195,7 +195,7 @@ set_hitbox_value(AT_USTRONG, 5, HG_HITBOX_Y, -50);
 set_hitbox_value(AT_USTRONG, 5, HG_WIDTH, 112);
 set_hitbox_value(AT_USTRONG, 5, HG_HEIGHT, 112);
 set_hitbox_value(AT_USTRONG, 5, HG_PRIORITY, 2);
-set_hitbox_value(AT_USTRONG, 5, HG_DAMAGE, 5);
+set_hitbox_value(AT_USTRONG, 5, HG_DAMAGE, 4);
 set_hitbox_value(AT_USTRONG, 5, HG_ANGLE, 90); 
 set_hitbox_value(AT_USTRONG, 5, HG_BASE_KNOCKBACK, 7);
 set_hitbox_value(AT_USTRONG, 5, HG_KNOCKBACK_SCALING, 1.15);
