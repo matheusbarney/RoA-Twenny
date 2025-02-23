@@ -144,7 +144,7 @@ if (in_hstance) {
         hurtboxID.sprite_index = sprite_get("uspecial_land_hurt");
         window = 1;
         window_timer = 0;
-    } else if (vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY))) {
+    } else if (vsp >= 0 && state == PS_IDLE_AIR && (special_pressed || is_special_pressed(DIR_ANY)) && move_cooldown[AT_EXTRA_3] == 0) {
     	attack_end();
         state = PS_ATTACK_AIR;
         state_timer = 0;
@@ -170,6 +170,7 @@ if (in_hstance) {
     walljump_hsp = base_walljump_hsp;
     walljump_vsp = base_walljump_vsp;
     
+    
     hurtbox_spr = sprite_get("1_idlehbox");
     
     move_cooldown[AT_NSPECIAL] = 0;
@@ -182,5 +183,6 @@ if (in_hstance) {
     move_cooldown[AT_FAIR] = 0;
     move_cooldown[AT_DAIR] = 0;
     move_cooldown[AT_BAIR] = 0;
+    move_cooldown[AT_EXTRA_3] = 0;
 }
 

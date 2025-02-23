@@ -317,7 +317,7 @@ switch(attack) {
         		can_shield = true;
         	}
         	vsp *= 0.94;
-        	if (vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY))) {
+        	if (vsp >= 0 && (special_pressed || is_special_pressed(DIR_ANY)) && move_cooldown[AT_EXTRA_3] == 0) {
 	        	attack_end();
 	        	attack = AT_EXTRA_3;
 	        	window = 1;
@@ -328,6 +328,7 @@ switch(attack) {
     
     // Claw
     case AT_EXTRA_3:
+    	move_cooldown[AT_EXTRA_3] = 9999;
     	if (window > 1 && (grabbed_player_obj != noone || grabbed_bomb_obj != noone)) pipewarp_cd = 2; // block pipe warps
     	can_fast_fall = false;
     	switch window {
@@ -347,7 +348,7 @@ switch(attack) {
     			vsp = min(vsp, 4);
     			claw_rel_y += claw_vsp;
     			claw_abs_y = y+claw_rel_y+vsp;
-    			claw_vsp -= 0.8 ;
+    			claw_vsp -= 0.9 ;
     			
     			if (claw_rel_y <= 0) {
     				window = 10;
