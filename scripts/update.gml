@@ -24,13 +24,21 @@ if (state == PS_SPAWN) {
 		break;
 		case 1:
 			if (is_voiced) {
-				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 6, true); // TODO: does this desync?
+				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 9, true); // TODO: does this desync?
 				//print_debug (get_gameplay_time() % 50)
 				//print_debug (voice_line)
+				if get_stage_data(SD_ID) == "3361189673" {
+					voice_line = 0;
+					sound_play(sound_get("intro_sewer"), false, 0, 1, 1); //dont say "It's not everyday I leave the studio" when in the Ambrosia Sewers
+				}
 				if (voice_line == 1) sound_play(sound_get("intro_1"), false, 0, 1, 1);
 				else if (voice_line == 2) sound_play(sound_get("intro_2"), false, 0, 1, 1);
 				else if (voice_line == 3) sound_play(sound_get("intro_3"), false, 0, 1, 1);
 				else if (voice_line == 4) sound_play(sound_get("intro_4"), false, 0, 1, 1);
+				else if (voice_line == 5) sound_play(sound_get("intro_5"), false, 0, 1, 1);
+				else if (voice_line == 6) sound_play(sound_get("intro_6"), false, 0, 1, 1);
+				else if (voice_line == 7) sound_play(sound_get("intro_7"), false, 0, 1, 1);
+				//print_debug (voice_line)
 			}
 	}
 	
@@ -116,6 +124,25 @@ if (!free || state == PS_HITSTUN) {
     dair_used = false;
     sound_stop(asset_get("sfx_absa_current_pop"));
 }
+
+//galaxy checker
+if (galaxy_timer == 0 && instance_exists(hit_player_obj) && hit_player_obj.activated_kill_effect && attack != AT_FSTRONG && attack != AT_EXTRA_3)
+{
+    galaxy_timer = 90;
+}
+galaxy_timer = max(galaxy_timer-1,0)
+//voiceline on galaxy
+if galaxy_timer == 89 {
+        if (is_voiced) {
+				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 6, true); // TODO: does this desync?
+				if (voice_line == 1) sound_play(sound_get("ig_galaxy_1"), false, 0, 1, 1);
+				else if (voice_line == 2) sound_play(sound_get("ig_galaxy_2"), false, 0, 1, 1);
+				else if (voice_line == 3) sound_play(sound_get("ig_galaxy_3"), false, 0, 1, 1);
+				else if (voice_line == 4) sound_play(sound_get("ig_galaxy_high"), false, 0, 1, 1);
+				print_debug (voice_line)
+			}
+}
+
 
 // So... no head?
 if (in_hstance) {

@@ -1,4 +1,6 @@
 
+
+
 //sdi check
 if (my_hitboxID.attack != AT_USTRONG || (my_hitboxID.attack == AT_USTRONG && my_hitboxID.hbox_num > 1 && my_hitboxID.hbox_num < 6)) {
 	hit_player_obj.sdi_mult = 1;
@@ -29,6 +31,10 @@ switch (my_hitboxID.attack) {
     case AT_DAIR:
         if (my_hitboxID.hbox_num == 1) sound_play(asset_get("sfx_blow_heavy1"), false, noone, 0.7,  0.9);;
         break;
+        
+    case AT_UAIR:
+    	if (hit_player_obj.activated_kill_effect) sound_play(sound_get("ig_eureka"), false, 0, 1, 1);
+    	break;
     
     case AT_FSTRONG:
         sound_play(asset_get("sfx_blow_heavy2"), false, noone, 0.5,  1.2);
@@ -64,6 +70,16 @@ switch (my_hitboxID.attack) {
     // Claw grab
     case AT_EXTRA_3:
         if (my_hitboxID.hbox_num == 1) {
+        	if (is_voiced) {
+				var voice_line = random_func_2((current_second % 50) + get_player_color( player ), 7, true); // TODO: does this desync?
+				if (voice_line == 1) sound_play(sound_get("ig_claw_1"), false, 0, 1, 1);
+				else if (voice_line == 2) sound_play(sound_get("ig_claw_2"), false, 0, 1, 1);
+				else if (voice_line == 3) sound_play(sound_get("ig_claw_3"), false, 0, 1, 1);
+				else if (voice_line == 4) sound_play(sound_get("ig_claw_4"), false, 0, 1, 1);
+				else if (voice_line == 5) sound_play(sound_get("ig_claw_5"), false, 0, 1, 1);
+				print_debug (voice_line)
+			}
+			
             print_debug("hit!");
             window = 3;
     		window_timer = 0;

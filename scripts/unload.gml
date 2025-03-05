@@ -92,16 +92,16 @@ if (!twenny_handled_victory_quote)
     switch (char_url)
     {
         case "3302238950": //Alexis
-            quote = "> WRENCHES? SCREWDRIVERS? IF Y0U TRY FIXXING ME, I’LL JUST HAVE T0 ‘FIXX’ Y0UR FACE."
+            quote = "WRENCHES? SCREWDRIVERS? IF Y0U TRY FIXXING ME, I’LL JUST HAVE T0 ‘FIXX’ Y0UR FACE."
             break; 
         case "2605377553": //Mal
             quote = "L0VE Y0UR RAGS- CAN I HAVE Y0UR SWEATER? AND I L0VE Y0UR C0MPLEXI0N- CAN I HAVE Y0UR SKIN?"
             break; 
         case "3307937190": //Pastelle
-            quote = "> I’LL ADMIT, HER V0ICE WAS <S0000000> CUTE! TAKING N0TES."
+            quote = "I’LL ADMIT, HER V0ICE WAS <S0000000> CUTE! TAKING N0TES."
             break; 
         //case "": // Celeste
-        //    quote = "> WAS THAT REALLY A SUPER-VILLAIN? GEE, GLAD I WAS HERE T0 SAVE THE DAY, THEN!"
+        //    quote = "WAS THAT REALLY A SUPER-VILLAIN? GEE, GLAD I WAS HERE T0 SAVE THE DAY, THEN!"
         //    break; 
         
         // Horror Jam Entries
@@ -142,7 +142,7 @@ if (!twenny_handled_victory_quote)
         case "2839808881": // Kirby
         case "2229887722": // Amber
         case "2871608790": //  Azi
-            quote = "> LITTLE CUTIEPIES LIKE Y0U MAKE MY WIRES CHURN. Y0U KN0W DAMN WELL I’M STILL THE CUTEST!!";
+            quote = "LITTLE CUTIEPIES LIKE Y0U MAKE MY WIRES CHURN. Y0U KN0W DAMN WELL I’M STILL THE CUTEST!!";
             break;
             
         // rat civilization
@@ -150,23 +150,22 @@ if (!twenny_handled_victory_quote)
         case "2930066171": // Chad
         case CH_POMME:
         case CH_OLYMPIA:
-            quote = "> THIS WILL SURELY PLEASE THE SEWER RAT DEM0GRAPHIC."
+            quote = "THIS WILL SURELY PLEASE THE SEWER RAT DEM0GRAPHIC."
             break;
             
         // Putrolce
         case "3309240911": //Putrolce
-            quote = "> H0W AB0UT I HIRE Y0U AS MY JANIT0R? JUST EAT ALL THE BAD TRASH AND KEEP THE G00D TRASH PLEASE.";
+            quote = "H0W AB0UT I HIRE Y0U AS MY JANIT0R? JUST EAT ALL THE BAD TRASH AND KEEP THE G00D TRASH PLEASE.";
             break;
         
         // Venus or Bar
-        case "3316053085": //Venus
         case "2601775097": //Reygard
-            quote = "> Y0U MAY N0T HAVE N0TICED THIS, BUT ANGELS AREN’T REAL. G00D LUCK, TH0UGH!";
+            quote = "Y0U MAY N0T HAVE N0TICED THIS, BUT ANGELS AREN’T REAL. G00D LUCK, TH0UGH!";
             break;
         
         // Yuuko
         case "2996263079": //Yuuko
-            quote = "> AN 0RDINARY GIRL? I KN0W A THING 0R 2 AB0UT 0RDINARY, Y0U’RE DEFINITELY JUST A FREAK!";
+            quote = "AN 0RDINARY GIRL? I KN0W A THING 0R 2 AB0UT 0RDINARY, Y0U’RE DEFINITELY JUST A FREAK!";
             break;
         
         // Nano
@@ -176,42 +175,42 @@ if (!twenny_handled_victory_quote)
         
         // Deracine
         case "3349889053": //Déraciné
-            quote = "> Y0U CAN RAISE THE DEAD? WH00PTY D00. HALF MY R00MMATES ARE GH0STS. THE 0THER HALF KIND 0F L00K LIKE Y0U, ACTUALLY.";
+            quote = "Y0U CAN RAISE THE DEAD? WH00PTY D00. HALF MY R00MMATES ARE GH0STS. THE 0THER HALF KIND 0F L00K LIKE Y0U, ACTUALLY.";
             break;
         
         // Luminance
         case "3067741766": //Luminance
-            quote = "> N0W THAT’S A SIGHT F0R S0RE EYES. IF Y0U’RE L00KING F0R S0ME0NE I’M N0T HER.";
+            quote = "N0W THAT’S A SIGHT F0R S0RE EYES. IF YoU’RE L00KING FoR SoME0NE... I'm not her.";
             break;
         
         // Thara
         case "2292289481": //Thara
         case "2540332317": //Thara
-            quote = "> VERMIN ALERT! EITHER I SQUASH Y0U N0W 0R Y0U CAN G0 WATCH MY SH0W LATER T0NIGHT, H0W AB0UT IT?";
+            quote = "VERMIN ALERT! EITHER I SQUASH Y0U N0W 0R Y0U CAN G0 WATCH MY SH0W LATER T0NIGHT, H0W AB0UT IT?";
             break;
         
         // Truck-kun
         case "2997493298": //Truck-kun
-            quote = "> HEY H0TSH0T, ARE YA SINGLE? SW00000N.";
+            quote = "HEY H0TSH0T, ARE YA SINGLE? SW00000N.";
             break;
         
         // N/A
         case "2229832619": //N/A
-            quote = "> AWW WELL AREN’T Y0U THE CUTEST THING? I W0NDER IF I CAN FIT IT D0WN IN THE SEWERS.";
+            quote = "AWW WELL AREN’T Y0U THE CUTEST THING? I W0NDER IF I CAN FIT IT D0WN IN THE SEWERS.";
             break;
             
         // Tamat
         case "2273328517": //Tamat
-            quote = "> WAIT... I F0RG0T T0 GET HER AUTOGRAPH! QUICK, BEF0RE SHE DISSAPEARS INT0 MYSTERI0US ARG G00P!!";
+            quote = "WAIT... I F0RG0T T0 GET HER AUTOGRAPH! QUICK, BEF0RE SHE DISSAPEARS INT0 MYSTERI0US ARG G00P!!";
             break;
             
         // Spooky
-        //case "": //Spooky
-        //    quote = "I'LL ADD THESE 'JUMPSCARES' T0 MY S0OW IF IT MEANS M0RE GH0STS WILL LIKE IT, H0WZABOUDIT?!"
-        //    break;
+        case "3357700659": //Spooky
+            quote = "HUMHARUM... W0ULD M0RE GH0STS WATCH MY STUFF IF I ADDED THESE 'JUMPSCARES' T0 MY SH0W?"
+            break;
         
         case "3120902361": // Desperado
-            quote = "> GH0STS B0RN FR0M BITTERNESS ARE THE W0RST- THEY ALM0ST NEVER WANNA WATCH MY SH*T!"
+            quote = "GH0STS B0RN FR0M BITTERNESS ARE THE W0RST- THEY ALM0ST NEVER WANNA WATCH MY SH*T!"
             break;
             
         case "2816145042": // SSL NAC
@@ -219,18 +218,32 @@ if (!twenny_handled_victory_quote)
             break;
             
         case "2201608216": // Blake
-            quote = "> THIS LIL' SCRAPPYP00 ISN'T 0NE OF MY TRASH CR0NIES, IS IT? MAYBE I NEED T0 DISSECT IT..."
+        case "2007375819": // BBot
+        case "2142662749": // Ruzo
+        case "2164823475": // Rosa the Mechanical Maid (hell yeah.)
+        case "2501860697": // zuhtatic
+            quote = "THIS SCRAPBRAIN ISN'T 1 0F MY CR0NIES, IS IT? MAYBE I NEED T0 DISSECT IT..."
+            break;
+            
+        case "3316053085": //Venus
+        case "3306584099": //Tomoko
+        case "3307368173": //Sarolyn
+        case "3308351120": // Saelune
+        case "3310371100": // Usher
+        case "3316054693": // Asra
+        case "3382637663": // Ciela
+            quote = "PFFT- 'ALL STAR'? H0W AB0UT Y0U ALL STAR-T WALKING STRAIGHT 0FF A CLIFF!!"
             break;
             
         case "2823288287": // SSL Twenny, same as base twenny
-            quote = "> SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
+            quote = "SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
             break;
         
         default: break;
     }
     
     if (is_twenny) {
-        quote = "> SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
+        quote = "SHREWD W0MAN! IMITATI0N WAS IMMINENT FAILURE- I AM 0NE IN A TWILLI0N~";
     }
 
 return quote
@@ -268,6 +281,13 @@ return quote
         case "2839808881": // Kirby
         case "2229887722": // Amber
         case "3120902361": // Desperado
+        case "3316053085": //Venus
+        case "3306584099": //Tomoko
+        case "3307368173": //Sarolyn
+        case "3308351120": // Saelune
+        case "3310371100": // Usher
+        case "3316054693": // Asra
+        case "3382637663": // Ciela
             icon = "vicf_angry";
             break;
             
@@ -300,13 +320,16 @@ return quote
         case "3351637675": // fiertay
         case "3351523308": // league guy
         case "3351696106": // void friend
-        // case "": // im not including the blob time cat bro
         case "3351720915": // zombies
         case "3351719064": // darkrai
         case "3352057377": // charlotte
         case "3353596512": // Employee
-        case "3047409367": //Nano
+        case "3047409367": // Nano
         case "2201608216": // Blake
+        case "2007375819": // BBot
+        case "2142662749": // Ruzo
+        case "2164823475": // Rosa the Mechanical Maid (hell yeah.)
+        case "2501860697": // zuhtatic
             icon = "vicf_glitch";
             break;
 
@@ -322,6 +345,7 @@ return quote
         case CH_POMME:
         case CH_OLYMPIA:
         case "2273328517": //Tamat
+        case "3357700659": //Spooky
             icon = "vicf_stare";
             break;
         
@@ -396,21 +420,67 @@ return icon
         case CH_OLYMPIA:
             voiceline = "vic_d4"
             break;
+            
+        case "3302238950": //Alexis
+            voiceline = "vic_lexi"
+            break;
+        
+        case "3309240911": //Putrolce
+            voiceline = "vic_patty"
+            break;
+        
+        case "2997493298": //Truck-kun
+            voiceline = "vic_truck"
+            break;
+            
+        case "3067741766": //Luminance
+            voiceline = "vic_luminance"
+            break;
+            
+        case "3349889053": //Déraciné
+            voiceline = "vic_deracine"
+            break;
+        
+        case "2273328517": //Tamat
+            voiceline = "vic_tamat"
+            break;
+            
+        case "3120902361": // Desperado
+            voiceline = "vic_desperado"
+            break;
+        
+        case "3357700659": //Spooky
+            voiceline = "vic_spooky"
+            break;
+        
+        //all-stars
+        case "3316053085": //Venus
+        case "3306584099": //Tomoko
+        case "3307368173": //Sarolyn
+        case "3308351120": // Saelune
+        case "3310371100": // Usher
+        case "3316054693": // Asra
+        case "3382637663": // Ciela
+            voiceline = "vic_allstars"
+            break;
+        
+        //robots
+        case "2201608216": // Blake
+        case "2007375819": // BBot
+        case "2142662749": // Ruzo
+        case "2164823475": // Rosa the Mechanical Maid (hell yeah.)
+        case "2501860697": // zuhtatic
+            voiceline = "vic_robots"
+            break;
         
         //nothing
-        case "3302238950": //Alexis
-        case "3309240911": //Putrolce
         case "2229832619": //N/A
-        case "2997493298": //Truck-kun
         case "2292289481": //Thara
         case "2540332317": //Thara
-        case "3067741766": //Luminance
-        case "3349889053": //Déraciné
         case "3047409367": //Nano
         case "2996263079": //Yuuko
-        case "3316053085": //Venus
         case "2601775097": //Reygard
-        case "2273328517": //Tamat
+        case "2816145042": // SSL NAC
             voiceline = "nothing";
             break;
 

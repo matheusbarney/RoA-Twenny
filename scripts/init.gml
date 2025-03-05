@@ -273,3 +273,7 @@ switch (get_player_color(player)) {
         set_victory_theme( sound_get( "mus_twenny_victory" ));
     break;
 }
+
+//voiceline on galaxy
+galaxy_timer = 0;
+eureka = false;
