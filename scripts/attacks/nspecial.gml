@@ -76,6 +76,7 @@ set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0.8);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_swish_medium"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
 set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_DOES_NOT_REFLECT, true);
 i++;
 
 // scrap bomb basic hitbox
@@ -104,6 +105,7 @@ set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_blow_weak1"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
 set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_DOES_NOT_REFLECT, true);
 i++;
 
 // bag bomb explosion
@@ -131,6 +133,7 @@ set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0.8);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_springgo"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
 set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_DOES_NOT_REFLECT, true);
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_IS_TRANSCENDENT, 1);
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PLASMA_SAFE, 1);
 i++;
@@ -160,4 +163,5 @@ set_hitbox_value(AT_NSPECIAL, i, HG_BASE_HITPAUSE, 10);
 set_hitbox_value(AT_NSPECIAL, i, HG_HITPAUSE_SCALING, 0);
 set_hitbox_value(AT_NSPECIAL, i, HG_HIT_SFX, asset_get("sfx_blow_medium1"));
 set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_PARRY_STUN, true);
-set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1)
+set_hitbox_value(AT_NSPECIAL, i, HG_EXTENDED_PARRY_STUN, 1);
+set_hitbox_value(AT_NSPECIAL, i, HG_PROJECTILE_DOES_NOT_REFLECT, true);
